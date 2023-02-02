@@ -1,5 +1,5 @@
 # Blog
-Just a blog, under construction, maybe use notion as backend server.
+Just a blog, under construction, use notion as backend server.
 
 ## Getting Started
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
