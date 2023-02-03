@@ -18,7 +18,7 @@ export const colors: Colors = {
             'normal': 'bg-inherit dark:bg-inherit',
         }
     },
-    'gary': {
+    'gray': {
         'text': {
             'normal': 'text-gray-900 dark:text-gray-100',
         },
