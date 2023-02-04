@@ -79,7 +79,7 @@ export async function getDatabase(select: DbSelect = {type: 'all'}) {
 export async function getBlocks(id: string) {
     const injectChildren = async (block: any, fetcher: Function) => {
         const response = await fetcher(block.id);
-        return {...block, blocks: response};
+        return {...block, children: response};
     }
     const rawBlocks = await notion.blocks.children.list({
         block_id: id,
