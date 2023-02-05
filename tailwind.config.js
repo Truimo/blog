@@ -8,7 +8,14 @@ module.exports = {
         "./libs/colors.ts",
     ],
     theme: {
-        extend: {},
+        extend: {
+            'height': {
+                'em': '1em',
+            },
+            'contrast': {
+                '82': '.82',
+            }
+        },
     },
     plugins: [],
 }
