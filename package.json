@@ -6,13 +6,23 @@
     "start": "next start"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.9",
     "@notionhq/client": "^2.2.3",
+    "katex": "^0.16.4",
+    "moment": "^2.29.4",
     "next": "latest",
     "next-themes": "^0.2.1",
+    "pangu": "^4.0.7",
+    "probe-image-size": "^7.2.3",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-syntax-highlighter": "^15.5.0",
+    "sharp": "^0.31.3",
+    "swr": "^2.0.3",
+    "unfurl.js": "^6.1.0"
   },
   "devDependencies": {
+    "@tailwindcss/line-clamp": "^0.4.2",
     "@types/node": "18.11.18",
     "@types/react": "18.0.27",
     "autoprefixer": "^10.4.13",
