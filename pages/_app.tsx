@@ -29,7 +29,7 @@ function App({Component, pageProps}: AppPropsWithLayout) {
                 <title>浅小沫的博客</title>
                 <link rel="shortcut icon" type="image/png" href="https://q1.qlogo.cn/g?b=qq&nk=3201719830&s=640"/>
                 <Script src="https://analyze.truimo.com/umami.js" async defer
-                        data-website-id="e0b642ae-836d-4cf7-b1d7-30b8be34608a"/>
+                        data-website-id="e0b642ae-836d-4cf7-b1d7-30b8be34608a" data-domains="blog.truimo.com"/>
             </Head>
             <ThemeProvider attribute="class">
                 {getLayout(
