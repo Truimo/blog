@@ -10,7 +10,6 @@
     },
     "dependencies": {
         "@tailwindcss/line-clamp": "^0.4.4",
-        "hexo": "^7.0.0-rc2",
         "next": "latest",
         "react": "latest",
         "react-dom": "latest"
@@ -20,6 +19,7 @@
         "@types/react": "latest",
         "@types/react-dom": "latest",
         "autoprefixer": "latest",
+        "hexo": "^6.3.0",
         "postcss": "latest",
         "tailwindcss": "latest",
         "typescript": "latest"
