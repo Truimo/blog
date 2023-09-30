@@ -9,17 +9,16 @@
         "lint": "next lint"
     },
     "dependencies": {
-        "@tailwindcss/line-clamp": "^0.4.4",
-        "next": "latest",
-        "react": "latest",
-        "react-dom": "latest"
+        "next": "^13.5.3",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
     },
     "devDependencies": {
         "@types/node": "latest",
         "@types/react": "latest",
         "@types/react-dom": "latest",
         "autoprefixer": "latest",
-        "hexo": "^6.3.0",
+        "hexo": "^7.0.0-rc2",
         "postcss": "latest",
         "tailwindcss": "latest",
         "typescript": "latest"
