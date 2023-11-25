@@ -3,20 +3,21 @@ import {Inter} from 'next/font/google'
 import Head from 'next/head'
 import {ReactNode} from 'react'
 import {ReactQueryProvider} from '@/providers/react-query-provider'
-import type {Metadata} from 'next'
+import type {Metadata, Viewport} from 'next'
 import Root from '@/components/layout/Root'
 import {blogName, blogTitle, blogDescription, blogKeywords} from '@/config'
 
 const inter = Inter({subsets: ['latin']})
 
+export const viewport: Viewport = {
+    width: 'device-width',
+    initialScale: 1,
+    minimumScale: 1,
+    maximumScale: 1,
+    userScalable: false,
+}
+
 export const metadata: Metadata = {
-    viewport: {
-        width: 'device-width',
-        initialScale: 1,
-        minimumScale: 1,
-        maximumScale: 1,
-        userScalable: false,
-    },
     title: {
         default: blogName,
         template: `%s - ${blogTitle}`
