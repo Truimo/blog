@@ -13,7 +13,7 @@ export default function Header() {
                         <Link href="/friends" title="Friends">Friends</Link>
                     </li>
                     <li className="ms-4 h-full flex items-center">
-                        <Link href="/about" title="About">About</Link>
+                        <Link href="#" title="About">About</Link>
                     </li>
                 </ul>
             </nav>
