@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+import { addDynamicIconSelectors } from '@iconify/tailwind'
 module.exports = {
     darkMode: 'class',
     content: [
@@ -14,5 +15,7 @@ module.exports = {
             }
         },
     },
-    plugins: [],
+    plugins: [
+        addDynamicIconSelectors()
+    ],
 }

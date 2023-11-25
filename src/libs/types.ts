@@ -41,3 +41,9 @@ export type DbSelect = {
     type: 'slug',
     slug: string
 }
+
+export interface Friend {
+    name: string,
+    link: string,
+    avatar: string
+}

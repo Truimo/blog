@@ -1,7 +1,10 @@
 import '@/styles/globals.css'
 import {Inter} from 'next/font/google'
 import {ReactNode} from 'react'
+import {ReactQueryProvider} from '@/providers/react-query-provider'
 import type {Metadata} from 'next'
+import Root from '@/components/layout/Root'
+import {blogName, blogTitle, blogDescription, blogKeywords} from '@/config'
 
 const inter = Inter({subsets: ['latin']})
 
@@ -14,11 +17,14 @@ export const metadata: Metadata = {
         userScalable: false,
     },
     title: {
-        default: '浅小沫的博客',
-        template: `%s - 浅小沫的博客`
+        default: blogName,
+        template: `%s - ${blogTitle}`
     },
-    description: '浅小沫的博客',
-    keywords: ['浅小沫的博客', '浅小沫'],
+    description: blogDescription,
+    keywords: blogKeywords,
+    verification: {
+        google: 'GdFb_xYFw9Ait8bFcxGoIPoZwD1BfatxIpEXznZdpUE'
+    }
 }
 
 export default function RootLayout({children}: {
@@ -26,7 +32,11 @@ export default function RootLayout({children}: {
 }) {
     return (
         <html lang="zh-CN">
-        <body className={inter.className}>{children}</body>
+        <body className={`${inter.className} font-sans`}>
+        <ReactQueryProvider>
+            <Root>{children}</Root>
+        </ReactQueryProvider>
+        </body>
         </html>
     )
 }

@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html {
     height: 100%;
     font-size: 100%;
@@ -11,6 +15,11 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+.main {
+    @apply relative m-auto max-w-6xl p-4;
+    min-height: calc(100vh - 4rem * 2);
+}
+
+.main .fill {
+    min-height: calc(100vh - 4rem * 2.5);
+}

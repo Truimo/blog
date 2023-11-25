@@ -91,3 +91,8 @@ export const colors: Colors = {
         }
     }
 }
+
+export function getTextColor(color: string): string {
+    return colors[color] ? colors[color].text.normal : colors['default'].text.normal
+}
+
