@@ -1,11 +1,10 @@
 import {Client, isFullPageOrDatabase, collectPaginatedAPI, isFullBlock} from '@notionhq/client'
 import type {
-    BlockObjectResponse, PartialBlockObjectResponse,
-    PageObjectResponse, RichTextItemResponse, TextRichTextItemResponse
+    BlockObjectResponse, PageObjectResponse, RichTextItemResponse, TextRichTextItemResponse
 } from '@notionhq/client/build/src/api-endpoints'
 
 const notion = new Client({
-    auth: process.env.NOTION_KEY,
+    auth: process.env.NOTION_KEY, fetch
 }), databaseId = process.env.NOTION_DATABASE_ID || ''
 
 interface PostQuery {
