@@ -1,12 +1,13 @@
 'use client'
 
 import React, {useInsertionEffect, useRef} from 'react'
-import {Block} from '@/components/notion/blocks/Block'
+import {Block, InlineBlock} from '@/components/notion/blocks/Block'
 import {loadStyleSheet, loadScript} from '@/libs/load-script'
 import type {PropsWithChildren} from 'react'
 import type {BlockObjectResponse} from '@notionhq/client/build/src/api-endpoints'
 
 import styles from '../styles/Code.module.css'
+import RichText from "@/components/notion/blocks/RichText";
 
 declare global {
     interface Window {
@@ -80,5 +81,8 @@ export default function Code({block, children}: PropsWithChildren<{
         <pre className="line-numbers">
             <code ref={ref} className={`language-${code.language ?? 'markup'}`}>{text}</code>
         </pre>
+        {code.caption.length > 0 && (<InlineBlock className="text-neutral-500 text-sm">
+            <RichText rich_text={code.caption}/>
+        </InlineBlock>)}
     </Block>
 }
