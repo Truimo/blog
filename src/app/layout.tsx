@@ -1,6 +1,5 @@
 import '@/styles/globals.css'
 import {Inter} from 'next/font/google'
-import Head from 'next/head'
 import {ReactNode} from 'react'
 import {ReactQueryProvider} from '@/providers/react-query-provider'
 import type {Metadata, Viewport} from 'next'
@@ -30,6 +29,9 @@ export const metadata: Metadata = {
             type: 'image/png',
             sizes: '500x500',
             url: 'https://assets.truimo.com/avatars/min.png',
+        }, {
+            rel: 'canonical',
+            url: 'https://blog.truimo.com',
         }
     ],
     verification: {
@@ -42,13 +44,6 @@ export default function RootLayout({children}: {
 }) {
     return (
         <html lang="zh-CN">
-        <Head>
-            <link
-                rel="canonical"
-                href="https://blog.truimo.com"
-                key="canonical"
-            />
-        </Head>
         <body className={`${inter.className} font-sans`}>
         <ReactQueryProvider>
             <Root>{children}</Root>

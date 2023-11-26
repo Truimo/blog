@@ -17,6 +17,19 @@ export const generateMetadata = async ({params}: { params: PageParams }): Promis
     return {
         title: page.title,
         description: page.excerpt,
+        category: page.category.name,
+        icons: {
+            icon: {
+                rel: 'icon',
+                type: 'image/png',
+                sizes: '500x500',
+                url: 'https://assets.truimo.com/avatars/min.png'
+            },
+            other: {
+                rel: 'canonical',
+                url: `https://blog.truimo.com/posts/${slug}`
+            }
+        }
     }
 }
 

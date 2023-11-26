@@ -7,5 +7,6 @@ export default function robots(): MetadataRoute.Robots {
             allow: '/',
             disallow: [],
         },
+        sitemap: 'https://blog.truimo.com/sitemap.xml'
     }
 }
