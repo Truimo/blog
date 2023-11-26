@@ -17,6 +17,7 @@ export const generateMetadata = async ({params}: { params: PageParams }): Promis
     return {
         title: page.title,
         description: page.excerpt,
+        keywords: page.tags.map(tag => tag.name),
         category: page.category.name,
         icons: {
             icon: {
