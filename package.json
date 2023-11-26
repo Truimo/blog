@@ -29,7 +29,7 @@
         "@types/react": "latest",
         "@types/react-dom": "latest",
         "@iconify-json/material-symbols": "1.1.64",
-        "@iconify-json/mingcute": "1.1.11",
+        "@iconify-json/mingcute": "1.1.12",
         "@iconify/tailwind": "0.1.4",
         "autoprefixer": "latest",
         "encoding": "^0.1.13",
