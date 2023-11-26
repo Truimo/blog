@@ -7,6 +7,10 @@
         background: transparent !important;
     }
 
+    :global(pre.line-numbers) {
+        padding-left: 2.8em !important;
+    }
+
     .language-tip {
         position: absolute;
         right: 1em;
