@@ -26,8 +26,8 @@
     "devDependencies": {
         "@types/katex": "0.16.5",
         "@types/node": "20.9.2",
-        "@types/react": "18.2.37",
-        "@types/react-dom": "18.2.15",
+        "@types/react": "18.2.38",
+        "@types/react-dom": "18.2.17",
         "@iconify-json/material-symbols": "1.1.64",
         "@iconify-json/mingcute": "1.1.12",
         "@iconify/tailwind": "0.1.4",
