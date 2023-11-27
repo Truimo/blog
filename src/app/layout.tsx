@@ -1,4 +1,4 @@
-import '@/styles/globals.css'
+import '@/styles/index.css'
 import {Inter} from 'next/font/google'
 import {ReactNode} from 'react'
 import {ReactQueryProvider} from '@/providers/react-query-provider'
