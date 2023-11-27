@@ -45,10 +45,19 @@ export default function RootLayout({children}: {
     return (
         <html lang="zh-CN">
         <body className={`${inter.className} font-sans`}>
+        <SayHi/>
         <ReactQueryProvider>
             <Root>{children}</Root>
         </ReactQueryProvider>
         </body>
         </html>
+    )
+}
+
+function SayHi() {
+    return (
+        <script dangerouslySetInnerHTML={{
+            __html: 'console.log("%c Truimo\'s Blog %c https://github.com/Truimo/blog ", "color: #fff; margin: 1em 0; padding: 5px 0; background: #0ea5e9;", "margin: 1em 0; padding: 5px 0; background: #efefef;");'
+        }}></script>
     )
 }
