@@ -25,7 +25,7 @@
         "unfurl.js": "6.3.2"
     },
     "devDependencies": {
-        "@iconify-json/material-symbols": "1.1.64",
+        "@iconify-json/material-symbols": "1.1.65",
         "@iconify-json/mingcute": "1.1.12",
         "@iconify/tailwind": "0.1.4",
         "@types/katex": "0.16.7",
