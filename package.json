@@ -30,7 +30,7 @@
         "@iconify/tailwind": "0.1.4",
         "@types/katex": "0.16.7",
         "@types/node": "20.10.0",
-        "@types/react": "18.2.38",
+        "@types/react": "18.2.39",
         "@types/react-dom": "18.2.17",
         "autoprefixer": "10.4.16",
         "encoding": "0.1.13",
