@@ -7,5 +7,5 @@ export default function Divider({block}: PropsWithChildren<{
     if ('divider' !== block.type) {
         return null
     }
-    return <hr className="my-3 border-b-4 border-gray-300"/>
+    return <hr className="my-3 border-t-4 border-gray-300"/>
 }
