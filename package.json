@@ -22,7 +22,7 @@
         "react-dom": "18.2.0",
         "react-intersection-observer": "9.5.3",
         "tailwind-merge": "2.2.1",
-        "unfurl.js": "6.3.2"
+        "unfurl.js": "6.4.0"
     },
     "devDependencies": {
         "@iconify-json/material-symbols": "1.1.72",
