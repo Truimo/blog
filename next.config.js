@@ -9,6 +9,19 @@ const nextConfig = {
                 permanent: true
             },
         ]
+    },
+    async headers() {
+        return [
+            {
+                source: '/',
+                headers: [
+                    {
+                        key: 'Permissions-Policy',
+                        value: 'interest-cohort=()'
+                    }
+                ]
+            }
+        ]
     }
 }
 
