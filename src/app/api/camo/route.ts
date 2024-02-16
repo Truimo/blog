@@ -46,7 +46,8 @@ async function camoImage(imageUrl: string) {
         return new Response(buffer?.getBuffer(), {
             // @ts-ignore
             headers: {
-                'Content-Type': buffer?.getContentType()
+                'Content-Type': buffer?.getContentType(),
+                'Cache-Control': 'public, max-age=604800, immutable'
             }
         })
     }
@@ -66,7 +67,8 @@ async function camoImage(imageUrl: string) {
             return new Response(buffer, {
                 // @ts-ignore
                 headers: {
-                    'Content-Type': contentType
+                    'Content-Type': contentType,
+                    'Cache-Control': 'public, max-age=604800, immutable'
                 }
             })
         } else {
