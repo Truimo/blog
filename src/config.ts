@@ -10,40 +10,36 @@ export const blogDescription: string = '浅小沫的博客'
 
 export const friends: Friend[] = [
     {
-        name: 'Catalpa Blog',
-        link: 'https://blog.bsgun.cn/',
-        avatar: 'https://q2.qlogo.cn/headimg_dl?dst_uin=1034630181&spec=100'
-    }, {
         name: 'ZW_QMQ\'s Blog',
         link: 'https://blog.zw-qmq.cn/',
-        avatar: 'https://img.zw-qmq.cn/i/2022/12/02/6389f0b0be618.jpg'
+        avatar: 'aHR0cHM6Ly9pbWcuenctcW1xLmNuL2kvMjAyMi8xMi8wMi82Mzg5ZjBiMGJlNjE4LmpwZw'
     }, {
         name: '油油',
         link: 'https://www.200011.net/',
-        avatar: 'https://q.qlogo.cn/g?b=qq&nk=1376652515@qq.com&s=100'
+        avatar: 'aHR0cHM6Ly9xLnFsb2dvLmNuL2c_Yj1xcSZuaz0xMzc2NjUyNTE1QHFxLmNvbSZzPTEwMA'
     }, {
         name: '尤且’s 小栈',
         link: 'https://blog.u82.cc/',
-        avatar: 'https://q1.qlogo.cn/g?b=qq&nk=47453459&s=640'
+        avatar: 'aHR0cHM6Ly9xMS5xbG9nby5jbi9nP2I9cXEmbms9NDc0NTM0NTkmcz02NDA'
     }, {
         name: 'Shellblock',
         link: 'https://blog.saky.site/',
-        avatar: 'https://q1.qlogo.cn/g?b=qq&nk=3405193&s=640'
+        avatar: 'aHR0cHM6Ly9xMS5xbG9nby5jbi9nP2I9cXEmbms9MzQwNTE5MyZzPTY0MA'
     }, {
         name: 'Gaein nidb',
         link: 'https://blog.gaein.cn/',
-        avatar: 'https://q1.qlogo.cn/g?b=qq&nk=951266436&s=640'
+        avatar: 'aHR0cHM6Ly9xMS5xbG9nby5jbi9nP2I9cXEmbms9OTUxMjY2NDM2JnM9NjQw'
     }, {
         name: '若志随笔',
         link: 'https://www.rz.sb/',
-        avatar: 'https://q1.qlogo.cn/g?b=qq&nk=80360650&s=640'
+        avatar: 'aHR0cHM6Ly9xMS5xbG9nby5jbi9nP2I9cXEmbms9ODAzNjA2NTAmcz02NDA'
     }, {
         name: '土土博客',
         link: 'https://www.tutime.cn/',
-        avatar: 'https://www.tutime.cn/favorite.png'
+        avatar: 'aHR0cHM6Ly93d3cudHV0aW1lLmNuL2Zhdm9yaXRlLnBuZw'
     }, {
         name: '米司博客',
         link: 'https://blog.misitebao.com/',
-        avatar: 'https://cdn.jsdelivr.net/gh/misitebao/CDN@main/gravatar.gif'
+        avatar: 'aHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L2doL21pc2l0ZWJhby9DRE5AbWFpbi9ncmF2YXRhci5naWY'
     }
 ]

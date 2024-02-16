@@ -1,5 +1,5 @@
 import type {Metadata} from 'next'
-import type {ReactNode} from 'react'
+import type {PropsWithChildren} from 'react'
 import {getPost} from '@/libs/notion'
 
 interface PageParams {
@@ -34,8 +34,6 @@ export const generateMetadata = async ({params}: { params: PageParams }): Promis
     }
 }
 
-export default function Layout({children}: {
-    children: ReactNode
-}) {
+export default function Layout({children}: PropsWithChildren) {
     return children
 }
