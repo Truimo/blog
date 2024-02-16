@@ -6,6 +6,7 @@ import {Block, InlineBlock} from '@/components/notion/blocks/Block'
 import RichText from '@/components/notion/blocks/RichText'
 import type {PropsWithChildren} from 'react'
 import type {BlockObjectResponse} from '@notionhq/client/build/src/api-endpoints'
+import {urlSafeBase64Encode} from "@/libs/base64";
 
 export default function Bookmark({block, children}: PropsWithChildren<{
     block: BlockObjectResponse
@@ -79,6 +80,9 @@ function Inner({url, data, isLoading, isError}: InnerProps) {
     const favicon = data.favicon.replace(/^http:\/\//, 'https://')
     const image = open_graph?.images?.[0].url ?? twitter_card?.images?.[0].url ?? oEmbed?.thumbnails?.[0].url ?? null
 
+    const faviconUrl = favicon ? `/api/camo?i=${urlSafeBase64Encode(favicon)}` : undefined
+    const imageUrl = image ? `/api/camo?i=${urlSafeBase64Encode(image.replace(/^http:\/\//, 'https://'))}` : undefined
+
     return (
         <a href={url} rel="noopener noreferrer" target="_blank" className="block">
             <div className="select-none text-gray-600 flex items-stretch border border-gray-300 overflow-hidden">
@@ -88,16 +92,16 @@ function Inner({url, data, isLoading, isError}: InnerProps) {
                         {description ? description : open_graph?.description}
                     </div>
                     <div className="flex items-center space-x-2 text-sm text-gray-400 dark:text-gray-500">
-                        <img className="h-4 w-4 rounded" src={favicon} alt="favicon"/>
+                        <img className="h-4 w-4 rounded" src={faviconUrl} alt="favicon" crossOrigin="anonymous"/>
                         <span className="truncate">{url}</span>
                     </div>
                 </div>
                 <div className="flex-auto w-2/6 overflow-hidden relative">
                     <div className="absolute inset-0 bg-gray-100 dark:bg-gray-800">
                         {image ? (<div className="w-full h-full">
-                            <img src={image.replace(/^http:\/\//, 'https://')} alt={title} className="w-full h-full object-cover"/>
+                            <img src={imageUrl} alt={title} className="w-full h-full object-cover"/>
                         </div>) : (<div className="w-full h-full flex justify-center items-center">
-                            <img src={favicon} alt={title} className="rounded-full h-10 w-10"/>
+                            <img src={faviconUrl} alt={title} className="rounded-full h-10 w-10"/>
                         </div>)}
                     </div>
                 </div>

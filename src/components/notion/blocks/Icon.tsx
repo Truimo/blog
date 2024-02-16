@@ -1,3 +1,4 @@
+import {urlSafeBase64Encode} from "@/libs/base64";
 
 type Icon = {
     type: 'emoji',
@@ -22,7 +23,8 @@ export default function Icon({icon}: {
         case 'emoji':
             return <span>{icon.emoji}</span>
         case 'external':
-            return <img className="inline-block object-cover h-em" src={icon.external.url} alt="icon"/>
+            const iconUrl = icon.external.url.includes('truimo.com') ? icon.external.url : `/api/camo?i=${urlSafeBase64Encode(icon.external.url)}`
+            return <img className="inline-block object-cover h-em" src={iconUrl} alt="icon"/>
         case 'file':
             return <img className="inline-block object-cover h-em" src={icon.file.url} alt="icon"/>
     }
