@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import {blogName} from '@/config'
 
-export default function Header() {
+export const Header: Component = () => {
     return (
         <header>
             <nav className="h-16 max-w-6xl mx-auto flex justify-between items-center">

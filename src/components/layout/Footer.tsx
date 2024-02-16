@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import {icp} from '@/config'
 
-export default function Footer() {
+export const Footer: Component = () => {
     return (
         <footer>
             <div className="h-16 max-w-6xl mx-auto flex justify-center items-center">
