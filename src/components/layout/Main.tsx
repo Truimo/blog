@@ -1,10 +1,9 @@
 import type {PropsWithChildren} from 'react'
 
-
-export default function Content({children}: PropsWithChildren) {
+export const Main: Component<PropsWithChildren> = (props : PropsWithChildren) => {
     return (
         <main className="main">
-            {children}
+            {props.children}
         </main>
     )
 }

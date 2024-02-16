@@ -1,13 +1,13 @@
 import type {PropsWithChildren} from 'react'
-import Content from '@/components/layout/Content'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import {Main} from "@/components/layout/Main";
 
 export default function Root({children}: PropsWithChildren) {
     return (
         <>
             <Header/>
-            <Content>{children}</Content>
+            <Main>{children}</Main>
             <Footer/>
         </>
     )
