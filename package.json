@@ -36,7 +36,7 @@
         "autoprefixer": "10.4.19",
         "encoding": "0.1.13",
         "postcss": "8.4.38",
-        "postcss-import": "16.0.1",
+        "postcss-import": "16.1.0",
         "postcss-nested": "6.0.1",
         "tailwindcss": "3.4.1",
         "typescript": "5.4.3"
