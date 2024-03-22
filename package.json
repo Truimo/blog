@@ -27,7 +27,7 @@
     "devDependencies": {
         "@iconify-json/line-md": "^1.1.36",
         "@iconify-json/material-symbols": "1.1.76",
-        "@iconify-json/mingcute": "1.1.16",
+        "@iconify-json/mingcute": "1.1.17",
         "@iconify/tailwind": "^0.1.4",
         "@types/katex": "0.16.7",
         "@types/node": "20.11.30",
