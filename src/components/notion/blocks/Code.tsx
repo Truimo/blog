@@ -24,8 +24,22 @@ export default function Code({block, children}: PropsWithChildren<{
     const code = block.code
     const text = code.rich_text.map((text) => text.plain_text).join('')
 
-    const prevThemeCSS = useRef<ReturnType<typeof loadStyleSheet>>()
     const ref = useRef<HTMLElement>(null)
+    useLoadHighlighter(ref)
+
+    return <Block className={styles['code-wrap']}>
+        <span aria-hidden={true} className={styles['language-tip']}>{code.language.toUpperCase()}</span>
+        <pre className="line-numbers">
+            <code ref={ref} className={`language-${code.language ?? 'markup'}`}>{text}</code>
+        </pre>
+        {code.caption.length > 0 && (<InlineBlock className="text-neutral-500 text-sm">
+            <RichText rich_text={code.caption}/>
+        </InlineBlock>)}
+    </Block>
+}
+
+const useLoadHighlighter = (ref: React.RefObject<HTMLElement>) => {
+    const prevThemeCSS = useRef<ReturnType<typeof loadStyleSheet>>()
 
     useInsertionEffect(() => {
         const css = loadStyleSheet(
@@ -66,23 +80,11 @@ export default function Code({block, children}: PropsWithChildren<{
                 })
             } else {
                 requestAnimationFrame(() => {
-                    window.Prism?.highlightAll()
-                    // highlightAll twice
                     requestAnimationFrame(() => {
                         window.Prism?.highlightAll()
                     })
                 })
             }
         })
-    }, [])
-
-    return <Block className={styles['code-wrap']}>
-        <span aria-hidden={true} className={styles['language-tip']}>{code.language.toUpperCase()}</span>
-        <pre className="line-numbers">
-            <code ref={ref} className={`language-${code.language ?? 'markup'}`}>{text}</code>
-        </pre>
-        {code.caption.length > 0 && (<InlineBlock className="text-neutral-500 text-sm">
-            <RichText rich_text={code.caption}/>
-        </InlineBlock>)}
-    </Block>
+    }, []);
 }
