@@ -22,7 +22,7 @@
         "react-dom": "18.2.0",
         "react-intersection-observer": "9.8.2",
         "supports-color": "^9.0.0",
-        "tailwind-merge": "2.2.2",
+        "tailwind-merge": "2.3.0",
         "unfurl.js": "6.4.0"
     },
     "devDependencies": {
