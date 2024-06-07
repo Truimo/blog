@@ -29,7 +29,7 @@
         "@iconify-json/line-md": "^1.1.36",
         "@iconify-json/material-symbols": "1.1.81",
         "@iconify-json/mingcute": "1.1.17",
-        "@iconify/tailwind": "^0.1.4",
+        "@iconify/tailwind": "^1.0.0",
         "@types/katex": "0.16.7",
         "@types/node": "20.12.12",
         "@types/react": "18.3.3",
