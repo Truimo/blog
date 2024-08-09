@@ -36,7 +36,7 @@
         "@types/react-dom": "18.3.0",
         "autoprefixer": "10.4.19",
         "encoding": "0.1.13",
-        "postcss": "8.4.39",
+        "postcss": "8.4.41",
         "postcss-import": "16.1.0",
         "postcss-nested": "6.2.0",
         "tailwindcss": "3.4.6",
