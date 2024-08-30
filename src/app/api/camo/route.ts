@@ -41,15 +41,22 @@ function isImage(contentType: string | null): boolean {
 }
 
 async function camoImage(imageUrl: string) {
+    const headers: Record<string, string> = {
+        'Content-Type': 'application/octet-stream',
+        'Cache-Control': 'public, max-age=604800, immutable'
+    }
+
     if (imageCache.has(imageUrl)) {
         const buffer = imageCache.get(imageUrl)
-        return new Response(buffer?.getBuffer(), {
-            // @ts-ignore
-            headers: {
-                'Content-Type': buffer?.getContentType(),
-                'Cache-Control': 'public, max-age=604800, immutable'
-            }
-        })
+
+        if (undefined !== buffer) {
+            const buf = buffer.getBuffer()
+            headers['Content-Type'] = buffer.getContentType()
+            headers['Content-Length'] = buf.byteLength.toString()
+            return new Response(buf, {
+                headers: headers
+            })
+        }
     }
     try {
         const url = new URL(imageUrl)
@@ -64,12 +71,11 @@ async function camoImage(imageUrl: string) {
         if (isImage(contentType)) {
             // @ts-ignore
             imageCache.set(imageUrl, new ImageCache(buffer, contentType))
+            // @ts-ignore
+            headers['Content-Type'] = contentType
+            headers['Content-Length'] = buffer.byteLength.toString()
             return new Response(buffer, {
-                // @ts-ignore
-                headers: {
-                    'Content-Type': contentType,
-                    'Cache-Control': 'public, max-age=604800, immutable'
-                }
+                headers: headers
             })
         } else {
             throw new Error('Not an image')
@@ -78,7 +84,8 @@ async function camoImage(imageUrl: string) {
         const transparentBuffer = await fetch(transparentImage).then(res => res.arrayBuffer())
         return new Response(transparentBuffer, {
             headers: {
-                'Content-Type': 'image/png'
+                'Content-Type': 'image/png',
+                'Content-Length': transparentBuffer.byteLength.toString()
             }
         })
     }
