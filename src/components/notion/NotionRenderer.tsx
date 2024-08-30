@@ -19,6 +19,7 @@ import Bookmark from '@/components/notion/blocks/Bookmark'
 import NotSupported from '@/components/notion/blocks/NotSupported'
 import type {PropsWithChildren} from 'react'
 import type {Block} from '@/libs/notion'
+import Embed from './blocks/Embed'
 
 function Renderer({block, children, order}: PropsWithChildren<{
     block: Block,
@@ -65,6 +66,8 @@ function Renderer({block, children, order}: PropsWithChildren<{
             return <Video block={block}>{children}</Video>
         case 'bookmark':
             return <Bookmark block={block}>{children}</Bookmark>
+        case 'embed':
+            return <Embed block={block}>{children}</Embed>
         default:
             return <NotSupported />
     }

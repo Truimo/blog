@@ -1,0 +1,8 @@
+.excalidraw-wrapper {
+    @apply relative w-full;
+    height: 500px;
+
+    :global(.excalidraw .App-toolbar-content) {
+        display: none;
+    }
+}
