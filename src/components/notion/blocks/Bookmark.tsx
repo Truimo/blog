@@ -17,9 +17,10 @@ export default function Bookmark({block, children}: PropsWithChildren<{
     const bookmark = block.bookmark
     const {data, isLoading, isError} = useQuery({
         queryKey: ['bookmark', block.id],
-        queryFn: async () => {
+        queryFn: async ({ queryKey }) => {
+            const [_, url] = queryKey
             const res = await axios.post('/api/bookmark', {
-                url: bookmark.url
+                url: url
             })
             return res.data
         }
