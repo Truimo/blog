@@ -27,7 +27,7 @@ export const Excalidraw = ({url}: ExcalidrawProps) => {
     },[data, isLoading, isError])
 
     if (isLoading) {
-        return <ExcalidrawLoading text="Excalidraw 数据加载中..." />
+        return <ExcalidrawLoading text='Excalidraw 数据加载中...' />
     }
 
     if (isError) {
@@ -35,7 +35,7 @@ export const Excalidraw = ({url}: ExcalidrawProps) => {
     }
 
     return (
-        <DynamicExcalidraw theme='light'
+        <DynamicExcalidraw theme='light' langCode='zh-CN'
                            detectScroll={false} viewModeEnabled={true}
                            initialData={initialData}
         />
