@@ -12,7 +12,7 @@
         "@excalidraw/excalidraw": "0.17.6",
         "@notionhq/client": "2.2.15",
         "@tanstack/react-query": "5.53.1",
-        "axios": "1.7.5",
+        "axios": "1.7.7",
         "clsx": "2.1.1",
         "jotai": "2.9.3",
         "katex": "0.16.11",
