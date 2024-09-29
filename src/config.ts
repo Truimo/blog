@@ -37,9 +37,9 @@ export const friends: Friend[] = [
         name: '土土博客',
         link: 'https://www.tutime.cn/',
         avatar: 'aHR0cHM6Ly93d3cudHV0aW1lLmNuL2Zhdm9yaXRlLnBuZw'
-    }, {
+    }, /** {
         name: '米司博客',
         link: 'https://blog.misitebao.com/',
         avatar: 'aHR0cHM6Ly9jZG4uanNkZWxpdnIubmV0L2doL21pc2l0ZWJhby9DRE5AbWFpbi9ncmF2YXRhci5naWY'
-    }
+    } **/
 ]
