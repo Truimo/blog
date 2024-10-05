@@ -7,6 +7,7 @@ import RichText from '@/components/notion/blocks/RichText'
 import type {PropsWithChildren} from 'react'
 import type {BlockObjectResponse} from '@notionhq/client/build/src/api-endpoints'
 import {urlSafeBase64Encode} from "@/libs/base64";
+import {CamoImage} from "@/components/common/Image";
 
 export default function Bookmark({block, children}: PropsWithChildren<{
     block: BlockObjectResponse
@@ -92,16 +93,16 @@ function Inner({url, data, isLoading, isError}: InnerProps) {
                         {description ? description : open_graph?.description}
                     </div>
                     <div className="flex items-center space-x-2 text-sm text-gray-400 dark:text-gray-500">
-                        <img className="h-4 w-4 rounded" src={faviconUrl} alt="favicon" crossOrigin="anonymous"/>
+                        <CamoImage className="h-4 w-4 rounded" src={faviconUrl} alt="favicon"/>
                         <span className="truncate">{url}</span>
                     </div>
                 </div>
                 <div className="flex-auto w-2/6 overflow-hidden relative">
                     <div className="absolute inset-0 bg-gray-100 dark:bg-gray-800">
                         {image ? (<div className="w-full h-full">
-                            <img src={imageUrl} alt={title} className="w-full h-full object-cover"/>
+                            <CamoImage src={imageUrl} alt={title} className="w-full h-full object-cover"/>
                         </div>) : (<div className="w-full h-full flex justify-center items-center">
-                            <img src={faviconUrl} alt={title} className="rounded-full h-10 w-10"/>
+                            <CamoImage src={faviconUrl} alt={title} className="rounded-full h-10 w-10"/>
                         </div>)}
                     </div>
                 </div>

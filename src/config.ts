@@ -12,31 +12,31 @@ export const friends: Friend[] = [
     {
         name: 'ZW_QMQ\'s Blog',
         link: 'https://blog.zw-qmq.cn/',
-        avatar: 'aHR0cHM6Ly9pbWcuenctcW1xLmNuL2kvMjAyMi8xMi8wMi82Mzg5ZjBiMGJlNjE4LmpwZw'
+        avatar: 'https://img.zw-qmq.cn/i/2022/12/02/6389f0b0be618.jpg'
     }, {
         name: '油油',
         link: 'https://www.200011.net/',
-        avatar: 'aHR0cHM6Ly9xLnFsb2dvLmNuL2c_Yj1xcSZuaz0xMzc2NjUyNTE1QHFxLmNvbSZzPTEwMA'
+        avatar: 'https://q.qlogo.cn/g?b=qq&nk=1376652515@qq.com&s=100'
     }, {
         name: '尤且’s 小栈',
         link: 'https://blog.u82.cc/',
-        avatar: 'aHR0cHM6Ly9xMS5xbG9nby5jbi9nP2I9cXEmbms9NDc0NTM0NTkmcz02NDA'
+        avatar: 'https://q1.qlogo.cn/g?b=qq&nk=47453459&s=640'
     }, {
         name: 'Shellblock',
         link: 'https://blog.saky.site/',
-        avatar: 'aHR0cHM6Ly9xMS5xbG9nby5jbi9nP2I9cXEmbms9MzQwNTE5MyZzPTY0MA'
+        avatar: 'https://q1.qlogo.cn/g?b=qq&nk=3405193&s=640'
     }, {
         name: 'Gaein nidb',
         link: 'https://blog.gaein.cn/',
-        avatar: 'aHR0cHM6Ly9xMS5xbG9nby5jbi9nP2I9cXEmbms9OTUxMjY2NDM2JnM9NjQw'
+        avatar: 'https://q1.qlogo.cn/g?b=qq&nk=951266436&s=640'
     }, {
         name: '若志随笔',
         link: 'https://www.rz.sb/',
-        avatar: 'aHR0cHM6Ly9xMS5xbG9nby5jbi9nP2I9cXEmbms9ODAzNjA2NTAmcz02NDA'
+        avatar: 'https://q1.qlogo.cn/g?b=qq&nk=80360650&s=640'
     }, {
         name: '土土博客',
         link: 'https://www.tutime.cn/',
-        avatar: 'aHR0cHM6Ly93d3cudHV0aW1lLmNuL2Zhdm9yaXRlLnBuZw'
+        avatar: 'https://www.tutime.cn/favorite.png'
     }, /** {
         name: '米司博客',
         link: 'https://blog.misitebao.com/',

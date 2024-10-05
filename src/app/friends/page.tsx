@@ -1,5 +1,6 @@
 import {friends} from '@/config'
 import type {Friend} from '@/libs/types'
+import {CamoImage} from "@/components/common/Image";
 
 export default function Page() {
     return (
@@ -16,13 +17,12 @@ export default function Page() {
 }
 
 function Item({friend}: { friend: Friend }) {
-    const avatar = '/api/camo?i=' + friend.avatar
     return (
         <a href={friend.link} target="_blank" rel="noreferrer" className="block">
             <div className="bg-neutral-100 select-none">
                 <div className="flex flex-col items-center justify-between p-5">
                     <div className="mb-2">
-                        <img src={avatar} alt={friend.name} loading="lazy" className="w-16 h-16 rounded-full object-cover"/>
+                        <CamoImage src={friend.avatar} alt={friend.name} loading="lazy" className="w-16 h-16 rounded-full object-cover"/>
                     </div>
                     <p className="px-1 text-xl truncate w-full text-center">{friend.name}</p>
                 </div>
