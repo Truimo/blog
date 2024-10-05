@@ -81,8 +81,8 @@ function Inner({url, data, isLoading, isError}: InnerProps) {
     const favicon = data.favicon.replace(/^http:\/\//, 'https://')
     const image = open_graph?.images?.[0].url ?? twitter_card?.images?.[0].url ?? oEmbed?.thumbnails?.[0].url ?? null
 
-    const faviconUrl = favicon ? `/api/camo?i=${urlSafeBase64Encode(favicon)}` : undefined
-    const imageUrl = image ? `/api/camo?i=${urlSafeBase64Encode(image.replace(/^http:\/\//, 'https://'))}` : undefined
+    const faviconUrl = favicon ? favicon : undefined
+    const imageUrl = image ? image.replace(/^http:\/\//, 'https://') : undefined
 
     return (
         <a href={url} rel="noopener noreferrer" target="_blank" className="block">
