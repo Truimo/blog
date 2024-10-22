@@ -1,5 +1,8 @@
 import type {NextRequest} from 'next/server'
 
+export const runtime = 'edge'
+export const fetchCache = 'default-cache'
+
 const api = 'https://json.excalidraw.com/api/v2/'
 
 export async function GET(request: NextRequest) {

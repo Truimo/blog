@@ -1,5 +1,6 @@
 import type {NextRequest} from 'next/server';
 
+export const runtime = 'edge'
 export const fetchCache = 'default-cache'
 
 // const transparentImage = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
@@ -10,12 +11,13 @@ function isImage(contentType: string | null): boolean {
     if (contentType === null) {
         throw new Error('Content-Type is null')
     }
-    return contentType.startsWith('image')
+    return contentType.startsWith('image/')
 }
 
 async function camoImage(imageUrl: string) {
     const headers: Record<string, string> = {
         'Content-Type': 'application/octet-stream',
+        'X-Content-Type': 'application/octet-stream',
         'Cache-Control': 'public, max-age=604800, immutable'
     }
 
@@ -33,6 +35,11 @@ async function camoImage(imageUrl: string) {
             const b64Img = Buffer.from(buffer).toString('base64')
             headers['Content-Type'] = 'text/plain'
             headers['Content-Length'] = b64Img.length.toString()
+
+            if (typeof contentType === "string") {
+                headers['X-Content-Type'] = contentType
+            }
+
             return new Response(b64Img, {
                 headers: headers
             })
@@ -44,6 +51,7 @@ async function camoImage(imageUrl: string) {
 
         return new Response(emptyB64, {
             headers: {
+                'X-Content-Type': 'image/png',
                 'Content-Type': 'text/plain',
                 'Content-Length': emptyB64.length.toString()
             }
