@@ -4,11 +4,13 @@ import Category from '@/components/post/Category'
 import {formatDate} from '@/libs/time'
 import {InlineBlock} from '@/components/notion/blocks/Block'
 
-export default async function Page({ params }: {
-    params: { slug: string }
+type Params = Promise<{ slug: string }>
+
+export default async function Page(props: {
+    params: Params
 }) {
-    const slug = params.slug
-    const page = await getPost(slug)
+    const params = await props.params
+    const page = await getPost(params.slug)
 
     if (null === page) {
         return <p>Page not found</p>

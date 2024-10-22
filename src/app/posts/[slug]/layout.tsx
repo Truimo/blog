@@ -2,12 +2,10 @@ import type {Metadata} from 'next'
 import type {PropsWithChildren} from 'react'
 import {getPost} from '@/libs/notion'
 
-interface PageParams {
-    slug: string
-}
+type Params = Promise<{ slug: string }>
 
-export const generateMetadata = async ({params}: { params: PageParams }): Promise<Metadata> => {
-    const slug = params.slug
+export const generateMetadata = async ({ params }: { params: Params }): Promise<Metadata> => {
+    const { slug } = await params
     const page = await getPost(slug)
 
     if (null === page) {
