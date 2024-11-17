@@ -1,10 +1,17 @@
-import {getPage, getPost} from '@/libs/notion'
+import {getPage, getPost, getPosts} from '@/libs/notion'
 import NotionRenderer from '@/components/notion/NotionRenderer'
 import Category from '@/components/post/Category'
 import {formatDate} from '@/libs/time'
 import {InlineBlock} from '@/components/notion/blocks/Block'
 
 type Params = Promise<{ slug: string }>
+
+export async function generateStaticParams() {
+    const response = await getPosts()
+    return response.posts.map((post) => ({
+        slug: post.slug,
+    }))
+}
 
 export default async function Page(props: {
     params: Params
