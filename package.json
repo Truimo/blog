@@ -11,7 +11,7 @@
     "dependencies": {
         "@excalidraw/excalidraw": "0.17.6",
         "@notionhq/client": "2.2.15",
-        "@tanstack/react-query": "5.62.8",
+        "@tanstack/react-query": "5.62.9",
         "axios": "1.7.9",
         "clsx": "2.1.1",
         "jotai": "2.11.0",
