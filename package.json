@@ -14,7 +14,7 @@
         "@tanstack/react-query": "5.62.8",
         "axios": "1.7.9",
         "clsx": "2.1.1",
-        "jotai": "2.10.4",
+        "jotai": "2.11.0",
         "katex": "0.16.18",
         "medium-zoom": "1.1.0",
         "moment": "2.30.1",
