@@ -1,22 +1,24 @@
+@reference 'tailwindcss';
+
 .code-wrap {
     @apply relative flex w-full flex-col overflow-auto;
+}
 
-    pre > code {
-        @apply block font-mono text-[14px] font-medium leading-normal;
+.code-wrap pre > code {
+    @apply block font-mono text-[14px] font-medium leading-normal;
 
-        background: transparent !important;
-    }
+    background: transparent !important;
+}
 
-    :global(pre.line-numbers) {
-        padding-left: 2.8em !important;
-    }
+.code-wrap :global(pre.line-numbers) {
+    padding-left: 2.8em !important;
+}
 
-    .language-tip {
-        position: absolute;
-        right: 1em;
-        transform: translate(-0.5em, 1em);
-        font-size: 0.8em;
-        opacity: 0.7;
-        z-index: 1;
-    }
+.code-wrap .language-tip {
+    position: absolute;
+    right: 1em;
+    transform: translate(-0.5em, 1em);
+    font-size: 0.8em;
+    opacity: 0.7;
+    z-index: 1;
 }
