@@ -14,6 +14,9 @@ type Icon = {
         url: string,
         expiry_time: string
     }
+} | {
+    type: 'custom_emoji',
+    custom_emoji: object,
 }
 
 export default function Icon({icon}: {
