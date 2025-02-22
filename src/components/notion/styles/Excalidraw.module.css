@@ -1,8 +1,9 @@
 .excalidraw-wrapper {
-    @apply relative w-full;
+    position: relative;
+    width: 100%;
     height: 500px;
+}
 
-    :global(.excalidraw .App-toolbar-content) {
-        display: none;
-    }
+.excalidraw-wrapper :global(.excalidraw .App-toolbar-content) {
+    display: none;
 }

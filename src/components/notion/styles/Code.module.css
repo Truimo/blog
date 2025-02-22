@@ -1,13 +1,18 @@
-@reference 'tailwindcss';
-
 .code-wrap {
-    @apply relative flex w-full flex-col overflow-auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: auto;
 }
 
 .code-wrap pre > code {
-    @apply block font-mono text-[14px] font-medium leading-normal;
-
+    display: block;
     background: transparent !important;
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: 500;
+    font-family: var(--font-mono);
 }
 
 .code-wrap :global(pre.line-numbers) {
