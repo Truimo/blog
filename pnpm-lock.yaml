@@ -21,8 +21,8 @@ importers:
         specifier: 5.66.9
         version: 5.66.9(react@18.3.1)
       axios:
-        specifier: 1.8.0
-        version: 1.8.0
+        specifier: 1.8.1
+        version: 1.8.1
       clsx:
         specifier: 2.1.1
         version: 2.1.1
@@ -425,8 +425,8 @@ packages:
     peerDependencies:
       postcss: ^8.1.0
 
-  axios@1.8.0:
-    resolution: {integrity: sha512-AS3x1klSQ4VeoeAaOyITVjomjITxIRgpKVgAXhE8QFJiNiYliuU+cW0p7XpqvlwNKmiwE57aNEyhPtsfAxERqg==}
+  axios@1.8.1:
+    resolution: {integrity: sha512-NN+fvwH/kV01dYUQ3PTOZns4LWtWhOFCAhQ/pHb88WQ1hNe5V/dvFwc4VJcDL11LT9xSX0QtsR8sWUuyOuOq7g==}
 
   browserslist@4.23.3:
     resolution: {integrity: sha512-btwCFJVjI4YWDNfau8RhZ+B1Q/VLoUITrm3RlP6y1tYGWIOa+InuYiRGXUBXo8nA1qKmHMyLB/iVQg5TT4eFoA==}
@@ -1135,7 +1135,7 @@ snapshots:
       postcss: 8.5.3
       postcss-value-parser: 4.2.0
 
-  axios@1.8.0:
+  axios@1.8.1:
     dependencies:
       follow-redirects: 1.15.6
       form-data: 4.0.0
