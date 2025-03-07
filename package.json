@@ -11,7 +11,7 @@
     "dependencies": {
         "@excalidraw/excalidraw": "0.17.6",
         "@notionhq/client": "2.2.16",
-        "@tailwindcss/postcss": "4.0.9",
+        "@tailwindcss/postcss": "4.0.12",
         "@tanstack/react-query": "5.67.1",
         "axios": "1.8.1",
         "clsx": "2.1.1",
@@ -26,7 +26,7 @@
         "react-intersection-observer": "9.16.0",
         "supports-color": "^10.0.0",
         "tailwind-merge": "3.0.2",
-        "tailwindcss": "4.0.9",
+        "tailwindcss": "4.0.12",
         "unfurl.js": "6.4.0"
     },
     "devDependencies": {
