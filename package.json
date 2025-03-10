@@ -13,7 +13,7 @@
         "@notionhq/client": "2.2.16",
         "@tailwindcss/postcss": "4.0.9",
         "@tanstack/react-query": "5.67.1",
-        "axios": "1.8.1",
+        "axios": "1.8.2",
         "clsx": "2.1.1",
         "jotai": "2.12.1",
         "katex": "0.16.21",
