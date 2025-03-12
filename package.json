@@ -9,7 +9,7 @@
         "lint": "next lint"
     },
     "dependencies": {
-        "@excalidraw/excalidraw": "0.17.6",
+        "@excalidraw/excalidraw": "0.18.0",
         "@notionhq/client": "2.2.16",
         "@tailwindcss/postcss": "4.0.12",
         "@tanstack/react-query": "5.67.2",
