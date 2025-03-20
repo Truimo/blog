@@ -25,7 +25,7 @@ export default function Code({block, children}: PropsWithChildren<{
     const text = code.rich_text.map((text) => text.plain_text).join('')
 
     const ref = useRef<HTMLElement>(null)
-    if (ref) {
+    if (ref.current) {
         useLoadHighlighter(ref)
     }
 
