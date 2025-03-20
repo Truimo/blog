@@ -1,5 +1,5 @@
-import type {PropsWithChildren} from "react";
-import {clsxm} from "@/libs/helper";
+import type {PropsWithChildren, JSX} from 'react'
+import {clsxm} from '@/libs/helper'
 
 interface ContainerProps extends PropsWithChildren {
     as?: keyof JSX.IntrinsicElements | Component
