@@ -24,7 +24,7 @@ export default function Code({block, children}: PropsWithChildren<{
     const code = block.code
     const text = code.rich_text.map((text) => text.plain_text).join('')
 
-    const ref = useRef<HTMLElement | null>(null)
+    const ref = useRef<HTMLElement>(null)
     useLoadHighlighter(ref)
 
     return <Block className={styles['code-wrap']}>
@@ -38,8 +38,8 @@ export default function Code({block, children}: PropsWithChildren<{
     </Block>
 }
 
-const useLoadHighlighter = (ref: React.RefObject<HTMLElement>) => {
-    const prevThemeCSS = useRef<ReturnType<typeof loadStyleSheet>>()
+const useLoadHighlighter = (ref: React.RefObject<HTMLElement | null>) => {
+    const prevThemeCSS = useRef<ReturnType<typeof loadStyleSheet>>(undefined)
 
     useInsertionEffect(() => {
         const css = loadStyleSheet(
