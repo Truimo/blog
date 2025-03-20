@@ -25,7 +25,9 @@ export default function Code({block, children}: PropsWithChildren<{
     const text = code.rich_text.map((text) => text.plain_text).join('')
 
     const ref = useRef<HTMLElement>(null)
-    useLoadHighlighter(ref)
+    if (ref) {
+        useLoadHighlighter(ref)
+    }
 
     return <Block className={styles['code-wrap']}>
         <span aria-hidden={true} className={styles['language-tip']}>{code.language.toUpperCase()}</span>
