@@ -8,16 +8,16 @@ Run in production server:
 
 - build application:
 ```bash
-npm run build
+pnpm run build
 ```
 - start server:
 ```bash
-npm run start
+pnpm run start
 ```
 
 Run in development server:
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 ## License
