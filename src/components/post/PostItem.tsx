@@ -6,17 +6,25 @@ import type {PostMeta} from '@/libs/types'
 export default function PostItem({post}: {
     post: PostMeta
 }) {
+    const data: string = formatDate(post.date, 'YYYY 年 MM 月 DD 日');
     return (
         <article className="my-8">
-            <Link href={`/posts/${post.slug}`}>
-                <p className="text-sm leading-normal">
-                    <Category category={post.category}/>
-                    <span className="font-bold">&nbsp;·&nbsp;</span>
-                    <time dateTime={post.date}>{formatDate(post.date, 'YYYY 年 MM 月 DD 日')}</time>
-                </p>
-                <h2 className="text-xl font-medium my-2">{post.title}</h2>
-                <p className="leading-loose text-gray-800/90">{post.excerpt}</p>
-            </Link>
+            <div className="flex flex-col justify-between gap-2 md:flex-row md:items-center">
+                <div>
+                    <p className="text-sm leading-normal">
+                        <time dateTime={post.date}>{data}</time>
+                    </p>
+                </div>
+                <div>
+                    <p className="text-sm leading-normal">
+                        <Category category={post.category} />
+                    </p>
+                </div>
+            </div>
+            <h2 className="text-xl font-medium my-2">
+                <Link href={`/posts/${post.slug}`}>{post.title}</Link>
+            </h2>
+            <p className="leading-loose text-zinc-500">{post.excerpt}</p>
         </article>
     )
 }
