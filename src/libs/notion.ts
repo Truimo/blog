@@ -182,7 +182,7 @@ export const getPage = async (id: string): Promise<Block[]> => {
 export function getAnnotationsColor(color: string): string {
     switch (color) {
         case "default":
-            return 'text-gray-900'
+            return 'text-gray-900 dark:text-slate-100'
         case "gray":
             return 'text-gray-500'
         case "brown":
