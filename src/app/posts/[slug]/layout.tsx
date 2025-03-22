@@ -4,9 +4,11 @@ import {getPost} from '@/libs/notion'
 
 type Params = Promise<{ slug: string }>
 
-export const generateMetadata = async ({ params }: { params: Params }): Promise<Metadata> => {
-    const { slug } = await params
-    const page = await getPost(slug)
+export async function generateMetadata(props: {
+    params: Params
+}): Promise<Metadata> {
+    const params = await props.params
+    const page = await getPost(params.slug)
 
     if (null === page) {
         return {}
@@ -26,7 +28,7 @@ export const generateMetadata = async ({ params }: { params: Params }): Promise<
             },
             other: {
                 rel: 'canonical',
-                url: `https://blog.truimo.com/posts/${slug}`
+                url: `https://blog.truimo.com/posts/${params.slug}`
             }
         }
     }

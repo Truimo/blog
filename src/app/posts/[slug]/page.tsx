@@ -1,8 +1,8 @@
-import {getPage, getPost, getPosts} from '@/libs/notion'
 import NotionRenderer from '@/components/notion/NotionRenderer'
 import Category from '@/components/post/Category'
-import {formatDate} from '@/libs/time'
 import {InlineBlock} from '@/components/notion/blocks/Block'
+import {getPage, getPost, getPosts} from '@/libs/notion'
+import {formatDate} from '@/libs/time'
 
 type Params = Promise<{ slug: string }>
 
