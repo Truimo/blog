@@ -27,3 +27,9 @@
     opacity: 0.7;
     z-index: 1;
 }
+
+@media (prefers-color-scheme: dark) {
+    .code-wrap .language-tip {
+        color: hsl(230, 8%, 24%);
+    }
+}

@@ -240,7 +240,7 @@ export function getAnnotationsClass(annotations: TextRichTextItemResponse['annot
     }
     if (annotations.code) {
         classes.push('font-mono')
-        classes.push('bg-gray-100')
+        classes.push('bg-gray-100 dark:bg-zinc-800')
         classes.push('p-1')
     }
     if (annotations.color) {
