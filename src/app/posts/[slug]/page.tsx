@@ -23,19 +23,20 @@ export default async function Page(props: {
         return <p>Page not found</p>
     }
 
-    const post = await getPage(page.id)
+    const post = await getPage(page.id),
+        date: string = formatDate(page.date, 'YYYY 年 MM 月 DD 日')
 
     return (
-        <div className="mx-auto max-w-3xl 2xl:max-w-4xl">
-            <InlineBlock>
-                <Category category={page.category}/>
-                <span className="font-bold">&nbsp;&middot;&nbsp;</span>
-                <time dateTime={page.date}>{formatDate(page.date, 'YYYY 年 MM 月 DD 日')}</time>
-            </InlineBlock>
+        <article className="mx-auto max-w-3xl 2xl:max-w-4xl">
+
             <h1 className="py-1 text-3xl font-bold">{page.title}</h1>
-            <InlineBlock className="leading-normal text-gray-600">{page.excerpt}</InlineBlock>
-            <hr className="my-4"/>
+            <InlineBlock className="leading-normal text-zinc-500">{page.excerpt}</InlineBlock>
+            <InlineBlock className="space-x-2 text-zinc-500">
+                <time dateTime={page.date}>{date}</time>
+                <span className="font-bold">•</span>
+                <Category category={page.category} />
+            </InlineBlock>
             <NotionRenderer blocks={post}/>
-        </div>
+        </article>
     )
 }

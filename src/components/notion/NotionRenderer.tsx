@@ -95,7 +95,7 @@ export default function NotionRenderer({blocks}: {
 }) {
     let order = 0
     return (
-        <article>
+        <div>
             {blocks.map((block) => {
                 if (block.type === 'numbered_list_item') {
                     order++
@@ -104,6 +104,6 @@ export default function NotionRenderer({blocks}: {
                 }
                 return <RendererWithChildren key={block.id} block={block} order={order} />
             })}
-        </article>
+        </div>
     )
 }

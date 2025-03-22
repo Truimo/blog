@@ -6,13 +6,13 @@ import type {PostMeta} from '@/libs/types'
 export default function PostItem({post}: {
     post: PostMeta
 }) {
-    const data: string = formatDate(post.date, 'YYYY 年 MM 月 DD 日');
+    const date: string = formatDate(post.date, 'YYYY 年 MM 月 DD 日');
     return (
         <article className="my-8">
             <div className="flex flex-col justify-between gap-2 md:flex-row md:items-center">
                 <div>
-                    <p className="text-sm leading-normal">
-                        <time dateTime={post.date}>{data}</time>
+                    <p className="text-sm leading-normal text-zinc-500">
+                        <time dateTime={post.date}>{date}</time>
                     </p>
                 </div>
                 <div>
