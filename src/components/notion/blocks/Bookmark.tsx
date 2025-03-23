@@ -1,14 +1,16 @@
 'use client'
 
+import type {PropsWithChildren} from 'react'
+import type {BlockObjectResponse} from '@notionhq/client/build/src/api-endpoints'
 import {useQuery} from '@tanstack/react-query'
 import {SquareArrowOutUpRight} from 'lucide-react'
 import axios from 'axios'
+import clsx from 'clsx'
 import {Block, InlineBlock} from '@/components/notion/blocks/Block'
 import RichText from '@/components/notion/blocks/RichText'
-import type {PropsWithChildren} from 'react'
-import type {BlockObjectResponse} from '@notionhq/client/build/src/api-endpoints'
 // import {urlSafeBase64Encode} from "@/libs/base64";
 import {CamoImage} from '@/components/common/Image'
+import styles from '../styles/Bookmark.module.css'
 
 export default function Bookmark({block, children}: PropsWithChildren<{
     block: BlockObjectResponse
@@ -92,15 +94,17 @@ function Inner({url, data, isLoading, isError}: InnerProps) {
 
     return (
         <a href={url} rel="noopener noreferrer" target="_blank" className="block">
-            <div className="select-none text-gray-600 flex items-stretch border border-gray-300 overflow-hidden">
+            <div className={styles['bookmark']}>
                 <div className="flex-auto w-4/6 p-3 pt-2.5 transition-colors ease-in-out duration-150">
-                    <div className="font-semibold truncate mb-1">{title}</div>
-                    <div className="text-xs line-clamp-2 mb-2 text-gray-400 dark:text-gray-500">
-                        {description ? description : open_graph?.description}
+                    <div className="font-semibold truncate mb-1">
+                        <p className={styles['bookmark-title']}>{title}</p>
                     </div>
-                    <div className="flex items-center space-x-2 text-sm text-gray-400 dark:text-gray-500">
+                    <div className="text-xs line-clamp-2 mb-2">
+                        <p className={styles['bookmark-description']}>{description ? description : open_graph?.description}</p>
+                    </div>
+                    <div className="flex items-center space-x-2 text-sm">
                         <CamoImage className="h-4 w-4 rounded" src={faviconUrl} alt="favicon"/>
-                        <span className="truncate">{url}</span>
+                        <p className={clsx(styles['bookmark-link'], 'truncate')}>{url}</p>
                     </div>
                 </div>
                 <div className="flex-auto w-2/6 overflow-hidden relative">
