@@ -2,12 +2,13 @@
 
 import axios from 'axios'
 import {useQuery} from '@tanstack/react-query'
+import {SquareArrowOutUpRight} from 'lucide-react'
 import {Block, InlineBlock} from '@/components/notion/blocks/Block'
 import RichText from '@/components/notion/blocks/RichText'
 import type {PropsWithChildren} from 'react'
 import type {BlockObjectResponse} from '@notionhq/client/build/src/api-endpoints'
-import {urlSafeBase64Encode} from "@/libs/base64";
-import {CamoImage} from "@/components/common/Image";
+// import {urlSafeBase64Encode} from "@/libs/base64";
+import {CamoImage} from '@/components/common/Image'
 
 export default function Bookmark({block, children}: PropsWithChildren<{
     block: BlockObjectResponse
@@ -72,7 +73,10 @@ function Inner({url, data, isLoading, isError}: InnerProps) {
     if (isError) {
         return (
             <p className="select-none text-gray-600 p-2 border border-gray-300 space-x-1 truncate">
-                <i className="icon-[mingcute--external-link-line] translate-y-[2px]"></i><a href={url} rel="noopener noreferrer" target="_blank">{url}</a>
+                <a href={url} rel="noopener noreferrer" target="_blank">
+                    <span>{url}</span>
+                    <SquareArrowOutUpRight />
+                </a>
             </p>
         )
     }
