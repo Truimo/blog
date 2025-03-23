@@ -8,7 +8,9 @@ import {codeHighlighter as shiki} from './core'
 
 const loadCodeHighlighter = () => {
     const core = createHighlighterCoreSync({
-        engine: createJavaScriptRegexEngine(),
+        engine: createJavaScriptRegexEngine({
+            forgiving: true,
+        }),
         themes: [githubDark, githubLight],
         langs: [],
     })

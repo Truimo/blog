@@ -1,7 +1,6 @@
 'use client'
 
 import dynamic from 'next/dynamic'
-import {ErrorBoundary} from 'react-error-boundary'
 import {ShikiHighLighterWrapper} from './ShikiWrapper'
 
 interface CodeHighLighterProps {
@@ -31,10 +30,7 @@ export function CodeHighLighter(props: CodeHighLighterProps) {
         }
     )
 
-    // TODO in safari. SyntaxError: Invalid regular expression: invalid operation in class set
     return (
-        <ErrorBoundary fallback={<CodeHighLighterFallback lang={props.lang} text={props.text} />}>
-            <ShikiHighLighter lang={props.lang} content={props.text} />
-        </ErrorBoundary>
+        <ShikiHighLighter lang={props.lang} content={props.text} />
     )
 }
