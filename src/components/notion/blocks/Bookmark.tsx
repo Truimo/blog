@@ -75,7 +75,7 @@ function Inner({url, data, isLoading, isError}: InnerProps) {
     if (isError) {
         return (
             <p className="select-none text-gray-600 p-2 border border-gray-300 space-x-1 truncate">
-                <a href={url} rel="noopener noreferrer" target="_blank">
+                <a className="underline text-gray-900 dark:text-slate-100" href={url} rel="noopener noreferrer" target="_blank">
                     <span>{url}</span>
                     <SquareArrowOutUpRight />
                 </a>
