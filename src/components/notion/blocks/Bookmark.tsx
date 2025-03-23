@@ -1,8 +1,8 @@
 'use client'
 
-import axios from 'axios'
 import {useQuery} from '@tanstack/react-query'
 import {SquareArrowOutUpRight} from 'lucide-react'
+import axios from 'axios'
 import {Block, InlineBlock} from '@/components/notion/blocks/Block'
 import RichText from '@/components/notion/blocks/RichText'
 import type {PropsWithChildren} from 'react'
@@ -22,6 +22,8 @@ export default function Bookmark({block, children}: PropsWithChildren<{
         queryFn: async () => {
             const res = await axios.post('/api/bookmark', {
                 url: bookmark.url
+            }, {
+                timeout: 3e3,
             })
             return res.data
         }
