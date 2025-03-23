@@ -1,5 +1,5 @@
 @import 'tailwindcss';
-@import './normalize.css';
+/*@import './normalize.css';*/
 @import './globals.css';
 @import './webfont.css';
 
@@ -9,4 +9,14 @@
     --font-mono: "OperatorMonoSSmLig Nerd Font", "Cascadia Code PL", "FantasqueSansMono Nerd Font", "operator mono", JetBrainsMono, "Fira code Retina", "Fira code", "Consolas", Monaco, "Hannotate SC", monospace, -apple-system;
     --height-em: 1em;
     --contrast-82: 0.82;
+}
+
+.lucide {
+    width: 1em;
+    height: 1em;
+}
+
+a .lucide {
+    display: inline-block;
+    margin-left: 3px;
 }
