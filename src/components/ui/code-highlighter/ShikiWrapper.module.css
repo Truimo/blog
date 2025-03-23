@@ -1,0 +1,23 @@
+.code-card {
+    position: relative;
+    background-color: rgba(49, 120, 198, 0.05);
+    padding: 1rem;
+}
+
+.code-card :global(.shiki) {
+    background-color: inherit !important;
+}
+
+.code-card :global(.shiki code) {
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: 500;
+    font-family: var(--font-mono), serif;
+}
+
+.code-card .language-tip {
+    position: absolute;
+    right: 1em;
+    font-size: 0.8em;
+    transform: translate(-0.5em, -0.5em);
+}
