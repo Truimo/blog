@@ -6,13 +6,11 @@ import githubLight from 'shiki/themes/github-light.mjs'
 import {ShikiHighLighterWrapper} from './ShikiWrapper'
 import {codeHighlighter as shiki} from './core'
 
-
 const loadCodeHighlighter = () => {
-    const js = createJavaScriptRegexEngine()
     const core = createHighlighterCoreSync({
+        engine: createJavaScriptRegexEngine(),
         themes: [githubDark, githubLight],
         langs: [],
-        engine: js,
     })
 
     return {
