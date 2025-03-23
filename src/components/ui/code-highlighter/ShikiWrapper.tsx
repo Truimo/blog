@@ -22,7 +22,7 @@ export const ShikiHighLighterWrapper = (props: ShikiWrapperProps) => {
             <div className={styles['language-tip']}>
                 <span aria-hidden={true} className="text-zinc-500">{language}</span>
             </div>
-            <div dangerouslySetInnerHTML={codeHtml}>{props.children}</div>
+            <div className="overflow-scroll" dangerouslySetInnerHTML={codeHtml}>{props.children}</div>
         </div>
     )
 }
