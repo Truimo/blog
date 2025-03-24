@@ -1,10 +1,11 @@
-import '@/styles/index.css'
+import type {Metadata, Viewport} from 'next'
 import {Inter} from 'next/font/google'
 import {ReactNode} from 'react'
 import {ReactQueryProvider} from '@/providers/react-query-provider'
-import type {Metadata, Viewport} from 'next'
 import {Root} from '@/components/layout/Root'
 import {blogName, blogTitle, blogDescription, blogKeywords} from '@/config'
+
+import '@/styles/index.css'
 
 const inter = Inter({subsets: ['latin']})
 

@@ -1,7 +1,7 @@
+import type {EquationRichTextItemResponse} from '@notionhq/client/build/src/api-endpoints'
 import 'katex/dist/katex.min.css'
 import katex from 'katex'
-import {getAnnotationsClass} from '@/libs/notion'
-import type {EquationRichTextItemResponse} from '@notionhq/client/build/src/api-endpoints'
+import {textStyeld} from '@/components/notion/styled'
 
 export default function Equation({equation}: {
     equation: EquationRichTextItemResponse
@@ -12,7 +12,7 @@ export default function Equation({equation}: {
         strict: 'ignore',
     })
     return (
-        <span className={getAnnotationsClass(equation.annotations)}
+        <span className={textStyeld(equation.annotations)}
               dangerouslySetInnerHTML={{__html: html}}
         ></span>
     )
