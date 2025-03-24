@@ -8,7 +8,8 @@ export default function Equation({equation}: {
 }) {
     const html = katex.renderToString(equation.equation.expression, {
         throwOnError: false,
-        displayMode: false
+        displayMode: false,
+        strict: 'ignore',
     })
     return (
         <span className={getAnnotationsClass(equation.annotations)}

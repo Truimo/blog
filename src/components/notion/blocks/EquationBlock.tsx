@@ -13,7 +13,8 @@ export default function EquationBlock({block}: PropsWithChildren<{
     const equation = block.equation
     const html = katex.renderToString(equation.expression, {
         throwOnError: false,
-        displayMode: true
+        displayMode: true,
+        strict: 'ignore',
     })
     return (
         <Block>
