@@ -1,4 +1,4 @@
-import { style, styleVariants } from '@vanilla-extract/css'
+import { style, styleVariants, globalStyle } from '@vanilla-extract/css'
 
 export const colorVariants = styleVariants({
     default: {
@@ -169,4 +169,16 @@ export const codeTextStyle = style({
             backgroundColor: 'rgba(135, 131, 120, 0.15)'
         }
     }
+})
+
+globalStyle(`${codeTextStyle} + ${codeTextStyle}`, {
+    borderTopLeftRadius: '0',
+    borderBottomLeftRadius: '0',
+    paddingLeft: '0',
+})
+  
+globalStyle(`${codeTextStyle}:has(+ ${codeTextStyle})`, {
+    borderTopRightRadius: '0',
+    borderBottomRightRadius: '0',
+    paddingRight: '0',
 })
