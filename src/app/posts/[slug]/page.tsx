@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation'
 import NotionRenderer from '@/components/notion/NotionRenderer'
 import Category from '@/components/post/Category'
+import Tags from '@/components/post/Tags'
 import {InlineBlock} from '@/components/notion/blocks/Block'
 import {getPage, getPost, getPosts} from '@/libs/notion'
 import {formatDate} from '@/libs/time'
@@ -29,12 +30,15 @@ export default async function Page(props: {
 
     return (
         <article className="mx-auto max-w-3xl 2xl:max-w-4xl">
+            <InlineBlock>
+                <Category category={page.category} />
+            </InlineBlock>
             <h1 className="py-1 text-3xl font-bold">{page.title}</h1>
             <InlineBlock className="leading-normal text-zinc-500">{page.excerpt}</InlineBlock>
             <InlineBlock className="space-x-2 text-zinc-500">
                 <time dateTime={page.date}>{date}</time>
                 <span className="font-bold">•</span>
-                <Category category={page.category} />
+                <Tags className="text-xs" tags={page.tags} />
             </InlineBlock>
             <NotionRenderer blocks={post}/>
         </article>

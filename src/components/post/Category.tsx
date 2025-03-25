@@ -1,11 +1,10 @@
 import type {Category} from '@/libs/types'
-import {getTextColor} from "@/libs/colors";
+import {colorStyled} from '@/components/notion/styled'
 
 export default function Category({category}: {
     category: Category
 }) {
-    const colorClass = getTextColor(category.color)
     return (
-        <span className={colorClass}>{category.name}</span>
+        <span className={colorStyled(category.color)}>{category.name}</span>
     )
 }

@@ -1,7 +1,8 @@
+import type {PostMeta} from '@/libs/types'
 import Link from 'next/link'
 import {formatDate} from '@/libs/time'
-import Category from '@/components/post/Category'
-import type {PostMeta} from '@/libs/types'
+import Category from './Category'
+import Tags from './Tags'
 
 export default function PostItem({post}: {
     post: PostMeta
@@ -11,13 +12,15 @@ export default function PostItem({post}: {
         <article className="my-8">
             <div className="flex flex-col justify-between gap-2 md:flex-row md:items-center">
                 <div>
-                    <p className="text-sm leading-normal text-zinc-500">
+                    <p className="text-sm leading-normal text-zinc-500">                        
                         <time dateTime={post.date}>{date}</time>
+                        <span className="px-2">•</span>
+                        <Category category={post.category} />
                     </p>
                 </div>
                 <div>
-                    <p className="text-sm leading-normal">
-                        <Category category={post.category} />
+                    <p className="text-sm leading-normal space-x-2">
+                        <Tags tags={post.tags} />
                     </p>
                 </div>
             </div>
