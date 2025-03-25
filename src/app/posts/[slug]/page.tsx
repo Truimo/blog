@@ -1,3 +1,4 @@
+import { notFound } from 'next/navigation'
 import NotionRenderer from '@/components/notion/NotionRenderer'
 import Category from '@/components/post/Category'
 import {InlineBlock} from '@/components/notion/blocks/Block'
@@ -20,7 +21,7 @@ export default async function Page(props: {
     const page = await getPost(params.slug)
 
     if (null === page) {
-        return <p>Page not found</p>
+        return notFound()
     }
 
     const post = await getPage(page.id),
@@ -28,7 +29,6 @@ export default async function Page(props: {
 
     return (
         <article className="mx-auto max-w-3xl 2xl:max-w-4xl">
-
             <h1 className="py-1 text-3xl font-bold">{page.title}</h1>
             <InlineBlock className="leading-normal text-zinc-500">{page.excerpt}</InlineBlock>
             <InlineBlock className="space-x-2 text-zinc-500">
