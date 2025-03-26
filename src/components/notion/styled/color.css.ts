@@ -1,6 +1,9 @@
 import { style, styleVariants, globalStyle } from '@vanilla-extract/css'
 
 export const colorVariants = styleVariants({
+    current: {
+        color: 'currentcolor'
+    },
     default: {
         color: 'rgb(55, 53, 47)',
         '@media': {

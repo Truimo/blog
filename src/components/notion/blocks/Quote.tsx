@@ -10,9 +10,10 @@ export default function Quote({block, children}: PropsWithChildren<{
         return null
     }
     const quote = block.quote
+
     return (
         <Block color={quote.color}>
-            <blockquote className="pl-3 border-l-4 border-gray-300">
+            <blockquote className="pl-3 border-l-4 border-current">
                 <InlineBlock><RichText rich_text={quote.rich_text}/></InlineBlock>
                 {children}
             </blockquote>

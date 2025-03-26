@@ -4,7 +4,7 @@ import type {
 import { colorVariants, codeTextStyle } from './color.css'
 
 export const colorStyled = (color?: string) => {
-    const style: string = undefined === color ? 'default' : color
+    const style: string = undefined === color ? 'current' : color
 
     if (style in colorVariants) {
         return colorVariants[style as keyof typeof colorVariants]
