@@ -3,7 +3,7 @@ import type {
     BlockObjectResponse, PageObjectResponse, RichTextItemResponse, TextRichTextItemResponse
 } from '@notionhq/client/build/src/api-endpoints'
 
-export const revalidate = 60
+// export const revalidate = 60
 
 const notion = new Client({
     auth: process.env.NOTION_KEY, fetch
