@@ -1,8 +1,9 @@
 import { notFound } from 'next/navigation'
 import NotionRenderer from '@/components/notion/NotionRenderer'
+import {InlineBlock} from '@/components/notion/blocks/Block'
 import Category from '@/components/post/Category'
 import Tags from '@/components/post/Tags'
-import {InlineBlock} from '@/components/notion/blocks/Block'
+import { PostCopyright } from '@/components/post/PostCopyright'
 import {getPage, getPost, getPosts} from '@/libs/notion'
 import {formatDate} from '@/libs/time'
 
@@ -29,7 +30,7 @@ export default async function Page(props: {
         date: string = formatDate(page.date, 'YYYY 年 MM 月 DD 日')
 
     return (
-        <article className="mx-auto max-w-3xl 2xl:max-w-4xl">
+        <div className="mx-auto max-w-3xl 2xl:max-w-4xl">
             <InlineBlock>
                 <Category category={page.category} />
             </InlineBlock>
@@ -40,7 +41,13 @@ export default async function Page(props: {
                 <span className="font-bold">•</span>
                 <Tags className="text-xs" tags={page.tags} />
             </InlineBlock>
-            <NotionRenderer blocks={post}/>
-        </article>
+            <article>
+                <div className="sr-only">
+                    <h1 className="py-1 text-3xl font-bold">{page.title}</h1>
+                </div>
+                <NotionRenderer blocks={post}/>
+            </article>
+            <PostCopyright title={page.title} slug={page.slug} />
+        </div>
     )
 }

@@ -1,4 +1,4 @@
-import { style, styleVariants } from '@vanilla-extract/css'
+import { style, styleVariants, keyframes, globalStyle, createVar } from '@vanilla-extract/css'
 
 export const tagTextStyle = style({
     borderRadius: '3px',
@@ -114,4 +114,50 @@ export const colorVariants = styleVariants({
             }
         }
     },
+})
+
+const signatureColorVar = createVar()
+
+const drawSignatureAnimation = keyframes({
+    '0%': { strokeDashoffset: '880' },
+    '15%': { fill: 'transparent' },
+    '35%, 75%': { strokeDashoffset: '0', fill: signatureColorVar },
+    '90%, to': { strokeDashoffset: '880', fill: 'transparent' },
+})
+
+export const signatureStyle = style({
+    vars: {
+        [signatureColorVar]: 'oklab(0% 0 0)',
+    },
+    float: 'right',
+    marginLeft: 'calc(var(--spacing) * 4)',
+    '@media': {
+        '(prefers-color-scheme: dark)': {
+            vars: {
+                [signatureColorVar]: 'oklab(100% 0 0)',
+            },
+        }
+    },
+})
+
+globalStyle(`${signatureStyle} path`, {
+    strokeDasharray: 880,
+    strokeDashoffset: 880,
+    strokeWidth: '0.25mm',
+    fill: 'transparent',
+    stroke: signatureColorVar,
+    animation: `${drawSignatureAnimation} 6s linear infinite both`,
+})
+
+
+export const dividerStyle = style({
+    borderWidth: 0,
+    height: '0.5px',
+    marginBlock: 'calc(var(--spacing)* 4)',
+    backgroundColor: 'hsl(0deg 0% 0% / 30%)',
+    '@media': {
+        '(prefers-color-scheme: dark)': {
+            backgroundColor: 'hsl(0deg 0% 100% / 30%)',
+        }
+    }
 })
