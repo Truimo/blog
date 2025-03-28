@@ -1,3 +1,4 @@
+import {JSX} from 'react'
 import Paragraph from '@/components/notion/blocks/Paragraph'
 import {Heading1, Heading2, Heading3} from '@/components/notion/blocks/Heading'
 import NumberList from '@/components/notion/blocks/NumberList'
@@ -82,9 +83,10 @@ function RendererWithChildren({block, order}: {
         {block.has_children && block.children.map((block) => {
             if (block.type === 'numbered_list_item') {
                 childrenOrder++
-            } else if (childrenOrder > 0) {
+            } else if (block.type.startsWith('heading_')) {
                 childrenOrder = 0
             }
+
             return <RendererWithChildren key={block.id} block={block} order={childrenOrder}/>
         })}
     </Renderer>
@@ -99,10 +101,13 @@ export default function NotionRenderer({blocks}: {
             {blocks.map((block) => {
                 if (block.type === 'numbered_list_item') {
                     order++
-                } else if (order > 0) {
+                } else if (block.type.startsWith('heading_')) {
                     order = 0
                 }
-                return <RendererWithChildren key={block.id} block={block} order={order} />
+                
+                return (
+                    <RendererWithChildren key={block.id} block={block} order={order} />
+                )
             })}
         </main>
     )
