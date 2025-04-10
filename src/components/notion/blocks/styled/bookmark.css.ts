@@ -1,4 +1,4 @@
-import { style, styleVariants, globalStyle } from '@vanilla-extract/css'
+import { style } from '@vanilla-extract/css'
 
 export const bookmarkStyle = style({
     display: 'flex',
