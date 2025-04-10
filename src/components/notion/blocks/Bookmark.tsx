@@ -115,6 +115,6 @@ interface CamoImageProps {
 
 function CamoImage({ src, alt, className, loading }: CamoImageProps) {
     return (
-        <img src={src} alt={alt} className={className} loading={loading}></img>
+        <img src={src} alt={alt} className={className} loading={loading} crossOrigin="anonymous"></img>
     )
 }
