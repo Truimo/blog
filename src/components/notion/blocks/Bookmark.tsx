@@ -8,7 +8,7 @@ import {useQuery} from '@tanstack/react-query'
 import {SquareArrowOutUpRight} from 'lucide-react'
 import {Block, InlineBlock} from '@/components/notion/blocks/Block'
 import RichText from '@/components/notion/blocks/RichText'
-import {CamoImage} from '@/components/common/Image'
+// import {CamoImage} from '@/components/common/Image'
 import {bookmarkStyle, infoStyle, titleStyle, desStyle, linkStyle, iconStyle, imagesStyle, imageStyle, imgStyle} from './styled/bookmark.css'
 
 export default function Bookmark({block, children}: PropsWithChildren<{
@@ -104,4 +104,17 @@ function BookmarkImage(props: { isSuccess: boolean, data: any }) {
             </div>
         )
     }
+}
+
+interface CamoImageProps {
+    src: string | undefined
+    alt: string
+    className?: string
+    loading?: "eager" | "lazy" | undefined
+}
+
+function CamoImage({ src, alt, className, loading }: CamoImageProps) {
+    return (
+        <img src={src} alt={alt} className={className} loading={loading}></img>
+    )
 }
