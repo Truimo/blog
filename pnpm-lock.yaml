@@ -103,8 +103,8 @@ importers:
         specifier: 19.1.0
         version: 19.1.0
       '@types/react-dom':
-        specifier: 19.1.1
-        version: 19.1.1(@types/react@19.1.0)
+        specifier: 19.1.2
+        version: 19.1.2(@types/react@19.1.0)
       '@vanilla-extract/next-plugin':
         specifier: ^2.4.10
         version: 2.4.10(next@15.3.0(@babel/core@7.26.10(supports-color@10.0.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(supports-color@10.0.0)(webpack@5.98.0)
@@ -724,8 +724,8 @@ packages:
   '@types/pako@2.0.3':
     resolution: {integrity: sha512-bq0hMV9opAcrmE0Byyo0fY3Ew4tgOevJmQ9grUhpXQhYfyLJ1Kqg3P33JT5fdbT2AjeAjR51zqqVjAL/HMkx7Q==}
 
-  '@types/react-dom@19.1.1':
-    resolution: {integrity: sha512-jFf/woGTVTjUJsl2O7hcopJ1r0upqoq/vIOoCj0yLh3RIXxWcljlpuZ+vEBRXsymD1jhfeJrlyTy/S1UW+4y1w==}
+  '@types/react-dom@19.1.2':
+    resolution: {integrity: sha512-XGJkWF41Qq305SKWEILa1O8vzhb3aOo3ogBlSmiqNko/WmRb6QIaweuZCXjKygVDXpzXb5wyxKTSOsmkuqj+Qw==}
     peerDependencies:
       '@types/react': ^19.0.0
 
@@ -2178,7 +2178,7 @@ snapshots:
 
   '@types/pako@2.0.3': {}
 
-  '@types/react-dom@19.1.1(@types/react@19.1.0)':
+  '@types/react-dom@19.1.2(@types/react@19.1.0)':
     dependencies:
       '@types/react': 19.1.0
 
