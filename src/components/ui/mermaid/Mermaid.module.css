@@ -1,0 +1,10 @@
+.mermaid {
+    background-image: radial-gradient(circle, #e4e4e48c 2px, #0000 0);
+    background-size: 30px 30px;
+}
+
+@media (prefers-color-scheme: dark) {
+    .mermaid {
+        background-image: radial-gradient(circle, #46464646 2px, #0000 0);
+    }
+}

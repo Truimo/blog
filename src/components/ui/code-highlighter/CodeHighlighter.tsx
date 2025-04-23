@@ -8,7 +8,7 @@ interface CodeHighLighterProps {
     text: string
 }
 
-function CodeHighLighterFallback(props: CodeHighLighterProps) {
+export function CodeHighLighterFallback(props: CodeHighLighterProps) {
     return (
         <ShikiHighLighterWrapper language={props.lang}>
             <pre className="shiki">
