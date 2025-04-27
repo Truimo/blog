@@ -14,6 +14,7 @@ export const LoadMoreIndicator: FC<PropsWithChildren<{
             if (inView) onLoading()
         },
     })
+
     return (
         <div className={className} ref={ref}>
             {children ?? <Loading />}
