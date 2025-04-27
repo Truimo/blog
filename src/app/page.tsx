@@ -15,10 +15,8 @@ export default async function Page() {
     })
 
     return (
-        <div className="mx-auto max-w-3xl 2xl:max-w-4xl">
-            <HydrationBoundary state={dehydrate(queryClient)}>
-                <MorePosts />
-            </HydrationBoundary>
-        </div>
+        <HydrationBoundary state={dehydrate(queryClient)}>
+            <MorePosts />
+        </HydrationBoundary>
     )
 }

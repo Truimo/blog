@@ -26,13 +26,13 @@ export default function MorePosts() {
     }
 
     return (
-        <>
+        <div className="mx-auto max-w-3xl 2xl:max-w-4xl">
             {data?.pages.map((page, i) => {
                 return page.posts.map((post: PostMeta) => (
                     <PostItem key={post.id} post={post} />
                 ))
             })}
             {hasNextPage && <LoadMoreIndicator onLoading={() => fetchNextPage()} />}
-        </>
+        </div>
     )
 }
