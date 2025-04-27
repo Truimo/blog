@@ -27,7 +27,9 @@ const nextConfig: NextConfig = {
             }
         ]
     },
-    experimental: {}
+    experimental: {
+        useCache: true,
+    }
 }
 
 export default withVanillaExtract(nextConfig)
