@@ -1,7 +1,7 @@
 'use client'
 
 import type {PropsWithChildren} from 'react'
-import {isServer, QueryClient, QueryClientProvider} from '@tanstack/react-query'
+import {defaultShouldDehydrateQuery, isServer, QueryClient, QueryClientProvider} from '@tanstack/react-query'
 
 function makeQueryClient() {
     return new QueryClient({
@@ -10,6 +10,11 @@ function makeQueryClient() {
                 staleTime: 60 * 1000,
                 refetchOnWindowFocus: false,
                 refetchIntervalInBackground: false,
+            },
+            dehydrate: {
+                shouldDehydrateQuery: (query) =>
+                    defaultShouldDehydrateQuery(query) ||
+                    query.state.status === 'pending',
             },
         },
     })
