@@ -70,6 +70,8 @@ function getPageMeta(page: PageObjectResponse): PostMeta {
 export const getPosts = async (query: PostQuery = {
     pageSize: 10
 }): Promise<PostsResponse> => {
+    'use cache'
+
     const response =  await notion.databases.query({
         database_id: databaseId,
         filter: {
@@ -112,6 +114,8 @@ export const getPosts = async (query: PostQuery = {
 }
 
 export const getPost = async (slug: string): Promise<PostMeta | null> => {
+    'use cache'
+
     const response = await notion.databases.query({
         database_id: databaseId,
         filter: {
@@ -156,6 +160,8 @@ export type Block = ({
 }) & BlockObjectResponse
 
 export const getPage = async (id: string): Promise<Block[]> => {
+    'use cache'
+
     const res =  await collectPaginatedAPI(notion.blocks.children.list, {
         block_id: id,
     })
@@ -177,74 +183,4 @@ export const getPage = async (id: string): Promise<Block[]> => {
         }
     }
     return blocks
-}
-
-export function getAnnotationsColor(color: string): string {
-    switch (color) {
-        case "default":
-            return 'text-gray-900 dark:text-slate-100'
-        case "gray":
-            return 'text-gray-500'
-        case "brown":
-            return 'text-yellow-500'
-        case "orange":
-            return 'text-yellow-500'
-        case "yellow":
-            return 'text-yellow-500'
-        case "green":
-            return 'text-green-500'
-        case "blue":
-            return 'text-blue-500'
-        case "purple":
-            return 'text-purple-500'
-        case "pink":
-            return 'text-pink-500'
-        case "red":
-            return 'text-red-500'
-        case "gray_background":
-            return 'bg-gray-100'
-        case "brown_background":
-            return 'bg-yellow-100'
-        case "orange_background":
-            return 'bg-yellow-100'
-        case "yellow_background":
-            return 'bg-yellow-100'
-        case "green_background":
-            return 'bg-green-100'
-        case "blue_background":
-            return 'bg-blue-100'
-        case "purple_background":
-            return 'bg-purple-100'
-        case "pink_background":
-            return 'bg-pink-100'
-        case "red_background":
-            return 'bg-red-100'
-        default:
-            return ''
-    }
-}
-
-export function getAnnotationsClass(annotations: TextRichTextItemResponse['annotations']) {
-    const classes: string[] = []
-    if (annotations.bold) {
-        classes.push('font-bold')
-    }
-    if (annotations.italic) {
-        classes.push('italic')
-    }
-    if (annotations.strikethrough) {
-        classes.push('line-through')
-    }
-    if (annotations.underline) {
-        classes.push('underline')
-    }
-    if (annotations.code) {
-        classes.push('font-mono')
-        classes.push('bg-gray-100 dark:bg-zinc-800')
-        classes.push('p-1')
-    }
-    if (annotations.color) {
-        classes.push(getAnnotationsColor(annotations.color))
-    }
-    return classes.join(' ')
 }
