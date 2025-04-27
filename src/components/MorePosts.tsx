@@ -1,24 +1,22 @@
 'use client';
 
 import axios from 'axios'
-import {useInfiniteQuery} from '@tanstack/react-query'
+import {useInfiniteQuery, } from '@tanstack/react-query'
 import {LoadMoreIndicator} from '@/components/LoadMoreIndicator'
 import Loading from '@/components/Loading'
 import PostItem from '@/components/post/PostItem'
 import type {PostsResponse} from '@/libs/notion'
 import type {PostMeta} from '@/libs/types'
 
-export default function MorePosts({nextCursor}: {
-    nextCursor: string | null
-}) {
+export default function MorePosts() {
     const {data, isLoading, fetchNextPage, status} = useInfiniteQuery({
         queryKey: ['posts'],
-        queryFn: async ({pageParam}): Promise<PostsResponse> => {
+        queryFn: async ({ pageParam }): Promise<PostsResponse> => {
             const res = await axios.get(`/api/posts?cursor=${pageParam}`)
             return res.data
         },
         getNextPageParam: lastPage => lastPage.nextCursor,
-        initialPageParam: nextCursor,
+        initialPageParam: '',
         refetchOnMount: true
     })
 
