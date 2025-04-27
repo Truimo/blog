@@ -9,7 +9,7 @@ import type {PostsResponse} from '@/libs/notion'
 import type {PostMeta} from '@/libs/types'
 
 export default function MorePosts() {
-    const {data, isLoading, fetchNextPage, status} = useInfiniteQuery({
+    const {data, isLoading, fetchNextPage, hasNextPage} = useInfiniteQuery({
         queryKey: ['posts'],
         queryFn: async ({ pageParam }): Promise<PostsResponse> => {
             const res = await axios.get(`/api/posts?cursor=${pageParam}`)
@@ -17,10 +17,8 @@ export default function MorePosts() {
         },
         getNextPageParam: lastPage => lastPage.nextCursor,
         initialPageParam: '',
-        refetchOnMount: true
+        refetchOnMount: false
     })
-
-    const hasNext = data?.pages[data.pages.length - 1].nextCursor !== null
 
     if (isLoading) {
         return <Loading />
@@ -33,7 +31,7 @@ export default function MorePosts() {
                     <PostItem key={post.id} post={post} />
                 ))
             })}
-            {hasNext && <LoadMoreIndicator onLoading={() => fetchNextPage()} />}
+            {hasNextPage && <LoadMoreIndicator onLoading={() => fetchNextPage()} />}
         </>
     )
 }
