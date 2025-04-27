@@ -1,4 +1,5 @@
 import type {Metadata, Viewport} from 'next'
+import process from 'node:process'
 import {Inter} from 'next/font/google'
 import {ReactNode} from 'react'
 import {ReactQueryProvider} from '@/providers/react-query-provider'
@@ -50,6 +51,7 @@ export default function RootLayout({children}: {
         <ReactQueryProvider>
             <Root>{children}</Root>
         </ReactQueryProvider>
+        <Analytics />
         </body>
         </html>
     )
@@ -61,4 +63,12 @@ function SayHi() {
             __html: 'console.log("%c Truimo\'s Blog %c https://github.com/Truimo/blog ", "color: #fff; margin: 1em 0; padding: 5px 0; background: #0ea5e9;", "margin: 1em 0; padding: 5px 0; background: #efefef;");'
         }}></script>
     )
+}
+
+function Analytics() {
+    if (process.env.VERCEL_ENV === 'production') {
+        return (
+            <script defer src="/_vercel/insights/script.js"></script>
+        )
+    }
 }
