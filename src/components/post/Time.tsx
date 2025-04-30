@@ -6,11 +6,11 @@ interface TimeProps {
 }
 
 export function Time(props: TimeProps) {
-    const date: string = useMemo(() => {
-        return formatDate(props.datetime, 'YYYY 年 MM 月 DD 日')
+    const dateStr: string = useMemo(() => {
+        return formatDate(props.datetime, 'YYYY[ 年 ]MM[ 月 ]DD[ 日 ]')
     }, [props.datetime])
 
     return (
-        <time>{date}</time>
+        <time dateTime={props.datetime}>{dateStr}</time>
     )
 }
