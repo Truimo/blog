@@ -1,14 +1,11 @@
 import type {Metadata, Viewport} from 'next'
 import process from 'node:process'
-import {Inter} from 'next/font/google'
 import {ReactNode} from 'react'
 import {ReactQueryProvider} from '@/providers/react-query-provider'
 import {Root} from '@/components/layout/Root'
 import {blogName, blogTitle, blogDescription, blogKeywords} from '@/config'
 
 import '@/styles/index.css'
-
-const inter = Inter({subsets: ['latin']})
 
 export const viewport: Viewport = {
     width: 'device-width',
@@ -46,7 +43,7 @@ export default function RootLayout({children}: {
 }) {
     return (
         <html lang="zh-CN">
-        <body className={`${inter.className} font-sans`}>
+        <body>
         <SayHi/>
         <ReactQueryProvider>
             <Root>{children}</Root>
