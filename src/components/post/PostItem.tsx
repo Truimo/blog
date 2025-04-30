@@ -13,7 +13,7 @@ export default function PostItem({post}: {
             <div className="flex flex-col justify-between gap-2 md:flex-row md:items-center">
                 <div>
                     <p className="text-sm leading-normal text-zinc-500">                        
-                        <time dateTime={post.date}>{date}</time>
+                        {/* <time dateTime={post.date}>{date}</time> */}
                         <span className="px-2">•</span>
                         <Category category={post.category} />
                     </p>
