@@ -11,6 +11,6 @@ export function Time(props: TimeProps) {
     }, [props.datetime])
 
     return (
-        <time dateTime={props.datetime}>{date}</time>
+        <time>{date}</time>
     )
 }
