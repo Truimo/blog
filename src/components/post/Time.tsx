@@ -11,6 +11,6 @@ export function Time(props: TimeProps) {
     }, [props.datetime])
 
     return (
-        <time dateTime={props.datetime}>{dateStr}</time>
+        <time dateTime={props.datetime} suppressHydrationWarning={true}>{dateStr}</time>
     )
 }
