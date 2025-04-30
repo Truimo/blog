@@ -4,7 +4,7 @@ import type {PostsResponse} from '@/libs/notion'
 import type {PostMeta} from '@/libs/types'
 import axios from 'axios'
 import {useSuspenseInfiniteQuery} from '@tanstack/react-query'
-import {LoadMoreIndicator} from '@/components/LoadMoreIndicator'
+// import {LoadMoreIndicator} from '@/components/LoadMoreIndicator'
 import Loading from '@/components/Loading'
 import PostItem from '@/components/post/PostItem'
 
@@ -32,7 +32,7 @@ export default function MorePosts() {
                     <PostItem key={post.id} post={post} />
                 ))
             })}
-            {hasNextPage && <LoadMoreIndicator onLoading={() => fetchNextPage()} />}
+            {/* {hasNextPage && <LoadMoreIndicator onLoading={() => fetchNextPage()} />} */}
         </div>
     )
 }
