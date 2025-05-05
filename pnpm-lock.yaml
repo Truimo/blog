@@ -12,8 +12,8 @@ importers:
         specifier: 0.17.6
         version: 0.17.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@notionhq/client':
-        specifier: 2.3.0
-        version: 2.3.0(encoding@0.1.13)
+        specifier: 3.0.0
+        version: 3.0.0
       '@shikijs/transformers':
         specifier: ^3.2.1
         version: 3.3.0
@@ -609,9 +609,9 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@notionhq/client@2.3.0':
-    resolution: {integrity: sha512-l7WqTCpQqC+HibkB9chghONQTYcxNQT0/rOJemBfmuKQRTu2vuV8B3yA395iKaUdDo7HI+0KvQaz9687Xskzkw==}
-    engines: {node: '>=12'}
+  '@notionhq/client@3.0.0':
+    resolution: {integrity: sha512-TlWxZT/rsrjGWJOrnVuiLAlWNPXDumHyRMcw81bJcy2RupSyfjjUCYRELDEyZog48sjVK69/hHLIAwOF3C+ECQ==}
+    engines: {node: '>=18'}
 
   '@shikijs/core@3.3.0':
     resolution: {integrity: sha512-CovkFL2WVaHk6PCrwv6ctlmD4SS1qtIfN8yEyDXDYWh4ONvomdM9MaFw20qHuqJOcb8/xrkqoWQRJ//X10phOQ==}
@@ -852,9 +852,6 @@ packages:
 
   '@types/mdast@4.0.4':
     resolution: {integrity: sha512-kGaNbPh1k7AFzgpud/gMdvIm5xuECykRR+JnWKQno9TAXVa6WIVCGTPvYGekIDL4uwCZQSYbUxNBSb1aUo79oA==}
-
-  '@types/node-fetch@2.6.6':
-    resolution: {integrity: sha512-95X8guJYhfqiuVVhRFxVQcf4hW/2bCuoPwDasMf/531STFoNoWTT7YDnWdXHEZKqAGUigmpG31r2FE70LwnzJw==}
 
   '@types/node@22.15.3':
     resolution: {integrity: sha512-lX7HFZeHf4QG/J7tBZqrCAXwz9J5RD56Y6MpP0eJkka8p+K0RY/yBTW7CYFJ4VGCclxqOLKmiGP5juQc6MKgcw==}
@@ -2491,12 +2488,7 @@ snapshots:
   '@next/swc-win32-x64-msvc@15.4.0-canary.20':
     optional: true
 
-  '@notionhq/client@2.3.0(encoding@0.1.13)':
-    dependencies:
-      '@types/node-fetch': 2.6.6
-      node-fetch: 2.7.0(encoding@0.1.13)
-    transitivePeerDependencies:
-      - encoding
+  '@notionhq/client@3.0.0': {}
 
   '@shikijs/core@3.3.0':
     dependencies:
@@ -2755,11 +2747,6 @@ snapshots:
   '@types/mdast@4.0.4':
     dependencies:
       '@types/unist': 3.0.3
-
-  '@types/node-fetch@2.6.6':
-    dependencies:
-      '@types/node': 22.15.3
-      form-data: 4.0.0
 
   '@types/node@22.15.3':
     dependencies:
