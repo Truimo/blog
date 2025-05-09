@@ -10,7 +10,7 @@
     },
     "dependencies": {
         "@excalidraw/excalidraw": "0.17.6",
-        "@notionhq/client": "3.0.0",
+        "@notionhq/client": "3.0.1",
         "@shikijs/transformers": "^3.2.1",
         "@tailwindcss/postcss": "4.1.5",
         "@tanstack/react-query": "5.75.4",
