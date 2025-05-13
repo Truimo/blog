@@ -43,7 +43,7 @@
         "@types/node": "22.15.17",
         "@types/pako": "^2.0.3",
         "@types/react": "19.1.4",
-        "@types/react-dom": "19.1.4",
+        "@types/react-dom": "19.1.5",
         "@vanilla-extract/next-plugin": "^2.4.10",
         "autoprefixer": "10.4.21",
         "encoding": "0.1.13",
