@@ -42,7 +42,7 @@
         "@types/katex": "0.16.7",
         "@types/node": "22.15.21",
         "@types/pako": "^2.0.3",
-        "@types/react": "19.1.5",
+        "@types/react": "19.1.6",
         "@types/react-dom": "19.1.5",
         "@vanilla-extract/next-plugin": "^2.4.10",
         "autoprefixer": "10.4.21",
