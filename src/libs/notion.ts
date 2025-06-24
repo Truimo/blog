@@ -6,7 +6,13 @@ import type {
 // export const revalidate = 60
 
 const notion = new Client({
-    auth: process.env.NOTION_KEY, fetch
+    auth: process.env.NOTION_KEY, fetch: (url, init) => {
+        return fetch(url, Object.assign({}, init, {
+            next: {
+                tags: ['notion']
+            }
+        }))
+    },
 }), databaseId = process.env.NOTION_DATABASE_ID || ''
 
 interface PostQuery {
