@@ -15,7 +15,7 @@
         "@tailwindcss/postcss": "4.1.11",
         "@tanstack/react-query": "5.83.0",
         "@vanilla-extract/css": "^1.17.1",
-        "axios": "1.10.0",
+        "axios": "1.11.0",
         "clsx": "2.1.1",
         "dayjs": "^1.11.13",
         "jotai": "2.12.5",
