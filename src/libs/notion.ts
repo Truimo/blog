@@ -168,7 +168,7 @@ export type Block = ({
 export const getPage = async (id: string): Promise<Block[]> => {
     'use cache'
 
-    const res =  await collectPaginatedAPI(notion.blocks.children.list, {
+    const res = await collectPaginatedAPI(notion.blocks.children.list, {
         block_id: id,
     })
     const blocks: Block[] = []
@@ -189,4 +189,10 @@ export const getPage = async (id: string): Promise<Block[]> => {
         }
     }
     return blocks
+}
+
+export const getBlockObject = (blockId: string) => {
+    return notion.blocks.retrieve({
+        block_id: blockId,
+    })
 }

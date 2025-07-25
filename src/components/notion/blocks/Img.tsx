@@ -25,7 +25,7 @@ export default function Img({block, children}: PropsWithChildren<{
         return null
     }
     const img = block.image
-    const url = img.type === 'external' ? img.external.url : img.file.url
+    const url = img.type === 'external' ? img.external.url : `/api/notion/image/${block.id}`
     const isUnmount = useIsUnMounted()
     const [imageLoadStatus, setImageLoadStatus] = useState(ImageLoadStatus.Loading)
     const setImageLoadStatusSafe = useCallback((status: ImageLoadStatus) => {
