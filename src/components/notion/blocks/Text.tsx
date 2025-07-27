@@ -1,10 +1,10 @@
-import type {TextRichTextItemResponse} from '@notionhq/client/build/src/api-endpoints'
+import type {TextRichTextItemResponse, RichTextItemResponseCommon} from '@notionhq/client/build/src/api-endpoints'
 import {SquareArrowOutUpRight} from 'lucide-react'
 import {clsxm} from '@/libs/helper'
 import {textStyeld} from '@/components/notion/styled'
 
 export default function Text({text}: {
-    text: TextRichTextItemResponse
+    text: TextRichTextItemResponse & RichTextItemResponseCommon
 }) {
     if (text.text.link) {
         return (

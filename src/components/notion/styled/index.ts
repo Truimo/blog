@@ -1,4 +1,5 @@
-import type {
+import {
+    RichTextItemResponseCommon,
     TextRichTextItemResponse
 } from '@notionhq/client/build/src/api-endpoints'
 import { colorVariants, codeTextStyle } from './color.css'
@@ -13,7 +14,7 @@ export const colorStyled = (color?: string) => {
     return ''
 }
 
-export const textStyeld = (annotations: TextRichTextItemResponse['annotations']) => {
+export const textStyeld = (annotations: RichTextItemResponseCommon['annotations']) => {
     const classes: string[] = []
     if (annotations.bold) {
         classes.push('font-bold')
