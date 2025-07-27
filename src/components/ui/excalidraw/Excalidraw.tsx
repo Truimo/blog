@@ -20,11 +20,9 @@ export const Excalidraw = ({url}: ExcalidrawProps) => {
         },
     })
 
-    const initialData: ImportedDataState = useMemo(() => {
-        return Object.assign({}, data, {
-            scrollToContent: true
-        })
-    },[data, isLoading, isError])
+    const initialData: ImportedDataState = Object.assign({}, data, {
+        scrollToContent: true
+    })
 
     if (isLoading) {
         return <ExcalidrawLoading text='Excalidraw 数据加载中...' />

@@ -21,12 +21,8 @@ let zoomer: Zoom
 export default function Img({block, children}: PropsWithChildren<{
     block: BlockObjectResponse
 }>) {
-    if ('image' !== block.type) {
-        return null
-    }
-    const img = block.image
-    const url = img.type === 'external' ? img.external.url : `/api/notion/image/${block.id}`
     const isUnmount = useIsUnMounted()
+    const imageRef = useRef<HTMLImageElement>(null)
     const [imageLoadStatus, setImageLoadStatus] = useState(ImageLoadStatus.Loading)
     const setImageLoadStatusSafe = useCallback((status: ImageLoadStatus) => {
         if (!isUnmount.current) {
@@ -46,7 +42,6 @@ export default function Img({block, children}: PropsWithChildren<{
         zoomer = zoom
         return zoom
     })
-    const imageRef = useRef<HTMLImageElement>(null)
     useEffect(() => {
         const $image = imageRef.current
         if (null === $image) {
@@ -60,7 +55,15 @@ export default function Img({block, children}: PropsWithChildren<{
             zooms?.detach($image)
         }
     }, [zooms, imageLoadStatus])
+
+    if ('image' !== block.type) {
+        return null
+    }
+
+    const img = block.image
+    const url = img.type === 'external' ? img.external.url : `/api/notion/image/${block.id}`
     const alt = img.caption.map((block) => block.plain_text).join('')
+
     return <Block>
         <figure className="max-w-full w-fit mx-auto">
             <img ref={imageRef} src={url} alt={alt} loading="lazy" className="block max-w-full w-fit object-cover"

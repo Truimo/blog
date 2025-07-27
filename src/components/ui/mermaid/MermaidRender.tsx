@@ -22,7 +22,7 @@ export function MermaidRender(props: MermaidProps) {
                 nodes: [ref.current]
             })
         }
-    }, [props.code, ref.current])
+    }, [props.code])
 
     return (
         <div className={styles.mermaid} ref={ref}>{props.code}</div>

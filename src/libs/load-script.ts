@@ -59,7 +59,9 @@ export function loadStyleSheet(href: string) {
         return {
             $link,
             remove: () => {
-                $link.parentNode && $link.parentNode.removeChild($link)
+                if ($link.parentNode) {
+                    $link.parentNode.removeChild($link)
+                }
                 cssMap.delete(href)
             },
         }
@@ -80,7 +82,9 @@ export function loadStyleSheet(href: string) {
 
     return {
         remove: () => {
-            $link.parentNode && $link.parentNode.removeChild($link)
+            if ($link.parentNode) {
+                $link.parentNode.removeChild($link)
+            }
             cssMap.delete(href)
         },
         $link,
@@ -94,7 +98,9 @@ export function appendStyle(style: string) {
     return {
         remove: () => {
             if (!$style) return
-            $style.parentNode && $style.parentNode.removeChild($style)
+            if ($style.parentNode) {
+                $style.parentNode.removeChild($style)
+            }
             $style.remove()
             $style = null
         },
