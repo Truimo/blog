@@ -11,6 +11,8 @@ export default function Paragraph({block}: PropsWithChildren<{
     }
     const paragraph = block.paragraph
     return (
-        <InlineBlock color={paragraph.color}>{<RichText rich_text={paragraph.rich_text}/>}</InlineBlock>
+        <InlineBlock color={paragraph.color}>
+            <RichText rich_text={paragraph.rich_text} />
+        </InlineBlock>
     )
 }

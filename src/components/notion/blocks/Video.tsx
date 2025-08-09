@@ -12,12 +12,16 @@ export default function Video({block}: PropsWithChildren<{
     }
     const video = block.video
     const url = video.type === 'external' ? video.external.url : video.file.url
-    return <Block>
-        <div className="max-w-full w-fit mx-auto">
-            <video src={url} controls></video>
-            <InlineBlock className="text-neutral-500 text-sm">
-                <RichText rich_text={video.caption}/>
-            </InlineBlock>
-        </div>
-    </Block>
+    return (
+        <Block>
+            <div className="max-w-full w-fit mx-auto">
+                <video src={url} controls></video>
+                {video.caption.length > 0 && (
+                    <InlineBlock className="text-neutral-500 text-sm">
+                        <RichText rich_text={video.caption} />
+                    </InlineBlock>
+                )}
+            </div>
+        </Block>
+    )
 }
