@@ -78,17 +78,19 @@ function RendererWithChildren({block, order}: {
     order: number
 }) {
     let childrenOrder = 0
-    return <Renderer block={block} order={order}>
-        {block.has_children && block.children.map((block) => {
-            if (block.type === 'numbered_list_item') {
-                childrenOrder++
-            } else if (block.type.startsWith('heading_')) {
-                childrenOrder = 0
-            }
+    return (
+        <Renderer block={block} order={order}>
+            {block.children?.map((child) => {
+                if (child.type === 'numbered_list_item') {
+                    childrenOrder++
+                } else if (child.type.startsWith('heading_')) {
+                    childrenOrder = 0
+                }
 
-            return <RendererWithChildren key={block.id} block={block} order={childrenOrder}/>
-        })}
-    </Renderer>
+                return <RendererWithChildren key={child.id} block={child} order={childrenOrder} />
+            })}
+        </Renderer>
+    )
 }
 
 export default function NotionRenderer({blocks}: {
@@ -96,18 +98,18 @@ export default function NotionRenderer({blocks}: {
 }) {
     let order = 0
     return (
-        <main>
+        <>
             {blocks.map((block) => {
                 if (block.type === 'numbered_list_item') {
                     order++
                 } else if (block.type.startsWith('heading_')) {
                     order = 0
                 }
-                
+
                 return (
                     <RendererWithChildren key={block.id} block={block} order={order} />
                 )
             })}
-        </main>
+        </>
     )
 }
