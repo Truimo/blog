@@ -35,8 +35,8 @@
         "unfurl.js": "6.4.0"
     },
     "devDependencies": {
-        "@iconify-json/line-md": "^1.2.8",
-        "@iconify-json/material-symbols": "1.2.31",
+        "@iconify-json/line-md": "^1.2.11",
+        "@iconify-json/material-symbols": "1.2.30",
         "@iconify-json/mingcute": "1.2.3",
         "@iconify/tailwind": "^1.2.0",
         "@types/katex": "0.16.7",
@@ -54,6 +54,10 @@
         "postcss-nested": "7.0.2",
         "shiki": "^3.9.2",
         "typescript": "5.8.3"
+    },
+    "overrides": {
+        "@excalidraw/excalidraw/react": "19.1.1",
+        "@excalidraw/excalidraw/react-dom": "19.1.1"
     },
     "packageManager": "pnpm@10.13.1+sha512.37ebf1a5c7a30d5fabe0c5df44ee8da4c965ca0c5af3dbab28c3a1681b70a256218d05c81c9c0dcf767ef6b8551eb5b960042b9ed4300c59242336377e01cfad"
 }
