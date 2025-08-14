@@ -1,5 +1,5 @@
 import type { PropsWithChildren } from 'react'
-import { useId, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import mermaid from 'mermaid'
 import styles from './Mermaid.module.css'
 

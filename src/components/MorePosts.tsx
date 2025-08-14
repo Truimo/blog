@@ -32,7 +32,7 @@ export default function MorePosts() {
                     <PostItem key={post.id} post={post} />
                 ))
             })}
-            {hasNextPage && <LoadMoreIndicator onLoading={() => fetchNextPage()} />}
+            {hasNextPage && <LoadMoreIndicator onLoading={fetchNextPage} />}
         </div>
     )
 }
