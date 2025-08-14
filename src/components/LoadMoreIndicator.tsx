@@ -1,13 +1,15 @@
 'use client'
 
 import {useInView} from 'react-intersection-observer'
-import type {PropsWithChildren, FC} from 'react'
+import type {PropsWithChildren} from 'react'
 import Loading from '@/components/Loading'
 
-export const LoadMoreIndicator: FC<PropsWithChildren<{
-    className?: string,
+interface LoadMoreIndicatorProps extends PropsWithChildren {
+    className?: string
     onLoading: () => void
-}>> = ({ className, children, onLoading }) => {
+}
+
+export function LoadMoreIndicator({ className, children, onLoading }: LoadMoreIndicatorProps) {
     const { ref } = useInView({
         rootMargin: '1px',
         onChange(inView) {
