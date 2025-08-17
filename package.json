@@ -9,7 +9,7 @@
         "lint": "next lint"
     },
     "dependencies": {
-        "@excalidraw/excalidraw": "0.17.6",
+        "@excalidraw/excalidraw": "0.18.0",
         "@notionhq/client": "4.0.2",
         "@shikijs/transformers": "^3.9.2",
         "@tailwindcss/postcss": "4.1.12",
