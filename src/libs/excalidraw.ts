@@ -75,20 +75,36 @@ const getCryptoKey = (key: string, usage: KeyUsage) =>
         [usage],
     );
 
+function isSharedArrayBuffer(buffer: ArrayBuffer | SharedArrayBuffer): buffer is SharedArrayBuffer {
+    return buffer instanceof SharedArrayBuffer;
+}
+
+function toArrayBuffer(buffer: ArrayBuffer | SharedArrayBuffer): ArrayBuffer {
+    if (isSharedArrayBuffer(buffer)) {
+        const newArrayBuffer = new ArrayBuffer(buffer.byteLength);
+        const view = new Uint8Array(newArrayBuffer);
+        view.set(new Uint8Array(buffer));
+        return newArrayBuffer;
+    }
+    return buffer;
+}
+
 const decryptData = async (
     iv: Uint8Array,
     encrypted: Uint8Array | ArrayBuffer,
     privateKey: string,
 ): Promise<ArrayBuffer> => {
     const key = await getCryptoKey(privateKey, "decrypt");
+    const ivArrayBuffer = toArrayBuffer(iv.buffer);
+    const encryptedArrayBuffer = toArrayBuffer(encrypted instanceof ArrayBuffer ? encrypted : encrypted.buffer);
+
     return window.crypto.subtle.decrypt(
         {
             name: "AES-GCM",
-            // @ts-ignore
-            iv: iv,
+            iv: ivArrayBuffer,
         },
         key,
-        encrypted,
+        encryptedArrayBuffer,
     );
 };
 
