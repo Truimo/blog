@@ -2,7 +2,7 @@
 
 import {useQuery} from '@tanstack/react-query'
 import {useMemo} from 'react'
-import type {ImportedDataState} from '@excalidraw/excalidraw/types/data/types'
+import {ImportedDataState} from '@excalidraw/excalidraw/data/types'
 import {fetchWithExcalidrawUrl} from '@/libs/excalidraw'
 import {ExcalidrawLoadError, ExcalidrawLoading} from './ExcalidrawLoading'
 import {DynamicExcalidraw} from './ExcalidrawLazy'
