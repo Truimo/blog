@@ -84,7 +84,8 @@ const decryptData = async (
     return window.crypto.subtle.decrypt(
         {
             name: "AES-GCM",
-            iv,
+            // @ts-ignore
+            iv: iv,
         },
         key,
         encrypted,
