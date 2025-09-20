@@ -1,4 +1,4 @@
-import type {ImportedDataState} from '@excalidraw/excalidraw/types/data/types'
+import type {ImportedDataState} from '@excalidraw/excalidraw/data/types'
 import {inflate} from 'pako'
 import axios from 'axios'
 
