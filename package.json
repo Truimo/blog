@@ -19,7 +19,7 @@
         "clsx": "2.1.1",
         "dayjs": "^1.11.18",
         "jotai": "2.15.0",
-        "katex": "0.16.22",
+        "katex": "0.16.23",
         "lucide-react": "^0.544.0",
         "medium-zoom": "1.1.0",
         "mermaid": "^11.12.0",
