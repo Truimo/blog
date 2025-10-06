@@ -53,7 +53,7 @@
         "postcss-import": "16.1.1",
         "postcss-nested": "7.0.2",
         "shiki": "^3.13.0",
-        "typescript": "5.9.2"
+        "typescript": "5.9.3"
     },
     "overrides": {
         "@excalidraw/excalidraw/react": "19.1.1",
