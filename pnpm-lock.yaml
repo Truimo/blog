@@ -12,8 +12,8 @@ importers:
         specifier: 0.18.0
         version: 0.18.0(@types/react-dom@19.2.0(@types/react@19.2.0))(@types/react@19.2.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(supports-color@10.2.2)
       '@notionhq/client':
-        specifier: 4.0.2
-        version: 4.0.2
+        specifier: 5.1.0
+        version: 5.1.0
       '@shikijs/transformers':
         specifier: ^3.13.0
         version: 3.13.0
@@ -752,8 +752,8 @@ packages:
     resolution: {integrity: sha512-nn5ozdjYQpUCZlWGuxcJY/KpxkWQs4DcbMCmKojjyrYDEAGy4Ce19NN4v5MduafTwJlbKc99UA8YhSVqq9yPZA==}
     engines: {node: '>=12.4.0'}
 
-  '@notionhq/client@4.0.2':
-    resolution: {integrity: sha512-4pk3dm4umhjsRI0umCnJ8lCZh0TMiaMdkY0rz6FV4OqVuTsmYFV3pk+YTR5S8792ZY2Rm4lJHlLj05HQVKDuIg==}
+  '@notionhq/client@5.1.0':
+    resolution: {integrity: sha512-YYVjXYk1XwKQ4XIh+iGjaaXOGHxaDgB3UaGnDMyrZ3X9UiYQsZpzPIvTuhvp97os8a5W5kTQFsyq77+I+COOVQ==}
     engines: {node: '>=18'}
 
   '@radix-ui/primitive@1.0.0':
@@ -4499,7 +4499,7 @@ snapshots:
 
   '@nolyfill/is-core-module@1.0.39': {}
 
-  '@notionhq/client@4.0.2': {}
+  '@notionhq/client@5.1.0': {}
 
   '@radix-ui/primitive@1.0.0':
     dependencies:
