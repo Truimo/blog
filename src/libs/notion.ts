@@ -1,4 +1,4 @@
-import {Client, isFullPageOrDatabase, collectPaginatedAPI, isFullBlock} from '@notionhq/client'
+import {Client, isFullPage, collectPaginatedAPI, isFullBlock} from '@notionhq/client'
 import type {
     BlockObjectResponse, PageObjectResponse, RichTextItemResponse, TextRichTextItemResponse
 } from '@notionhq/client/build/src/api-endpoints'
@@ -78,8 +78,8 @@ export const getPosts = async (query: PostQuery = {
 }): Promise<PostsResponse> => {
     'use cache'
 
-    const response =  await notion.databases.query({
-        database_id: databaseId,
+    const response =  await notion.dataSources.query({
+        data_source_id: databaseId,
         filter: {
             and: [{
                 property: 'Status',
@@ -107,7 +107,7 @@ export const getPosts = async (query: PostQuery = {
     const posts: PostMeta[] = []
     if ('list' === response.object) {
         for (const page of response.results) {
-            if (isFullPageOrDatabase(page) && 'page' === page.object) {
+            if (isFullPage(page)) {
                 posts.push(getPageMeta(page))
             }
         }
@@ -122,8 +122,8 @@ export const getPosts = async (query: PostQuery = {
 export const getPost = async (slug: string): Promise<PostMeta | null> => {
     'use cache'
 
-    const response = await notion.databases.query({
-        database_id: databaseId,
+    const response = await notion.dataSources.query({
+        data_source_id: databaseId,
         filter: {
             and: [{
                 property: 'Status',
@@ -149,7 +149,7 @@ export const getPost = async (slug: string): Promise<PostMeta | null> => {
     })
     if ('list' === response.object) {
         for (const page of response.results) {
-            if (isFullPageOrDatabase(page) && 'page' === page.object) {
+            if (isFullPage(page)) {
                 return getPageMeta(page)
             }
         }

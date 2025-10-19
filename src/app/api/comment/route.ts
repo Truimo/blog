@@ -18,8 +18,8 @@ export async function GET(request: NextRequest) {
         }, {status: 404})
     }
 
-    const response = await notion.databases.query({
-        database_id: databaseId,
+    const response = await notion.dataSources.query({
+        data_source_id: databaseId,
         filter: {
             and: [{
                 property: 'Status',
