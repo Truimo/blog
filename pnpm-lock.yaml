@@ -85,8 +85,8 @@ importers:
         specifier: ^1.2.11
         version: 1.2.11
       '@iconify-json/material-symbols':
-        specifier: 1.2.42
-        version: 1.2.42
+        specifier: 1.2.50
+        version: 1.2.50
       '@iconify-json/mingcute':
         specifier: 1.2.5
         version: 1.2.5
@@ -509,8 +509,8 @@ packages:
   '@iconify-json/line-md@1.2.11':
     resolution: {integrity: sha512-JYczKuKvTq/Pf9rSCoxwdBbAiWqceNrb3EtM3acD4YkzCAdp3co+CdNE/pb5lTURGbIA9GrGuqentHqVwXyVWA==}
 
-  '@iconify-json/material-symbols@1.2.42':
-    resolution: {integrity: sha512-FDRfnQqy8iXaq/swVPFWaHftqP9tk3qDCRhC30s3UZL2j4mvGZk5gVECRXCkZv5jnsAiTpZxGQM8HrMiwE7GtA==}
+  '@iconify-json/material-symbols@1.2.50':
+    resolution: {integrity: sha512-71tjHR70h46LHtBFab3fAd2V/wPTO7JMV5lKnRn3IcF303LaFgAlO0BZeTJDcmCv9d0snRZmnoLZAJVD7/eisw==}
 
   '@iconify-json/mingcute@1.2.5':
     resolution: {integrity: sha512-LKlW4wahStprbfJcpzUnuayObOVAuztgYSy3v5oTke6cBJNfqEeE/mtMhHgpoSgGJvo5hhde2Q0+DoxKEldY2A==}
@@ -3085,6 +3085,7 @@ packages:
   next@15.5.6:
     resolution: {integrity: sha512-zTxsnI3LQo3c9HSdSf91O1jMNsEzIXDShXd4wVdg9y5shwLqBXi4ZtUUJyB86KGVSJLZx0PFONvO54aheGX8QQ==}
     engines: {node: ^18.18.0 || ^19.8.0 || >= 20.0.0}
+    deprecated: This version has a security vulnerability. Please upgrade to a patched version. See https://nextjs.org/blog/CVE-2025-66478 for more details.
     hasBin: true
     peerDependencies:
       '@opentelemetry/api': ^1.1.0
@@ -4265,7 +4266,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/material-symbols@1.2.42':
+  '@iconify-json/material-symbols@1.2.50':
     dependencies:
       '@iconify/types': 2.0.0
 
