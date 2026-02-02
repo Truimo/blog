@@ -44,7 +44,7 @@
         "@iconify/tailwind": "^1.2.0",
         "@pandacss/dev": "^1.8.1",
         "@types/katex": "0.16.8",
-        "@types/node": "22.18.11",
+        "@types/node": "22.19.7",
         "@types/pako": "^2.0.4",
         "@types/react": "19.2.10",
         "@types/react-dom": "19.2.3",

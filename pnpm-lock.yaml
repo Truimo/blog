@@ -97,8 +97,8 @@ importers:
         specifier: 0.16.8
         version: 0.16.8
       '@types/node':
-        specifier: 22.18.11
-        version: 22.18.11
+        specifier: 22.19.7
+        version: 22.19.7
       '@types/pako':
         specifier: ^2.0.4
         version: 2.0.4
@@ -1399,8 +1399,8 @@ packages:
   '@types/node@17.0.45':
     resolution: {integrity: sha512-w+tIMs3rq2afQdsPJlODhoUEKzFP1ayaoyl1CcnwtIlsVe7K7bA1NGm4s3PraqTLlXnbIN84zuBlxBWo1u9BLw==}
 
-  '@types/node@22.18.11':
-    resolution: {integrity: sha512-Gd33J2XIrXurb+eT2ktze3rJAfAp9ZNjlBdh4SVgyrKEOADwCbdUDaK7QgJno8Ue4kcajscsKqu6n8OBG3hhCQ==}
+  '@types/node@22.19.7':
+    resolution: {integrity: sha512-MciR4AKGHWl7xwxkBa6xUGxQJ4VBOmPTF7sL+iGzuahOFaO0jHCsuEfS80pan1ef4gWId1oWOweIhrDEYLuaOw==}
 
   '@types/pako@2.0.4':
     resolution: {integrity: sha512-VWDCbrLeVXJM9fihYodcLiIv0ku+AlOa/TQ1SvYOaBuyrSKgEcro95LJyIsJ4vSo6BXIxOKxiJAat04CmST9Fw==}
@@ -5590,7 +5590,7 @@ snapshots:
 
   '@types/node@17.0.45': {}
 
-  '@types/node@22.18.11':
+  '@types/node@22.19.7':
     dependencies:
       undici-types: 6.21.0
 
