@@ -40,7 +40,7 @@
     "devDependencies": {
         "@iconify-json/line-md": "^1.2.14",
         "@iconify-json/material-symbols": "1.2.53",
-        "@iconify-json/mingcute": "1.2.5",
+        "@iconify-json/mingcute": "1.2.7",
         "@iconify/tailwind": "^1.2.0",
         "@pandacss/dev": "^1.8.1",
         "@types/katex": "0.16.8",
