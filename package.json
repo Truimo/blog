@@ -23,7 +23,7 @@
         "dayjs": "^1.11.19",
         "jotai": "2.15.0",
         "katex": "0.16.25",
-        "lucide-react": "^0.548.0",
+        "lucide-react": "^0.563.0",
         "medium-zoom": "1.1.0",
         "mermaid": "^11.12.2",
         "next": "16.1.6",
