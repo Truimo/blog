@@ -1,4 +1,4 @@
-import type {PropsWithChildren} from 'react'
+import type {PropsWithChildren, ReactElement} from 'react'
 import type {Block} from '@/libs/notion'
 import Paragraph from './blocks/Paragraph'
 import {Heading1, Heading2, Heading3} from './blocks/Heading'
@@ -21,56 +21,42 @@ import Bookmark from './blocks/Bookmark'
 import NotSupported from './blocks/NotSupported'
 import Embed from './blocks/Embed'
 
-function Renderer({block, children, order}: PropsWithChildren<{
+type RendererProps = PropsWithChildren<{
     block: Block,
     order: number
-}>) {
-    switch (block.type) {
-        case 'paragraph':
-            return <Paragraph block={block}>{children}</Paragraph>
-        case 'heading_1':
-            return <Heading1 block={block}>{children}</Heading1>
-        case 'heading_2':
-            return <Heading2 block={block}>{children}</Heading2>
-        case 'heading_3':
-            return <Heading3 block={block}>{children}</Heading3>
-        case 'bulleted_list_item':
-            return <BulletList block={block}>{children}</BulletList>
-        case 'numbered_list_item':
-            return <NumberList block={block} order={order}>{children}</NumberList>
-        case 'to_do':
-            return <ToDo block={block}>{children}</ToDo>
-        case 'toggle':
-            return <Toggle block={block}>{children}</Toggle>
-        case 'quote':
-            return <Quote block={block}>{children}</Quote>
-        case 'callout':
-            return <Callout block={block}>{children}</Callout>
-        case 'divider':
-            return <Divider block={block}>{children}</Divider>
-        case 'equation':
-            return <EquationBlock block={block}>{children}</EquationBlock>
-        case 'column_list':
-            return <ColumnList block={block}>{children}</ColumnList>
-        case 'column':
-            return <Column block={block}>{children}</Column>
-        case 'table':
-            return <Table block={block}>{children}</Table>
-        case 'table_row':
-            return <TableRow block={block}>{children}</TableRow>
-        case 'code':
-            return <Code block={block}>{children}</Code>
-        case 'image':
-            return <Img block={block}>{children}</Img>
-        case 'video':
-            return <Video block={block}>{children}</Video>
-        case 'bookmark':
-            return <Bookmark block={block}>{children}</Bookmark>
-        case 'embed':
-            return <Embed block={block}>{children}</Embed>
-        default:
-            return <NotSupported />
+}>
+
+const blockRenderers: Partial<Record<Block['type'], (props: RendererProps) => ReactElement>> = {
+    paragraph: ({block, children}) => <Paragraph block={block}>{children}</Paragraph>,
+    heading_1: ({block, children}) => <Heading1 block={block}>{children}</Heading1>,
+    heading_2: ({block, children}) => <Heading2 block={block}>{children}</Heading2>,
+    heading_3: ({block, children}) => <Heading3 block={block}>{children}</Heading3>,
+    bulleted_list_item: ({block, children}) => <BulletList block={block}>{children}</BulletList>,
+    numbered_list_item: ({block, children, order}) => <NumberList block={block} order={order}>{children}</NumberList>,
+    to_do: ({block, children}) => <ToDo block={block}>{children}</ToDo>,
+    toggle: ({block, children}) => <Toggle block={block}>{children}</Toggle>,
+    quote: ({block, children}) => <Quote block={block}>{children}</Quote>,
+    callout: ({block, children}) => <Callout block={block}>{children}</Callout>,
+    divider: ({block, children}) => <Divider block={block}>{children}</Divider>,
+    equation: ({block, children}) => <EquationBlock block={block}>{children}</EquationBlock>,
+    column_list: ({block, children}) => <ColumnList block={block}>{children}</ColumnList>,
+    column: ({block, children}) => <Column block={block}>{children}</Column>,
+    table: ({block, children}) => <Table block={block}>{children}</Table>,
+    table_row: ({block, children}) => <TableRow block={block}>{children}</TableRow>,
+    code: ({block, children}) => <Code block={block}>{children}</Code>,
+    image: ({block, children}) => <Img block={block}>{children}</Img>,
+    video: ({block, children}) => <Video block={block}>{children}</Video>,
+    bookmark: ({block, children}) => <Bookmark block={block}>{children}</Bookmark>,
+    embed: ({block, children}) => <Embed block={block}>{children}</Embed>,
+}
+
+function Renderer({block, children, order}: RendererProps) {
+    const render = blockRenderers[block.type]
+    if (render) {
+        return render({block, children, order})
     }
+
+    return <NotSupported />
 }
 
 function RendererWithChildren({block, order}: {
