@@ -5,6 +5,7 @@ import {ReactQueryProvider} from '@/providers/react-query-provider'
 import {Root} from '@/components/layout/Root'
 import {blogName, blogTitle, blogDescription, blogKeywords} from '@/config'
 
+import 'styled-system/styles.css'
 import '@/styles/index.css'
 
 export const viewport: Viewport = {

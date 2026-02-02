@@ -1,30 +1,28 @@
-import { style } from '@vanilla-extract/css'
+import { css } from 'styled-system/css'
 
-export const bookmarkStyle = style({
+export const bookmarkStyle = css({
     display: 'flex',
     border: '1px solid rgba(55, 53, 47, 0.16)',
     borderRadius: '4px',
-    ':hover': {
-        backgroundColor: 'rgba(55, 53, 47, 0.06)',
+    '&:hover': {
+        backgroundColor: 'rgba(55, 53, 47, 0.06)'
     },
-    '@media': {
-        '(prefers-color-scheme: dark)': {
-            borderColor: 'rgba(255, 255, 255, 0.13)',
-            ':hover': {
-                backgroundColor: 'rgba(255, 255, 255, 0.055)',
-            },
+    '@media (prefers-color-scheme: dark)': {
+        borderColor: 'rgba(255, 255, 255, 0.13)',
+        '&:hover': {
+            backgroundColor: 'rgba(255, 255, 255, 0.055)'
         }
     }
 })
 
-export const infoStyle = style({
+export const infoStyle = css({
     padding: '12px 14px 14px',
     flex: '4',
     textAlign: 'left',
-    overflow: 'hidden',
+    overflow: 'hidden'
 })
 
-export const titleStyle = style({
+export const titleStyle = css({
     fontSize: '14px',
     lineHeight: '20px',
     minHeight: '24px',
@@ -33,27 +31,23 @@ export const titleStyle = style({
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
     overflow: 'hidden',
-    '@media': {
-        '(prefers-color-scheme: dark)': {
-            color: 'rgba(255, 255, 255, 0.81)'
-        }
+    '@media (prefers-color-scheme: dark)': {
+        color: 'rgba(255, 255, 255, 0.81)'
     }
 })
 
-export const desStyle = style({
+export const desStyle = css({
     fontSize: '12px',
     lineHeight: '16px',
     height: '32px',
     color: 'rgba(55, 53, 47, 0.65)',
     overflow: 'hidden',
-    '@media': {
-        '(prefers-color-scheme: dark)': {
-            color: 'rgba(255, 255, 255, 0.443)'
-        }
+    '@media (prefers-color-scheme: dark)': {
+        color: 'rgba(255, 255, 255, 0.443)'
     }
 })
 
-export const linkStyle = style({
+export const linkStyle = css({
     fontSize: '12px',
     lineHeight: '16px',
     marginTop: '6px',
@@ -61,34 +55,31 @@ export const linkStyle = style({
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
     overflow: 'hidden',
-    '@media': {
-        '(prefers-color-scheme: dark)': {
-            color: 'rgba(255, 255, 255, 0.81)'
-        }
+    '@media (prefers-color-scheme: dark)': {
+        color: 'rgba(255, 255, 255, 0.81)'
     }
 })
 
-export const iconStyle = style({
+export const iconStyle = css({
     float: 'left',
     width: '16px',
     height: '16px',
     minWidth: '16px',
-    marginRight: '6px',
+    marginRight: '6px'
 })
 
-export const imagesStyle = style({
+export const imagesStyle = css({
     flex: '2',
-    position: 'relative',
+    position: 'relative'
 })
 
-export const imageStyle = style({
+export const imageStyle = css({
     position: 'absolute',
-    inset: '0px',
+    inset: '0px'
 })
 
-export const imgStyle = style({
-    // display: block,
+export const imgStyle = css({
     objectFit: 'cover',
     width: '100%',
-    height: '100%',
+    height: '100%'
 })

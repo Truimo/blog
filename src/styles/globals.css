@@ -36,3 +36,20 @@ code, kbd, pre, samp {
 .main .fill {
     min-height: calc(100vh - 4rem * 2.5);
 }
+
+@keyframes draw-signature {
+    0% {
+        stroke-dashoffset: 880;
+    }
+    15% {
+        fill: transparent;
+    }
+    35%, 75% {
+        stroke-dashoffset: 0;
+        fill: var(--signature-color);
+    }
+    90%, 100% {
+        stroke-dashoffset: 880;
+        fill: transparent;
+    }
+}
