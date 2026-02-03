@@ -1,17 +1,8 @@
-import {
-    RichTextItemResponseCommon,
-    TextRichTextItemResponse
-} from '@notionhq/client/build/src/api-endpoints'
-import { colorVariants, codeTextStyle } from './color.css'
+import type { RichTextItemResponseCommon } from '@notionhq/client/build/src/api-endpoints'
+import { getNotionColorClass, notionCodeClass } from './styles'
 
 export const colorStyled = (color?: string) => {
-    const style: string = undefined === color ? 'current' : color
-
-    if (style in colorVariants) {
-        return colorVariants[style as keyof typeof colorVariants]
-    }
-
-    return ''
+    return getNotionColorClass(color)
 }
 
 export const textStyeld = (annotations: RichTextItemResponseCommon['annotations']) => {
@@ -30,12 +21,12 @@ export const textStyeld = (annotations: RichTextItemResponseCommon['annotations'
     }
     if (annotations.code) {
         classes.push('font-mono')
-        classes.push(codeTextStyle)
+        classes.push(notionCodeClass)
         // classes.push('bg-gray-100 dark:bg-zinc-800')
         // classes.push('p-1')
     }
     if (annotations.color) {
-        classes.push(colorStyled(annotations.color))
+        classes.push(getNotionColorClass(annotations.color))
     }
     return classes.join(' ')
 }

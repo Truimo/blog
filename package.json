@@ -4,13 +4,9 @@
     "private": true,
     "scripts": {
         "dev": "next dev",
-        "predev": "pnpm panda:codegen && pnpm panda:cssgen",
-        "build": "pnpm panda:codegen && pnpm panda:cssgen && next build",
+        "build": "next build",
         "start": "next start",
-        "lint": "next lint",
-        "panda:codegen": "panda codegen",
-        "panda:cssgen": "panda cssgen",
-        "panda:watch": "panda cssgen --watch"
+        "lint": "next lint"
     },
     "dependencies": {
         "@excalidraw/excalidraw": "0.18.0",
@@ -32,6 +28,7 @@
         "react-dom": "19.2.4",
         "react-error-boundary": "^6.1.0",
         "react-intersection-observer": "10.0.2",
+        "styled-components": "^6.3.8",
         "supports-color": "^10.2.2",
         "tailwind-merge": "3.4.0",
         "tailwindcss": "4.1.18",
@@ -42,7 +39,6 @@
         "@iconify-json/material-symbols": "1.2.53",
         "@iconify-json/mingcute": "1.2.7",
         "@iconify/tailwind": "^1.2.0",
-        "@pandacss/dev": "^1.8.1",
         "@types/katex": "0.16.8",
         "@types/node": "24.10.9",
         "@types/pako": "^2.0.4",

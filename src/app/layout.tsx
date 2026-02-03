@@ -1,11 +1,12 @@
-import type {Metadata, Viewport} from 'next'
+import type { Metadata, Viewport } from 'next'
 import process from 'node:process'
-import {ReactNode} from 'react'
-import {ReactQueryProvider} from '@/providers/react-query-provider'
-import {Root} from '@/components/layout/Root'
-import {blogName, blogTitle, blogDescription, blogKeywords} from '@/config'
+import { ReactNode } from 'react'
+import { ReactQueryProvider } from '@/providers/react-query-provider'
+import { Root } from '@/components/layout/Root'
+import { blogName, blogTitle, blogDescription, blogKeywords } from '@/config'
+import StyledComponentsRegistry from '@/components/StyledComponentsRegistry'
+import { NotionGlobalStyles } from '@/components/notion/styled/styles'
 
-import 'styled-system/styles.css'
 import '@/styles/index.css'
 
 export const viewport: Viewport = {
@@ -39,18 +40,21 @@ export const metadata: Metadata = {
     }
 }
 
-export default function RootLayout({children}: {
+export default function RootLayout({ children }: {
     children: ReactNode
 }) {
     return (
         <html lang="zh-CN">
-        <body>
-        <SayHi/>
-        <ReactQueryProvider>
-            <Root>{children}</Root>
-        </ReactQueryProvider>
-        <Analytics />
-        </body>
+            <body>
+                <SayHi />
+                <ReactQueryProvider>
+                    <StyledComponentsRegistry>
+                        <NotionGlobalStyles />
+                        <Root>{children}</Root>
+                    </StyledComponentsRegistry>
+                </ReactQueryProvider>
+                <Analytics />
+            </body>
         </html>
     )
 }

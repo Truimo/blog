@@ -1,8 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import clsx from 'clsx'
-import { signatureStyle, dividerStyle } from './styled.css'
+import { Divider, SignatureWrapper } from './styles'
 
 interface PostCopyrightProps {
     slug: string
@@ -24,11 +23,11 @@ export const PostCopyright = (props: PostCopyrightProps) => {
                 {' '}
                 <CopyLinkButton link={link} />
             </p>
-            <hr className={dividerStyle} />
+            <Divider />
             <div>
-                <div className={clsx(signatureStyle, 'print:hidden')}>
+                <SignatureWrapper className="print:hidden">
                     <Signature />
-                </div>
+                </SignatureWrapper>
                 <div>
                     <p>您可以自由在任何媒介以任何形式分享本作品，但需署名，且不得用于商业目的或改编。若分发衍生作品，须采用相同的许可协议。</p>
                     <p>

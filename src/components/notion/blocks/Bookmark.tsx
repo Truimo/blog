@@ -9,7 +9,17 @@ import {SquareArrowOutUpRight} from 'lucide-react'
 import {Block, InlineBlock} from '@/components/notion/blocks/Block'
 import RichText from '@/components/notion/blocks/RichText'
 // import {CamoImage} from '@/components/common/Image'
-import {bookmarkStyle, infoStyle, titleStyle, desStyle, linkStyle, iconStyle, imagesStyle, imageStyle, imgStyle} from './styled/bookmark.css'
+import {
+    BookmarkDescription,
+    BookmarkImageFrame,
+    BookmarkImages,
+    BookmarkImg,
+    BookmarkInfoBox,
+    BookmarkIcon,
+    BookmarkLink,
+    BookmarkLinkText,
+    BookmarkTitle
+} from './styled/bookmark'
 
 export default function Bookmark({block, children}: PropsWithChildren<{
     block: BlockObjectResponse
@@ -53,10 +63,10 @@ const BookmarkInner = (props: BookmarkInnerProps) => {
     })
 
     return (
-        <a className={bookmarkStyle} href={props.url} role="link" target="_blank" rel="noopener noreferrer">
+        <BookmarkLink href={props.url} role="link" target="_blank" rel="noopener noreferrer">
             <BookmarkInfo url={props.url} isSuccess={isSuccess} data={data} />
             <BookmarkImage isSuccess={isSuccess} data={data} />
-        </a>
+        </BookmarkLink>
     )
 }
 
@@ -67,28 +77,28 @@ function BookmarkInfo(props: { url: string, isSuccess: boolean, data: any }) {
             description = data.description ? data.description : data.open_graph?.description,
             favicon = data.favicon
         return (
-            <div className={infoStyle}>
-                <p className={titleStyle}>{title}</p>
-                <p className={desStyle}>{description}</p>
-                <p className={linkStyle}>
-                    {favicon && (<CamoImage className={iconStyle} src={favicon} alt="icon" />)}
+            <BookmarkInfoBox>
+                <BookmarkTitle>{title}</BookmarkTitle>
+                <BookmarkDescription>{description}</BookmarkDescription>
+                <BookmarkLinkText>
+                    {favicon && (<BookmarkIcon src={favicon} alt="icon" />)}
                     <span>{props.url}</span>
                     <SquareArrowOutUpRight />
-                </p>
-            </div>
+                </BookmarkLinkText>
+            </BookmarkInfoBox>
         )
     }
 
     const title = getHost(props.url)
 
     return (
-        <div className={infoStyle}>
-            <p className={titleStyle}>{title}</p>
-            <p className={linkStyle}>
+        <BookmarkInfoBox>
+            <BookmarkTitle>{title}</BookmarkTitle>
+            <BookmarkLinkText>
                 <span>{props.url}</span>
                 <SquareArrowOutUpRight />
-            </p>
-        </div>
+            </BookmarkLinkText>
+        </BookmarkInfoBox>
     )
 }
 
@@ -97,24 +107,11 @@ function BookmarkImage(props: { isSuccess: boolean, data: any }) {
         const image = props.data.open_graph?.images[0].url ?? 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
 
         return (
-            <div className={clsx(imagesStyle, 'max-md:hidden')}>
-                <div className={imageStyle}>
-                    <CamoImage className={imgStyle} src={image} alt="image" />
-                </div>
-            </div>
+            <BookmarkImages className={clsx('max-md:hidden')}>
+                <BookmarkImageFrame>
+                    <BookmarkImg src={image} alt="image" />
+                </BookmarkImageFrame>
+            </BookmarkImages>
         )
     }
-}
-
-interface CamoImageProps {
-    src: string | undefined
-    alt: string
-    className?: string
-    loading?: "eager" | "lazy" | undefined
-}
-
-function CamoImage({ src, alt, className, loading }: CamoImageProps) {
-    return (
-        <img src={src} alt={alt} className={className} loading={loading} crossOrigin="anonymous"></img>
-    )
 }

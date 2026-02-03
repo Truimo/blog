@@ -1,14 +1,5 @@
 import type {Tag} from '@/libs/types'
-import clsx from 'clsx'
-import {tagTextStyle, colorVariants} from './styled.css'
-
-function colorStyled(color: string) {    
-    if (color in colorVariants) {
-        return colorVariants[color as keyof typeof colorVariants]
-    }
-
-    return ''
-}
+import {TagText, TagColor} from './styles'
 
 export default function Tags({className, tags}: {
     className?: string,
@@ -16,13 +7,13 @@ export default function Tags({className, tags}: {
 }) {
     if (tags.length === 0) {
         return (
-            <span className={clsx(tagTextStyle, colorStyled('default'), className)}>无标签</span>
+            <TagText $color="default" className={className}>无标签</TagText>
         )
     }
 
     return tags.map((tag) => {
         return (
-            <span className={clsx(tagTextStyle, colorStyled(tag.color), className)} key={tag.name}>{tag.name}</span>
+            <TagText $color={tag.color as TagColor} className={className} key={tag.name}>{tag.name}</TagText>
         )
     })
 }
