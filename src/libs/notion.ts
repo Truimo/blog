@@ -1,19 +1,24 @@
-import {Client, isFullPage, collectPaginatedAPI, isFullBlock} from '@notionhq/client'
 import type {
-    BlockObjectResponse, PageObjectResponse, RichTextItemResponse, TextRichTextItemResponse
+    BlockObjectResponse, PageObjectResponse, RichTextItemResponse
 } from '@notionhq/client/build/src/api-endpoints'
+import process from 'node:process'
+import { Client, isFullPage, collectPaginatedAPI, isFullBlock } from '@notionhq/client'
 
-// export const revalidate = 60
+const {
+    NOTION_KEY = '',
+    NOTION_DATABASE_ID = ''
+} = process.env
 
 const notion = new Client({
-    auth: process.env.NOTION_KEY, fetch: (url, init) => {
+    auth: NOTION_KEY,
+    fetch: (url, init) => {
         return fetch(url, Object.assign({}, init, {
             next: {
                 tags: ['notion']
             }
         }))
     },
-}), databaseId = process.env.NOTION_DATABASE_ID || ''
+}), databaseId = NOTION_DATABASE_ID
 
 interface PostQuery {
     pageSize: number
@@ -78,7 +83,7 @@ export const getPosts = async (query: PostQuery = {
 }): Promise<PostsResponse> => {
     'use cache'
 
-    const response =  await notion.dataSources.query({
+    const response = await notion.dataSources.query({
         data_source_id: databaseId,
         filter: {
             and: [{
