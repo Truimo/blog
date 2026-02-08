@@ -40,7 +40,7 @@
         "@iconify-json/mingcute": "1.2.7",
         "@iconify/tailwind": "^1.2.0",
         "@types/katex": "0.16.8",
-        "@types/node": "24.10.10",
+        "@types/node": "24.10.12",
         "@types/pako": "^2.0.4",
         "@types/react": "19.2.11",
         "@types/react-dom": "19.2.3",
