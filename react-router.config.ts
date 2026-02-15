@@ -1,9 +1,22 @@
 import type {Config} from '@react-router/dev/config'
-import { vercelPreset } from '@vercel/react-router/vite'
+import {vercelPreset} from '@vercel/react-router/vite'
+import { getPosts } from '~/libs/notion.server'
 
 export default {
     ssr: true,
+    async prerender({getStaticPaths}) {
+        const staticPaths = getStaticPaths()
+        const response = await getPosts()
+        const posts = response.posts.map((post) => {
+            return `/posts/${post.slug}`
+        })
+
+        return [
+            ...staticPaths,
+            ...posts,
+        ]
+    },
     presets: [
         vercelPreset()
     ],
-} satisfies Config;
+} satisfies Config
