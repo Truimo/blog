@@ -12,7 +12,7 @@ interface MermaidProps extends PropsWithChildren {
 
 export function Mermaid(props: MermaidProps) {
     const MermaidRender = lazy(() =>
-        import('./MermaidRender').then((mod) => ({
+        import('./mermaid-render').then((mod) => ({
             default: mod.MermaidRender,
         })),
     )

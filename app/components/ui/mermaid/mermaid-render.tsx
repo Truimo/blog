@@ -1,7 +1,7 @@
 import type {PropsWithChildren} from 'react'
 import {useEffect, useRef} from 'react'
 import mermaid from 'mermaid'
-import styles from './Mermaid.module.css'
+import styles from './mermaid.module.css'
 
 interface MermaidProps extends PropsWithChildren {
     code: string

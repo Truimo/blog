@@ -1,6 +1,6 @@
 import type {Route} from './+types/home'
-import type {PostsResponse} from '~/libs/notion'
-import {getPosts} from '~/libs/notion'
+import type {PostsResponse} from '~/types'
+import {getPosts} from '~/libs/notion.server'
 import {dehydrate, HydrationBoundary, QueryClient} from '@tanstack/react-query'
 import {MorePosts} from '~/components/list/more-posts'
 

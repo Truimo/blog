@@ -1,4 +1,4 @@
-import {getPosts} from '~/libs/notion'
+import {getPosts} from '~/libs/notion.server'
 
 interface SitemapItem {
     url: string

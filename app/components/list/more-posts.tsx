@@ -1,5 +1,5 @@
 import type {PostMeta} from '~/types'
-import type {PostsResponse} from '~/libs/notion'
+import type {PostsResponse} from '~/types'
 import axios from 'axios'
 import {useSuspenseInfiniteQuery} from '@tanstack/react-query'
 import {Loading} from '~/components/common/loading'

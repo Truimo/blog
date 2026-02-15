@@ -1,5 +1,5 @@
+import type {PostMeta, PostQuery, PostsResponse, Block} from '~/types'
 import type {
-    BlockObjectResponse,
     PageObjectResponse,
     RichTextItemResponse
 } from '@notionhq/client/build/src/api-endpoints'
@@ -20,45 +20,15 @@ const notion = new Client({
             }
         }))
     },
-}), databaseId = NOTION_DATABASE_ID
+})
 
-interface PostQuery {
-    pageSize: number
-    cursor?: string
-}
+const databaseId = NOTION_DATABASE_ID
 
-interface Tag {
-    name: string
-    color: string
-}
-
-interface Category {
-    name: string
-    color: string
-}
-
-interface PostMeta {
-    id: string
-    slug: string
-    title: string
-    date: string
-    excerpt: string
-    cover: string
-    tags: Tag[]
-    category: Category
-}
-
-export interface PostsResponse {
-    posts: PostMeta[]
-    nextCursor: string | null
-    hasMore: boolean
-}
-
-function getRichTextPlainText(rich_text: RichTextItemResponse[]): string {
+const getRichTextPlainText = (rich_text: RichTextItemResponse[]): string => {
     return rich_text.map(item => item.plain_text).join('')
 }
 
-function getPageMeta(page: PageObjectResponse): PostMeta {
+const getPageMeta = (page: PageObjectResponse): PostMeta => {
     const properties = page.properties
     return {
         id: page.id,
@@ -159,14 +129,6 @@ export const getPost = async (slug: string): Promise<PostMeta | null> => {
     }
     return null
 }
-
-export type Block = ({
-    has_children: true
-    children: Block[]
-} | {
-    has_children: false
-    children: null
-}) & BlockObjectResponse
 
 export const getPage = async (id: string): Promise<Block[]> => {
     const res = await collectPaginatedAPI(notion.blocks.children.list, {

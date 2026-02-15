@@ -1,5 +1,5 @@
 import type {Route} from './+types/posts'
-import {getPage, getPost} from '~/libs/notion'
+import {getPage, getPost} from '~/libs/notion.server'
 import {formatDate} from '~/libs/time'
 import {blogTitle} from '~/site-info'
 import Tags from '~/components/post/tags'

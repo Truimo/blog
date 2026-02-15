@@ -1,5 +1,5 @@
 import type {PropsWithChildren, ReactElement} from 'react'
-import type {Block} from '~/libs/notion'
+import type {Block} from '~/types'
 import {Fragment} from 'react'
 import Paragraph from './blocks/paragraph'
 import {Heading1, Heading2, Heading3} from './blocks/heading'

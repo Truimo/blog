@@ -1,7 +1,7 @@
 import type {Route} from './+types/notion-image'
 import process from 'node:process'
 import {isFullBlock} from '@notionhq/client'
-import {getBlockObject} from '~/libs/notion'
+import {getBlockObject} from '~/libs/notion.server'
 
 const {
     NOTION_CREATOR_ID: CREATOR_ID = 'your-creator-id'

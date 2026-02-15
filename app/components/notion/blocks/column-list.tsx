@@ -1,5 +1,5 @@
 import type {PropsWithChildren} from 'react'
-import type {Block as BlockType} from '~/libs/notion'
+import type {Block as BlockType} from '~/types'
 import {Block} from './block'
 
 export default function ColumnList({block, children}: PropsWithChildren<{
