@@ -14,6 +14,7 @@
     "@react-router/serve": "7.12.0",
     "@shikijs/transformers": "^3.22.0",
     "@tanstack/react-query": "^5.90.21",
+    "@upstash/redis": "^1.36.2",
     "@vanilla-extract/css": "^1.18.0",
     "axios": "^1.13.5",
     "clsx": "^2.1.1",

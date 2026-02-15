@@ -1,9 +1,8 @@
-import type {PostMeta, PostQuery, PostsResponse, Block} from '~/types'
-import type {
-    PageObjectResponse,
-    RichTextItemResponse
-} from '@notionhq/client/build/src/api-endpoints'
+import type {Block, PostMeta, PostQuery, PostsResponse} from '~/types'
+import type {PageObjectResponse, RichTextItemResponse} from '@notionhq/client/build/src/api-endpoints'
 import process from 'node:process'
+import crypto from 'node:crypto'
+import {Redis} from '@upstash/redis'
 import {Client, collectPaginatedAPI, isFullBlock, isFullPage} from '@notionhq/client'
 
 const {
@@ -11,14 +10,58 @@ const {
     NOTION_DATABASE_ID = ''
 } = process.env
 
+const redis = Redis.fromEnv()
+
+interface CachedHttpResponse {
+    status: number
+    statusText: string
+    headers: Record<string, string>
+    body: string
+}
+
+const createSHA256Hash = (input: string): string => {
+    return crypto.createHash('sha256').update(input).digest('hex')
+}
+
 const notion = new Client({
     auth: NOTION_KEY,
-    fetch: (url, init) => {
-        return fetch(url, Object.assign({}, init, {
-            next: {
-                tags: ['notion']
+    fetch: async (url, init) => {
+        const method = (init?.method ?? 'GET').toUpperCase()
+
+        if ('GET' === method) {
+            const key = createSHA256Hash(url)
+            try {
+                const cached = await redis.get<CachedHttpResponse>(key)
+                if (cached !== null) {
+                    return new Response(cached.body, {
+                        status: cached.status,
+                        statusText: cached.statusText,
+                        headers: cached.headers
+                    })
+                }
+
+                const response = await fetch(url, init)
+                if (response.ok) {
+                    const body = await response.clone().text()
+                    const headers = Object.fromEntries(response.headers.entries())
+                    await redis.set(key, {
+                        status: response.status,
+                        statusText: response.statusText,
+                        headers: {
+                            'content-type': headers['content-type']
+                        },
+                        body: body
+                    }, {
+                        ex: 3600
+                    })
+                }
+                return response
+            } catch {
+                return fetch(url, init)
             }
-        }))
+        }
+
+        return fetch(url, init)
     },
 })
 
