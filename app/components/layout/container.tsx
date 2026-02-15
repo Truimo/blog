@@ -1,0 +1,16 @@
+import type {JSX, PropsWithChildren} from 'react'
+import {clsxm} from '~/libs/helper'
+
+interface ContainerProps extends PropsWithChildren {
+    as?: keyof JSX.IntrinsicElements
+    className?: string
+}
+
+export const Container = (props: ContainerProps) => {
+    const {as: Component = 'div', className, children} = props
+    return (
+        <Component className={clsxm('container max-w-6xl mx-auto', className)}>
+            {children}
+        </Component>
+    )
+}

@@ -4,7 +4,7 @@ import {addDynamicIconSelectors} from '@iconify/tailwind'
 module.exports = {
     darkMode: 'class',
     content: [
-        "./src/**/*.{js,ts,jsx,tsx}",
+        "./app/**/*.{ts,tsx,js,jsx}",
     ],
     theme: {
         extend: {

@@ -1,0 +1,38 @@
+:root {
+    color-scheme: light dark;
+}
+
+html {
+    height: 100%;
+    font-size: 100%;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    scrollbar-gutter: stable;
+}
+
+body {
+    height: 100%;
+    font-size: 1rem;
+    font-family: Consolas, Microsoft YaHei, PingFang SC, Hiragino Sans GB, WenQuanYi Micro Hei, var(--font-sans, sans-serif), sans-serif;
+    text-autospace: normal;
+}
+
+body {
+    padding: env(safe-area-inset-top, 0) env(safe-area-inset-right, 0) env(safe-area-inset-bottom, 0) env(safe-area-inset-left, 0);
+}
+
+code, kbd, pre, samp {
+    font-family: OperatorMonoSSmLig Nerd Font, Cascadia Code PL, FantasqueSansMono Nerd Font, operator mono, JetBrainsMono, Fira code Retina, Fira code, Consolas, Monaco, Hannotate SC, monospace, -apple-system;
+    font-feature-settings: normal;
+    font-variation-settings: normal;
+    font-size: 1em
+}
+
+.main {
+    @apply relative m-auto max-w-6xl p-4;
+    min-height: calc(100vh - 4rem * 2);
+}
+
+.main .fill {
+    min-height: calc(100vh - 4rem * 2.5);
+}
