@@ -21,7 +21,7 @@ const loadCodeHighlighter = () => {
     }
 }
 
-const codeHighlighter = typeof window === 'undefined' ? undefined : loadCodeHighlighter()
+const codeHighlighter = loadCodeHighlighter()
 
 async function loadShikiLanguage(language: string, languageModule: any) {
     const shiki = codeHighlighter?.highlighter
@@ -52,13 +52,23 @@ export const ShikiHighLighter = (props: ShikiProps) => {
         }, [language]),
     )
 
-    const highlightedHtml = useMemo(() => codeHighlighter?.fn?.({
-        attrs: attrs || '',
-        code: value,
-        lang: language ? language.toLowerCase() : 'text',
-    }), [attrs, language, value])
+    const highlightedHtml = useMemo(() => {
+        try {
+            return codeHighlighter.fn({
+                attrs: attrs || '',
+                code: value,
+                lang: language ? language.toLowerCase() : 'text',
+            })
+        } catch {
+            return undefined
+        }
+    }, [attrs, language, value])
 
     return (
-        <ShikiHighLighterWrapper language={language} renderedHTML={highlightedHtml}/>
+        <ShikiHighLighterWrapper language={language} renderedHTML={highlightedHtml}>
+            <pre className="shiki">
+                <code>{value}</code>
+            </pre>
+        </ShikiHighLighterWrapper>
     )
 }
