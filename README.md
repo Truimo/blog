@@ -2,7 +2,7 @@
 Just a blog, under construction, use [notion](https://www.notion.com/) as backend server.
 
 ## Getting Started
-This is a [Next.js](https://nextjs.org/) project.
+This is a [React Router](https://reactrouter.com/home) project.
 
 Run in production server:
 

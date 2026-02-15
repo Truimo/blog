@@ -1,5 +1,5 @@
 {
-  "name": "blog-app",
+  "name": "blog",
   "private": true,
   "type": "module",
   "scripts": {
@@ -41,6 +41,8 @@
     "@types/react-dom": "^19.2.3",
     "@vanilla-extract/vite-plugin": "^5.1.4",
     "@vercel/react-router": "^1.2.5",
+    "encoding": "^0.1.13",
+    "supports-color": "^10.2.2",
     "tailwindcss": "^4.1.18",
     "typescript": "^5.9.3",
     "vite": "^7.3.1",

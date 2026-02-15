@@ -1,5 +1,3 @@
-'use client'
-
 import type {PropsWithChildren} from 'react'
 import {defaultShouldDehydrateQuery, isServer, QueryClient, QueryClientProvider} from '@tanstack/react-query'
 
