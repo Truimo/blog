@@ -1,6 +1,6 @@
 import type {Config} from '@react-router/dev/config'
 import {vercelPreset} from '@vercel/react-router/vite'
-import { getPosts } from '~/libs/notion.server'
+import { getPosts } from './app/libs/notion.server'
 
 export default {
     ssr: true,
