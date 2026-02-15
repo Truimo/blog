@@ -1,7 +1,7 @@
 import type {Route} from './+types/posts'
 import {getPage, getPost} from '~/libs/notion.server'
 import {formatDate} from '~/libs/time'
-import {blogTitle} from '~/site-info'
+import {blogDescription, blogTitle} from '~/site-info'
 import Tags from '~/components/post/tags'
 import Category from '~/components/post/category'
 import {InlineBlock} from '~/components/notion/blocks/block'
@@ -23,11 +23,15 @@ export async function loader({params}: Route.LoaderArgs) {
 
 export function meta({loaderData}: Route.MetaArgs) {
     const {page} = loaderData
-    const title = `${page.title} - ${blogTitle}`
+    const title: string = `${page.title} - ${blogTitle}`
+    const description: string = page.excerpt.length === 0 ? `本篇文章有关：${page.title}。` : page.excerpt
 
     return [
         {
             title: title,
+        }, {
+            name: 'description',
+            content: description
         }
     ]
 }
