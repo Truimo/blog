@@ -5,7 +5,10 @@ import { getPosts } from './app/libs/notion.server'
 export default {
     ssr: true,
     async prerender({getStaticPaths}) {
-        const staticPaths = getStaticPaths()
+        const staticPaths = getStaticPaths().filter((it) => {
+            return !it.startsWith('/api/')
+        })
+
         const response = await getPosts()
         const posts = response.posts.map((post) => {
             return `/posts/${post.slug}`
