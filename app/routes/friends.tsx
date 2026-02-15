@@ -1,6 +1,6 @@
 import type {Route} from './+types/friends'
 import type {Friend} from '~/types'
-import {friends} from '~/site-info'
+import {friends, blogLink} from '~/site-info'
 
 interface ItemProps {
     friend: Friend
@@ -29,6 +29,7 @@ const Item = (props: ItemProps) => {
 export default function Component({loaderData}: Route.ComponentProps) {
     return (
         <div className="select-none">
+            <link rel="canonical" href={`${blogLink}/friends`}/>
             <h1 className="mb-4 text-2xl font-bold md:text-3xl lg:mb-8">朋友们</h1>
             <p className="mb-4 text-lg md:text-xl lg:mb-8 font-semibold">海内存知己，天涯若比邻</p>
             <div className="grid grid-cols-2 gap-4 my-6 sm:grid-cols-3 md:grid-cols-4">

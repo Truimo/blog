@@ -10,12 +10,6 @@ import './styles/index.css'
 
 export const links: Route.LinksFunction = () => [
     {
-        rel: "preconnect", href: "https://fonts.googleapis.com"
-    },
-    {
-        rel: "canonical", href: "https://blog.truimo.com"
-    },
-    {
         rel: "icon", href: "https://assets.truimo.com/avatars/min.png", type: "image/png", sizes: "500x500"
     }
 ]

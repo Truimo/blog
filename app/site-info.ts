@@ -7,6 +7,8 @@ export const blogKeywords: string[] = [
     '浅小沫的博客', '浅小沫', '浅小沫的个人博客'
 ]
 export const blogDescription: string = '浅小沫的博客'
+export const blogLink: string = 'https://blog.truimo.com'
+export const blogIcon: string = 'https://assets.truimo.com/avatars/min.png'
 
 export const friends: Friend[] = [
     {

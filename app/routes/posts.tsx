@@ -1,7 +1,7 @@
 import type {Route} from './+types/posts'
 import {getPage, getPost} from '~/libs/notion.server'
 import {formatDate} from '~/libs/time'
-import {blogDescription, blogTitle} from '~/site-info'
+import {blogDescription, blogLink, blogTitle} from '~/site-info'
 import Tags from '~/components/post/tags'
 import Category from '~/components/post/category'
 import {InlineBlock} from '~/components/notion/blocks/block'
@@ -24,7 +24,7 @@ export async function loader({params}: Route.LoaderArgs) {
 export function meta({loaderData}: Route.MetaArgs) {
     const {page} = loaderData
     const title: string = `${page.title} - ${blogTitle}`
-    const description: string = page.excerpt.length === 0 ? `本篇文章有关：${page.title}。` : page.excerpt
+    const description: string = page.excerpt.length === 0 ? `本篇文章有关：${page.title}，来自${blogDescription}。` : page.excerpt
 
     return [
         {
@@ -41,6 +41,7 @@ export default function Component({loaderData}: Route.ComponentProps) {
 
     return (
         <div className="mx-auto max-w-3xl 2xl:max-w-4xl">
+            <link rel="canonical" href={`${blogLink}/posts/${page.slug}`}/>
             <InlineBlock>
                 <Category category={page.category}/>
             </InlineBlock>
