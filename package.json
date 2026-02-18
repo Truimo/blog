@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "@notionhq/client": "^5.9.0",
-    "@react-router/node": "7.12.0",
-    "@react-router/serve": "7.12.0",
+    "@react-router/node": "7.13.0",
+    "@react-router/serve": "7.13.0",
     "@shikijs/transformers": "^3.22.0",
     "@tanstack/react-query": "^5.90.21",
     "@upstash/redis": "^1.36.2",
@@ -27,14 +27,14 @@
     "react-dom": "^19.2.4",
     "react-error-boundary": "^6.1.1",
     "react-intersection-observer": "^10.0.2",
-    "react-router": "7.12.0",
+    "react-router": "7.13.0",
     "shiki": "^3.22.0",
     "tailwind-merge": "^3.4.1",
     "unfurl.js": "^6.4.0"
   },
   "devDependencies": {
     "@iconify/tailwind": "^1.2.0",
-    "@react-router/dev": "7.12.0",
+    "@react-router/dev": "7.13.0",
     "@tailwindcss/vite": "^4.1.18",
     "@types/katex": "^0.16.8",
     "@types/node": "^22.19.11",
