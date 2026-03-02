@@ -12,7 +12,7 @@
     "@notionhq/client": "^5.9.0",
     "@react-router/node": "7.13.0",
     "@react-router/serve": "7.13.0",
-    "@shikijs/transformers": "^3.22.0",
+    "@shikijs/transformers": "^4.0.0",
     "@tanstack/react-query": "^5.90.21",
     "@upstash/redis": "^1.36.2",
     "@vanilla-extract/css": "^1.18.0",
@@ -28,7 +28,7 @@
     "react-error-boundary": "^6.1.1",
     "react-intersection-observer": "^10.0.2",
     "react-router": "7.13.0",
-    "shiki": "^3.22.0",
+    "shiki": "^4.0.0",
     "tailwind-merge": "^3.4.1",
     "unfurl.js": "^6.4.0"
   },
