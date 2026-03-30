@@ -1,15 +1,14 @@
 import type {PropsWithChildren} from 'react'
-import {Fragment} from 'react'
 import {Header} from './header'
 import {Footer} from './footer'
 import {Main} from './main'
 
-export const Root = (props: PropsWithChildren) => {
+export const Root = ({children}: PropsWithChildren) => {
     return (
-        <Fragment>
+        <>
             <Header/>
-            <Main>{props.children}</Main>
+            <Main>{children}</Main>
             <Footer/>
-        </Fragment>
+        </>
     )
 }

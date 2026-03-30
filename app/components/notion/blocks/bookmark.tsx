@@ -1,6 +1,6 @@
 import type {PropsWithChildren} from 'react'
 import type {BlockObjectResponse} from '@notionhq/client/build/src/api-endpoints'
-import axios from 'axios'
+import type {Metadata} from 'unfurl.js/dist/types'
 import {useQuery} from '@tanstack/react-query'
 import {SquareArrowOutUpRight} from 'lucide-react'
 import {Block, InlineBlock} from './block'
@@ -10,7 +10,7 @@ import {bookmarkStyle, desStyle, infoStyle, linkStyle, titleStyle} from './style
 export default function Bookmark({block, children}: PropsWithChildren<{
     block: BlockObjectResponse
 }>) {
-    if ('bookmark' !== block.type) {
+    if (block.type !== 'bookmark') {
         return null
     }
     const bookmark = block.bookmark
@@ -28,8 +28,11 @@ export default function Bookmark({block, children}: PropsWithChildren<{
 }
 
 function getHost(url: string): string {
-    const match = url.match(/^(https?:\/\/)?([\w.-]+)/)
-    return match ? match[2] : ''
+    try {
+        return new URL(url).hostname
+    } catch {
+        return url
+    }
 }
 
 interface BookmarkInnerProps {
@@ -37,52 +40,54 @@ interface BookmarkInnerProps {
     url: string
 }
 
-const BookmarkInner = (props: BookmarkInnerProps) => {
+const BookmarkInner = ({id, url}: BookmarkInnerProps) => {
     const {data, isSuccess} = useQuery({
-        queryKey: ['bookmark', props.id],
-        queryFn: async () => {
-            const res = await axios.post('/api/bookmark', {
-                url: props.url
-            }, {
-                timeout: 3e3
+        queryKey: ['bookmark', id],
+        queryFn: async (): Promise<Metadata> => {
+            const res = await fetch('/api/bookmark', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({url}),
+                signal: AbortSignal.timeout(3000),
             })
-
-            return res.data
-        }
+            if (!res.ok) throw new Error('Failed to fetch bookmark')
+            return res.json() as Promise<Metadata>
+        },
+        staleTime: Infinity,
+        gcTime: Infinity,
     })
 
     return (
-        <a className={bookmarkStyle} href={props.url} role="link" target="_blank" rel="noopener noreferrer">
-            <BookmarkInfo url={props.url} isSuccess={isSuccess} data={data}/>
+        <a className={bookmarkStyle} href={url} role="link" target="_blank" rel="noopener noreferrer">
+            <BookmarkInfo url={url} isSuccess={isSuccess} data={data}/>
         </a>
     )
 }
 
-function BookmarkInfo(props: { url: string, isSuccess: boolean, data: any }) {
-    if (props.isSuccess) {
-        const data = props.data
-        const title = data.title ? data.title : getHost(props.url)
-        const description = data.description ? data.description : data.open_graph?.description
+function BookmarkInfo({url, isSuccess, data}: {url: string; isSuccess: boolean; data: Metadata | undefined}) {
+    const host = getHost(url)
+
+    if (isSuccess && data) {
+        const title = data.title ?? host
+        const description = data.description ?? data.open_graph?.description
 
         return (
             <div className={infoStyle}>
                 <p className={titleStyle}>{title}</p>
-                <p className={desStyle}>{description}</p>
+                {description && <p className={desStyle}>{description}</p>}
                 <p className={linkStyle}>
-                    <span>{props.url}</span>
+                    <span>{url}</span>
                     <SquareArrowOutUpRight/>
                 </p>
             </div>
         )
     }
 
-    const title = getHost(props.url)
-
     return (
         <div className={infoStyle}>
-            <p className={titleStyle}>{title}</p>
+            <p className={titleStyle}>{host}</p>
             <p className={linkStyle}>
-                <span>{props.url}</span>
+                <span>{url}</span>
                 <SquareArrowOutUpRight/>
             </p>
         </div>

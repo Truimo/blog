@@ -1,9 +1,9 @@
 import type {PropsWithChildren} from 'react'
 
-export const Main = (props : PropsWithChildren) => {
+export const Main = ({children}: PropsWithChildren) => {
     return (
         <main className="main">
-            {props.children}
+            {children}
         </main>
     )
 }

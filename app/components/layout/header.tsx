@@ -14,7 +14,7 @@ export const Header = () => {
                         <Link to="/friends" title="Friends">友链</Link>
                     </li>
                     <li className="ms-4 h-full flex items-center">
-                        <Link to="https://www.truimo.com/about" title="About" target="_blank">关于</Link>
+                        <a href="https://www.truimo.com/about" title="About" target="_blank" rel="noopener noreferrer">关于</a>
                     </li>
                 </ul>
             </Container>

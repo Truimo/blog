@@ -1,16 +1,13 @@
-import { useMemo } from 'react'
-import { formatDate } from '~/libs/time'
+import {formatDate} from '~/libs/time'
 
 interface TimeProps {
     datetime: string
 }
 
-export function Time(props: TimeProps) {
-    const dateStr: string = useMemo(() => {
-        return formatDate(props.datetime, 'YYYY[ 年 ]MM[ 月 ]DD[ 日 ]')
-    }, [props.datetime])
+export function Time({datetime}: TimeProps) {
+    const dateStr = formatDate(datetime, 'YYYY[ 年 ]MM[ 月 ]DD[ 日 ]')
 
     return (
-        <time dateTime={props.datetime} suppressHydrationWarning={true}>{dateStr}</time>
+        <time dateTime={datetime} suppressHydrationWarning={true}>{dateStr}</time>
     )
 }

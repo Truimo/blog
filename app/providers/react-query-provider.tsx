@@ -1,7 +1,7 @@
 import type {PropsWithChildren} from 'react'
 import {defaultShouldDehydrateQuery, isServer, QueryClient, QueryClientProvider} from '@tanstack/react-query'
 
-function makeQueryClient() {
+export function makeQueryClient() {
     return new QueryClient({
         defaultOptions: {
             queries: {
@@ -11,25 +11,22 @@ function makeQueryClient() {
                 shouldDehydrateQuery: (query) =>
                     defaultShouldDehydrateQuery(query) ||
                     query.state.status === 'pending',
-                shouldRedactErrors: (error) => {
-                    return false
-                },
+                shouldRedactErrors: () => import.meta.env.PROD,
             },
         },
     })
 }
 
-let browserQueryClient: QueryClient | undefined = undefined
+let browserQueryClient: QueryClient | undefined
 
 function getQueryClient() {
     if (isServer) {
         return makeQueryClient()
-    } else {
-        if (void 0 === browserQueryClient) {
-            browserQueryClient = makeQueryClient()
-        }
-        return browserQueryClient
     }
+    if (browserQueryClient === undefined) {
+        browserQueryClient = makeQueryClient()
+    }
+    return browserQueryClient
 }
 
 export const ReactQueryProvider = ({children}: PropsWithChildren) => {
