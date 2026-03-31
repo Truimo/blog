@@ -1,15 +1,14 @@
-import type {PropsWithChildren} from 'react'
 import {useInView} from 'react-intersection-observer'
-import { Loading } from '~/components/common/loading'
+import {Loading} from '~/components/common/loading'
 
-interface LoadMoreIndicatorProps extends PropsWithChildren {
+interface LoadMoreIndicatorProps {
     className?: string
     onLoading: () => void
 }
 
-export function LoadMoreIndicator({ className, children, onLoading }: LoadMoreIndicatorProps) {
-    const { ref } = useInView({
-        rootMargin: '1px',
+export function LoadMoreIndicator({className, onLoading}: LoadMoreIndicatorProps) {
+    const {ref} = useInView({
+        rootMargin: '200px',
         onChange(inView) {
             if (inView) {
                 onLoading()
@@ -19,7 +18,7 @@ export function LoadMoreIndicator({ className, children, onLoading }: LoadMoreIn
 
     return (
         <div className={className} ref={ref}>
-            {children ?? <Loading />}
+            <Loading/>
         </div>
     )
 }

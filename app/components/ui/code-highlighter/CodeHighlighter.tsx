@@ -6,26 +6,25 @@ interface CodeHighLighterProps {
     text: string
 }
 
-export function CodeHighLighterFallback(props: CodeHighLighterProps) {
+// Hoisted to module scope — must NOT be inside a component body
+const ShikiHighLighter = lazy(() =>
+    import('./ShikiHighLighter').then((mod) => ({default: mod.ShikiHighlighter}))
+)
+
+export function CodeHighLighterFallback({lang, text}: CodeHighLighterProps) {
     return (
-        <ShikiHighLighterWrapper language={props.lang}>
+        <ShikiHighLighterWrapper language={lang}>
             <pre className="shiki">
-                <code>{props.text}</code>
+                <code>{text}</code>
             </pre>
         </ShikiHighLighterWrapper>
     )
 }
 
-export function CodeHighLighter(props: CodeHighLighterProps) {
-    const ShikiHighLighter = lazy(() =>
-        import('./ShikiHighLighter').then((mod) => ({
-            default: mod.ShikiHighlighter,
-        })),
-    )
-
+export function CodeHighLighter({lang, text}: CodeHighLighterProps) {
     return (
-        <Suspense fallback={<CodeHighLighterFallback lang={props.lang} text={props.text} />}>
-            <ShikiHighLighter lang={props.lang} content={props.text} />
+        <Suspense fallback={<CodeHighLighterFallback lang={lang} text={text}/>}>
+            <ShikiHighLighter lang={lang} content={text}/>
         </Suspense>
     )
 }

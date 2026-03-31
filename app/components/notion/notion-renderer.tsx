@@ -1,6 +1,5 @@
-import type {PropsWithChildren, ReactElement} from 'react'
+import type {ReactElement} from 'react'
 import type {Block} from '~/types'
-import {Fragment} from 'react'
 import Paragraph from './blocks/paragraph'
 import {Heading1, Heading2, Heading3} from './blocks/heading'
 import NumberList from './blocks/number-list'
@@ -22,10 +21,11 @@ import Bookmark from './blocks/bookmark'
 import Embed from './blocks/embed'
 import NotSupported from './blocks/not-supported'
 
-type RendererProps = PropsWithChildren<{
-    block: Block,
+type RendererProps = {
+    block: Block
     order: number
-}>
+    children?: ReactElement | ReactElement[]
+}
 
 const blockRenderers: Partial<Record<Block['type'], (props: RendererProps) => ReactElement>> = {
     paragraph: ({block, children}) => <Paragraph block={block}>{children}</Paragraph>,
@@ -38,17 +38,29 @@ const blockRenderers: Partial<Record<Block['type'], (props: RendererProps) => Re
     toggle: ({block, children}) => <Toggle block={block}>{children}</Toggle>,
     quote: ({block, children}) => <Quote block={block}>{children}</Quote>,
     callout: ({block, children}) => <Callout block={block}>{children}</Callout>,
-    divider: ({block, children}) => <Divider block={block}>{children}</Divider>,
-    equation: ({block, children}) => <EquationBlock block={block}>{children}</EquationBlock>,
+    divider: ({block}) => <Divider block={block}/>,
+    equation: ({block}) => <EquationBlock block={block}/>,
     column_list: ({block, children}) => <ColumnList block={block}>{children}</ColumnList>,
     column: ({block, children}) => <Column block={block}>{children}</Column>,
     table: ({block, children}) => <Table block={block}>{children}</Table>,
-    table_row: ({block, children}) => <TableRow block={block}>{children}</TableRow>,
-    code: ({block, children}) => <Code block={block}>{children}</Code>,
-    image: ({block, children}) => <Img block={block}>{children}</Img>,
-    video: ({block, children}) => <Video block={block}>{children}</Video>,
-    bookmark: ({block, children}) => <Bookmark block={block}>{children}</Bookmark>,
-    embed: ({block, children}) => <Embed block={block}>{children}</Embed>,
+    table_row: ({block}) => <TableRow block={block}/>,
+    code: ({block}) => <Code block={block}/>,
+    image: ({block}) => <Img block={block}/>,
+    video: ({block}) => <Video block={block}/>,
+    bookmark: ({block}) => <Bookmark block={block}/>,
+    embed: ({block}) => <Embed block={block}/>,
+}
+
+function assignOrders(blocks: Block[]): {block: Block; order: number}[] {
+    let order = 0
+    return blocks.map((block) => {
+        if (block.type === 'numbered_list_item') {
+            order++
+        } else if (block.type.startsWith('heading_')) {
+            order = 0
+        }
+        return {block, order}
+    })
 }
 
 function Renderer({block, children, order}: RendererProps) {
@@ -56,47 +68,27 @@ function Renderer({block, children, order}: RendererProps) {
     if (render) {
         return render({block, children, order})
     }
-
     return <NotSupported/>
 }
 
-function RendererWithChildren({block, order}: {
-    block: Block,
-    order: number
-}) {
-    let childrenOrder = 0
+function RendererWithChildren({block, order}: {block: Block; order: number}) {
+    const orderedChildren = assignOrders(block.children ?? [])
     return (
         <Renderer block={block} order={order}>
-            {block.children?.map((child: Block) => {
-                if (child.type === 'numbered_list_item') {
-                    childrenOrder++
-                } else if (child.type.startsWith('heading_')) {
-                    childrenOrder = 0
-                }
-
-                return <RendererWithChildren key={child.id} block={child} order={childrenOrder}/>
-            })}
+            {orderedChildren.map(({block: child, order: childOrder}) => (
+                <RendererWithChildren key={child.id} block={child} order={childOrder}/>
+            ))}
         </Renderer>
     )
 }
 
-export default function NotionRenderer({blocks}: {
-    blocks: Block[]
-}) {
-    let order = 0
+export default function NotionRenderer({blocks}: {blocks: Block[]}) {
+    const orderedBlocks = assignOrders(blocks)
     return (
-        <Fragment>
-            {blocks.map((block) => {
-                if (block.type === 'numbered_list_item') {
-                    order++
-                } else if (block.type.startsWith('heading_')) {
-                    order = 0
-                }
-
-                return (
-                    <RendererWithChildren key={block.id} block={block} order={order}/>
-                )
-            })}
-        </Fragment>
+        <>
+            {orderedBlocks.map(({block, order}) => (
+                <RendererWithChildren key={block.id} block={block} order={order}/>
+            ))}
+        </>
     )
 }
