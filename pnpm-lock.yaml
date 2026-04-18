@@ -43,7 +43,7 @@ importers:
         version: 5.1.36
       katex:
         specifier: ^0.16.44
-        version: 0.16.44
+        version: 0.16.45
       lucide-react:
         specifier: ^1.0.0
         version: 1.8.0(react@19.2.4)
@@ -1777,8 +1777,8 @@ packages:
     engines: {node: '>=6'}
     hasBin: true
 
-  katex@0.16.44:
-    resolution: {integrity: sha512-EkxoDTk8ufHqHlf9QxGwcxeLkWRR3iOuYfRpfORgYfqc8s13bgb+YtRY59NK5ZpRaCwq1kqA6a5lpX8C/eLphQ==}
+  katex@0.16.45:
+    resolution: {integrity: sha512-pQpZbdBu7wCTmQUh7ufPmLr0pFoObnGUoL/yhtwJDgmmQpbkg/0HSVti25Fu4rmd1oCR6NGWe9vqTWuWv3GcNA==}
     hasBin: true
 
   khroma@2.1.0:
@@ -4274,7 +4274,7 @@ snapshots:
 
   json5@2.2.3: {}
 
-  katex@0.16.44:
+  katex@0.16.45:
     dependencies:
       commander: 8.3.0
 
@@ -4404,7 +4404,7 @@ snapshots:
       dagre-d3-es: 7.0.14
       dayjs: 1.11.20
       dompurify: 3.3.3
-      katex: 0.16.44
+      katex: 0.16.45
       khroma: 2.1.0
       lodash-es: 4.17.23
       marked: 16.4.2
