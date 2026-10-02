@@ -498,6 +498,7 @@ function Img({ block }: { block: BlockObjectResponse }) {
           src={url}
           alt={alt}
           loading="lazy"
+          referrerPolicy="no-referrer"
           className="block w-fit max-w-full object-cover"
         />
         {img.caption.length > 0 && (
@@ -553,7 +554,12 @@ function Icon({ icon }: { icon: PageIconResponse }) {
   }
   const imgNode = (src: string) => (
     // biome-ignore lint/performance/noImgElement: tiny notion icon without dimensions
-    <img className="inline-block h-em object-cover" src={src} alt="icon" />
+    <img
+      className="inline-block h-em object-cover"
+      src={src}
+      alt="icon"
+      referrerPolicy="no-referrer"
+    />
   );
   if (icon.type === "external") {
     const notion = "https://www.notion.so/icons/";
