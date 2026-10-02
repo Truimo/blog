@@ -5,12 +5,12 @@
 /.pnp
 .pnp.js
 
+# IDE
+.idea/
+.vscode/
+
 # testing
 /coverage
-
-# next.js
-/.next/
-/out/
 
 # production
 /build
@@ -24,10 +24,9 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env
+.env.*
+!.env.template
 
 ## Panda
 styled-system

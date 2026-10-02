@@ -1,5 +1,5 @@
-# 默认忽略的文件
-/shelf/
-/workspace.xml
-# 基于编辑器的 HTTP 客户端请求
-/httpRequests/
+rm .idea/.gitignore
+git rm -r --cached .idea 2>/dev/null || true
+git rm --cached .env 2>/dev/null || true
+git add -A
+git commit -m "chore: tidy project setup and .gitignore"
