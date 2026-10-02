@@ -1,13 +1,13 @@
-import type {RouteConfig} from '@react-router/dev/routes'
-import {index, route} from '@react-router/dev/routes'
+import { get, post, route } from 'remix/routes'
 
-export default [
-    index('routes/home.tsx'),
-    route('posts/:slug', 'routes/posts.tsx'),
-    route('friends', 'routes/friends.tsx'),
-    route('sitemap.xml', 'apis/sitemap.ts'),
-    route('api/posts', 'apis/posts.ts'),
-    route('api/bookmark', 'apis/bookmark.ts'),
-    route('api/notion/image/:id', 'apis/notion-image.ts'),
-    route('api/notion/icons/:filename', 'apis/notion-icons.ts'),
-] satisfies RouteConfig
+export const routes = route({
+  assets: get('/assets/*path'),
+  home: get('/'),
+  post: get('/posts/:slug'),
+  friends: get('/friends'),
+  sitemap: get('/sitemap.xml'),
+  apiBookmark: post('/api/bookmark'),
+  apiNotionImage: get('/api/notion/image/:id'),
+  apiNotionVideo: get('/api/notion/video/:id'),
+  apiNotionIcons: get('/api/notion/icons/:filename'),
+})

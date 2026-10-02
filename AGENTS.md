@@ -4,6 +4,10 @@
 
 A personal blog built with **React Router v7** (SSR + prerendering), **Tailwind CSS v4**, and **Notion as the CMS backend**. Deployed to Vercel. No test suite exists in this project.
 
+## Building Features
+
+Refer to ./.agents/skills/remix/SKILL.md
+
 ---
 
 ## Commands

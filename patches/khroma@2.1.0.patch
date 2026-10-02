@@ -1,0 +1,10 @@
+diff --git a/tsconfig.json b/tsconfig.json
+index 4235d7eeae51c10bf7fa165d64539c286e434e1b..45c1de1e59e0411fd1a511cfeb5ad3c9e3a00055 100755
+--- a/tsconfig.json
++++ b/tsconfig.json
+@@ -1,5 +1,4 @@
+ {
+-  "extends": "tsex/tsconfig.json",
+   "compilerOptions": {
+     "noImplicitAny": false
+   }

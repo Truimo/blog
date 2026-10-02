@@ -1,6 +1,6 @@
-import type {Route} from './+types/notion-icons'
 
-export async function loader({params, request}: Route.LoaderArgs) {
+
+export async function loader({params, request}: any) {
     const url = `https://www.notion.so/icons/${params.filename}`
 
     const res = await fetch(url, {

@@ -1,4 +1,4 @@
-import type {Friend} from './types'
+import type {Friend} from "./types.ts"
 
 export const icp: string = '湘ICP备2020021033号-1'
 export const blogName: string = '浅小沫的博客'

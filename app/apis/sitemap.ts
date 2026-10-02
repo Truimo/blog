@@ -1,5 +1,5 @@
-import {getPosts} from '~/libs/notion.server'
-import {blogLink} from '~/site-info'
+import {getPosts} from '../libs/notion.server.ts'
+import {blogLink} from '../site-info.ts'
 
 interface SitemapItem {
     url: string
@@ -39,9 +39,12 @@ export async function loader() {
         while (hasMore) {
             const response = await getPosts({pageSize: 100, cursor: cursor ?? undefined})
             response.posts.forEach(post => {
+                const lastModified = post.date && !Number.isNaN(new Date(post.date).getTime())
+                    ? new Date(post.date).toISOString()
+                    : undefined
                 sitemap.push({
                     url: `${blogLink}/posts/${post.slug}`,
-                    lastModified: new Date(post.date).toISOString(),
+                    lastModified,
                     changeFrequency: 'weekly'
                 })
             })

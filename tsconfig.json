@@ -1,32 +1,26 @@
 {
-  "include": [
-    "**/*",
-    "**/.server/**/*",
-    "**/.client/**/*",
-    ".react-router/types/**/*"
-  ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "dist",
+    "app-old"
   ],
   "compilerOptions": {
     "lib": [
       "DOM",
       "DOM.Iterable",
-      "ES2022"
+      "DOM.AsyncIterable",
+      "ES2024"
     ],
     "types": [
       "node",
-      "vite/client"
+      "dom-navigation",
+      "remix/assets/types/hmr"
     ],
-    "target": "ES2022",
-    "module": "ES2022",
-    "moduleResolution": "bundler",
+    "target": "esnext",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
     "jsx": "react-jsx",
-    "rootDirs": [
-      ".",
-      "./.react-router/types"
-    ],
-    "baseUrl": ".",
+    "jsxImportSource": "remix/component",
     "paths": {
       "~/*": [
         "./app/*"
@@ -37,6 +31,9 @@
     "noEmit": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
+    "allowImportingTsExtensions": true,
+    "rewriteRelativeImportExtensions": true,
+    "isolatedModules": true,
     "strict": true
   }
 }

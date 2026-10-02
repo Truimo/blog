@@ -1,16 +1,24 @@
-import type {Block, PostMeta, PostQuery, PostsResponse} from '~/types'
-import type {GetBlockResponse, PageObjectResponse, RichTextItemResponse} from '@notionhq/client/build/src/api-endpoints'
+import type { Block, PostMeta, PostQuery, PostsResponse } from '../types.d.ts'
+import type { GetBlockResponse, PageObjectResponse, RichTextItemResponse } from '@notionhq/client/build/src/api-endpoints.js'
 import process from 'node:process'
 import crypto from 'node:crypto'
-import {Redis} from '@upstash/redis'
-import {Client, collectPaginatedAPI, isFullBlock, isFullPage} from '@notionhq/client'
+import dotenv from 'dotenv'
+import { Redis } from '@upstash/redis'
+import { Client, collectPaginatedAPI, isFullBlock, isFullPage } from '@notionhq/client'
+
+dotenv.config({ path: '.env.local' });
 
 const {
     NOTION_KEY = '',
-    NOTION_DATABASE_ID = ''
+    NOTION_DATABASE_ID = '',
+    UPSTASH_REDIS_REST_URL = '',
+    UPSTASH_REDIS_REST_TOKEN = ''
 } = process.env
 
-const redis = Redis.fromEnv()
+const redis = new Redis({
+    url: UPSTASH_REDIS_REST_URL!,
+    token: UPSTASH_REDIS_REST_TOKEN!,
+});
 
 interface CachedHttpResponse {
     status: number
@@ -19,18 +27,18 @@ interface CachedHttpResponse {
     body: string
 }
 
-const DEFAULT_CATEGORY: PostMeta['category'] = {name: '默认分类', color: 'default'}
+const DEFAULT_CATEGORY: PostMeta['category'] = { name: '默认分类', color: 'default' }
 
 const BASE_FILTER = [
     {
         property: 'Status',
         type: 'select' as const,
-        select: {equals: 'publish'}
+        select: { equals: 'publish' }
     },
     {
         property: 'Type',
         type: 'select' as const,
-        select: {equals: 'post'}
+        select: { equals: 'post' }
     }
 ]
 
@@ -90,7 +98,7 @@ const getRichTextPlainText = (rich_text: RichTextItemResponse[]): string => {
 const getPageMeta = (page: PageObjectResponse): PostMeta => {
     const properties = page.properties
     const category = properties.Category.type === 'select' && properties.Category.select
-        ? {name: properties.Category.select.name, color: properties.Category.select.color}
+        ? { name: properties.Category.select.name, color: properties.Category.select.color }
         : DEFAULT_CATEGORY
 
     return {
@@ -101,17 +109,17 @@ const getPageMeta = (page: PageObjectResponse): PostMeta => {
         excerpt: properties.Excerpt.type === 'rich_text' ? getRichTextPlainText(properties.Excerpt.rich_text) : '',
         cover: properties.Cover.type === 'rich_text' ? getRichTextPlainText(properties.Cover.rich_text) : '',
         tags: page.properties.Tags.type === 'multi_select'
-            ? page.properties.Tags.multi_select.map(tag => ({name: tag.name, color: tag.color}))
+            ? page.properties.Tags.multi_select.map(tag => ({ name: tag.name, color: tag.color }))
             : [],
         category,
     }
 }
 
-export const getPosts = async (query: PostQuery = {pageSize: 10}): Promise<PostsResponse> => {
+export const getPosts = async (query: PostQuery = { pageSize: 10 }): Promise<PostsResponse> => {
     const response = await notion.dataSources.query({
         data_source_id: databaseId,
-        filter: {and: BASE_FILTER},
-        sorts: [{property: 'Date', direction: 'descending'}],
+        filter: { and: BASE_FILTER },
+        sorts: [{ property: 'Date', direction: 'descending' }],
         page_size: query.pageSize,
         start_cursor: query.cursor,
     })
@@ -136,7 +144,7 @@ export const getPost = async (slug: string): Promise<PostMeta | null> => {
                 {
                     property: 'Slug',
                     type: 'rich_text' as const,
-                    rich_text: {equals: slug}
+                    rich_text: { equals: slug }
                 }
             ]
         },
@@ -149,19 +157,19 @@ export const getPost = async (slug: string): Promise<PostMeta | null> => {
 }
 
 export const getPage = async (id: string): Promise<Block[]> => {
-    const res = await collectPaginatedAPI(notion.blocks.children.list, {block_id: id})
+    const res = await collectPaginatedAPI(notion.blocks.children.list, { block_id: id })
 
     return Promise.all(
         res.filter(isFullBlock).map(async (block) => {
             if (block.has_children) {
                 const children = await getPage(block.id)
-                return {...block, has_children: true as const, children}
+                return { ...block, has_children: true as const, children }
             }
-            return {...block, has_children: false as const, children: null}
+            return { ...block, has_children: false as const, children: null }
         })
     )
 }
 
 export const getBlockObject = (blockId: string): Promise<GetBlockResponse> => {
-    return notion.blocks.retrieve({block_id: blockId})
+    return notion.blocks.retrieve({ block_id: blockId })
 }

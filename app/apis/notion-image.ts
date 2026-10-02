@@ -1,13 +1,13 @@
-import type {Route} from './+types/notion-image'
+
 import process from 'node:process'
 import {isFullBlock} from '@notionhq/client'
-import {getBlockObject} from '~/libs/notion.server'
+import {getBlockObject} from '../libs/notion.server.ts'
 
 const {
     NOTION_CREATOR_ID: CREATOR_ID = 'your-creator-id'
 } = process.env
 
-export async function loader({params, request}: Route.LoaderArgs) {
+export async function loader({params, request}: any) {
     const id: string = params.id
 
     try {

@@ -13,26 +13,89 @@ html {
 body {
     height: 100%;
     font-size: 1rem;
-    font-family: Consolas, Microsoft YaHei, PingFang SC, Hiragino Sans GB, WenQuanYi Micro Hei, var(--font-sans, sans-serif), sans-serif;
+    line-height: 1.5;
+    font-family: var(--font-sans), sans-serif;
     text-autospace: normal;
-}
-
-body {
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
     padding: env(safe-area-inset-top, 0) env(safe-area-inset-right, 0) env(safe-area-inset-bottom, 0) env(safe-area-inset-left, 0);
 }
 
 code, kbd, pre, samp {
-    font-family: OperatorMonoSSmLig Nerd Font, Cascadia Code PL, FantasqueSansMono Nerd Font, operator mono, JetBrainsMono, Fira code Retina, Fira code, Consolas, Monaco, Hannotate SC, monospace, -apple-system;
+    font-family: var(--font-mono);
     font-feature-settings: normal;
     font-variation-settings: normal;
-    font-size: 1em
+    font-size: 1em;
+}
+
+::selection {
+    background-color: var(--color-accent);
+    color: #fff;
+}
+
+:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
 }
 
 .main {
-    @apply relative m-auto max-w-6xl p-4;
-    min-height: calc(100vh - 4rem * 2);
+    @apply relative m-auto max-w-6xl px-4 py-10;
+    min-height: calc(100vh - 3rem - 5rem);
 }
 
 .main .fill {
-    min-height: calc(100vh - 4rem * 2.5);
+    min-height: calc(100vh - 3rem - 7rem);
+}
+
+/* 文章正文中的链接使用强调色 */
+.article-body a {
+    color: var(--color-accent-strong);
+}
+
+.notion-code {
+    background-color: rgba(135, 131, 120, 0.15);
+    color: #EB5757;
+    border-radius: 4px;
+    padding: 0.2em 0.4em;
+    font-size: 85%;
+}
+
+.notion-code + .notion-code {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    padding-left: 0;
+}
+
+.notion-code:has(+ .notion-code) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    padding-right: 0;
+}
+
+.signature {
+    --signature-color: oklab(0% 0 0);
+    float: right;
+    margin-left: calc(var(--spacing) * 4);
+}
+
+@media (prefers-color-scheme: dark) {
+    .signature {
+        --signature-color: oklab(100% 0 0);
+    }
+}
+
+.signature path {
+    stroke-dasharray: 880;
+    stroke-dashoffset: 880;
+    stroke-width: 0.25mm;
+    fill: transparent;
+    stroke: var(--signature-color);
+    animation: drawSignature 6s linear infinite both;
+}
+
+@keyframes drawSignature {
+    0% { stroke-dashoffset: 880; }
+    15% { fill: transparent; }
+    35%, 75% { stroke-dashoffset: 0; fill: var(--signature-color); }
+    90%, to { stroke-dashoffset: 880; fill: transparent; }
 }
