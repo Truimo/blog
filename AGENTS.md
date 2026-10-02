@@ -1,12 +1,20 @@
 # AGENTS.md — Codebase Guide
 
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->
+
 ## Project Overview
 
-A personal blog built with **React Router v7** (SSR + prerendering), **Tailwind CSS v4**, and **Notion as the CMS backend**. Deployed to Vercel. No test suite exists in this project.
+A personal blog built with **Next.js 16** (App Router, Cache Components / PPR), **React 19** (React Compiler), **Tailwind CSS v4**, and **Notion as the CMS backend**. Deployed to Vercel. No test suite exists in this project.
 
-## Building Features
-
-Refer to ./.agents/skills/remix/SKILL.md
+> `app-old/` is the archived pre-migration codebase (React Router / Remix). Keep it for reference; do not import from it.
 
 ---
 
@@ -14,132 +22,97 @@ Refer to ./.agents/skills/remix/SKILL.md
 
 ### Development
 ```bash
-pnpm run dev          # Start dev server (Vite + React Router HMR)
+pnpm dev            # Start dev server (next dev)
 ```
 
 ### Build
 ```bash
-pnpm run build        # Production build via react-router build
-pnpm run start        # Serve the built output (./build/server/index.js)
+pnpm build          # Production build (next build)
+pnpm start          # Serve production build (next start)
+```
+
+### Lint / Format
+```bash
+pnpm lint           # biome check
+pnpm format         # biome format --write
 ```
 
 ### Type Checking
 ```bash
-pnpm run typecheck    # Runs: react-router typegen && tsc
+pnpm typecheck      # tsc --noEmit
 ```
-> Always run `typecheck` after changes — there is no separate lint script. TypeScript strict mode is enabled.
-
-### No Test Suite
-There are no unit or integration tests in this project. There is no `test` script in `package.json`.
+> Run `lint` + `typecheck` after changes. TypeScript strict mode is enabled.
 
 ---
 
 ## Architecture
 
 ```
-app/
-  apis/           # Route-module API handlers (loader/action exports)
+src/
+  app/                 # App Router routes
+    layout.tsx         # Root shell: metadata, fonts, Analytics
+    page.tsx           # Home (static shell + Suspense post list)
+    posts/[slug]/      # Post page (generateStaticParams + generateMetadata)
+    friends/           # Friends page (static)
+    not-found.tsx      # Global 404
+    sitemap.ts         # MetadataRoute.Sitemap
+    globals.css        # Tailwind v4 entry: @theme tokens, dark scheme, prose styles
+    api/               # Route handlers (bookmark, notion image/video/icons proxies)
   components/
-    common/       # Shared utility components (e.g. loading spinner)
-    layout/       # Page layout: Header, Footer, Main, Container, Root
-    list/         # Post list components (infinite scroll)
-    notion/       # Notion block renderers
-      blocks/     # One file per Notion block type
-    post/         # Post-specific UI: tags, category, copyright
-    ui/           # Generic UI: code highlighter (Shiki), Mermaid
-  libs/
-    helper.ts           # clsxm utility (clsx + tailwind-merge)
-    notion.server.ts    # All Notion API calls (server-only, Redis cache)
-    time.ts             # dayjs date formatting (zh-cn locale)
-  providers/            # React context providers (React Query)
-  routes/               # Page route components (home, posts, friends)
-  routes.ts             # Route config (react-router routes)
-  root.tsx              # App shell: Layout, ErrorBoundary, Analytics
-  site-info.ts          # Blog metadata and friends list constants
-  styles/               # Global CSS, web fonts
-  types.d.ts            # Shared TypeScript types
+    layout/            # Header, Footer, Container
+    notion/            # Notion block renderers (Server Components)
+    client/            # Interactive islands ('use client': shiki, mermaid, copy, back, bookmark)
+    post-meta.tsx
+  lib/
+    notion.ts          # Notion API + Upstash Redis cache ('use cache', server-only)
+    site-info.ts       # Blog metadata and friends list constants
+    time.ts            # dayjs date formatting (zh-cn locale)
+    utils.ts           # clsxm utility (clsx + tailwind-merge)
+    colors.ts          # Notion color name -> Tailwind class lookup
+  types.ts             # Shared TypeScript types
+public/
+  webfont/             # Operator Mono woff/woff2
+  icon/
+  robots.txt
 ```
 
 ---
 
 ## Code Style
 
-### TypeScript
-- **Strict mode** is enabled (`"strict": true` in `tsconfig.json`).
-- Use `verbatimModuleSyntax`: always use `import type` for type-only imports.
-- Target is `ES2022`; module resolution is `bundler`.
-- Path alias `~/*` maps to `./app/*` — always use this alias for imports within `app/`.
-
-### Imports
-- Type-only imports must use `import type { ... }`:
-  ```ts
-  import type { PropsWithChildren } from 'react'
-  import type { Block } from '~/types'
-  ```
-- Group imports: types first, then external libraries, then internal `~/` aliases.
-- No barrel `index.ts` re-exports in most directories — import from the specific file.
-
-### Formatting
-- **No formatter config** (no Prettier/ESLint config present). Follow the existing style:
-  - 4-space indentation.
-  - Single quotes for strings in TypeScript/TSX.
-  - Opening braces on the same line; no trailing commas in function parameters.
-  - JSX attribute alignment follows the existing pattern (one prop per line when many attributes, inline when few).
-  - Object destructuring in function parameters is preferred.
-
-### Naming Conventions
-- **Files**: `kebab-case` for all files (`post-item.tsx`, `notion-renderer.tsx`).
-  - Exception: PascalCase is used for some UI component files (`CodeHighlighter.tsx`, `ShikiWrapper.tsx`).
-- **Components**: PascalCase named exports or default exports.
-  - Arrow function components for simple ones; `function` declarations for route components.
-- **Functions/variables**: `camelCase`.
-- **Constants**: `camelCase` for exported site config (e.g. `blogName`, `blogLink`).
-- **Interfaces/Types**: PascalCase (`PostMeta`, `PostsResponse`, `Block`).
-- **CSS module files** (vanilla-extract): `styled.css.ts` naming pattern.
-
-### React Components
-- Use arrow functions for leaf/presentational components:
-  ```tsx
-  export const Header = () => { ... }
-  ```
-- Use `function` declarations for route-level components (loader-bearing routes):
-  ```tsx
-  export default function Home({ loaderData }: Route.ComponentProps) { ... }
-  ```
-- Props types are declared inline as object types or as `PropsWithChildren<{...}>` — avoid standalone interface declarations for simple prop shapes unless reused.
-- Use `clsxm` (from `~/libs/helper`) for conditional class merging — never concatenate class strings manually.
+- **Biome** is the single source of truth: double quotes, semicolons, 2-space indent. Run `pnpm format` before committing.
+- TypeScript **strict mode**; path alias `@/*` maps to `./src/*`.
+- Type-only imports use `import type { ... }`.
+- File naming: kebab-case (`post-meta.tsx`, `notion-renderer.tsx`).
+- Components: PascalCase; `function` declarations for route files, arrow functions for leaf components.
+- Use `clsxm` (from `@/lib/utils`) for conditional class merging.
 
 ### Styling
-- **Tailwind CSS v4** utility classes are the primary styling method.
-- **vanilla-extract** (`*.css.ts` files) is used for complex, dynamic, or animation-based styles that cannot be expressed in Tailwind.
-- `darkMode` is driven by `prefers-color-scheme` media query in vanilla-extract, and by the `dark` class in Tailwind config.
-- Avoid inline `style` props; prefer Tailwind classes or vanilla-extract.
+- **Tailwind CSS v4** utilities are primary; tokens live in `@theme` in `globals.css`.
+- Dark mode via `prefers-color-scheme` only — no manual toggle.
+- Dynamic Notion/tag colors use CSS classes (`.notion-*`, `.tag-*`) from `globals.css` via `@/lib/colors` — never inline media-query styles.
+
+### Next.js 16 specifics
+- **Cache Components is enabled** (`cacheComponents: true`): every route must produce a static shell. Runtime reads (`params`, `searchParams`, `cookies()`, `headers()`, uncached fetches) must be inside `<Suspense>` or behind `'use cache'`.
+- Data functions in `lib/notion.ts` use `'use cache'` + `cacheLife` + `cacheTag`; they must be async and never read runtime APIs.
+- `params` / `searchParams` are **Promises** — always `await` them.
+- Use global typed helpers: `PageProps<'/route'>`, `LayoutProps<'/'>`, `RouteContext<'/route'>`.
+- `typedRoutes: true` — `<Link href>` must be a valid literal route.
+- Server Components by default; add `'use client'` only for interactive islands.
 
 ### Server-Only Code
-- Files that call Notion API or Redis must be named `*.server.ts` to make the server-only boundary explicit.
-- Never import `*.server.ts` modules from client-side components.
-- Environment variables are destructured from `process.env` at module top level with defaults:
-  ```ts
-  const { NOTION_KEY = '', NOTION_DATABASE_ID = '' } = process.env
-  ```
+- `lib/notion.ts` imports `server-only`; never import it from Client Components.
+- Environment variables are read from `process.env` (Next auto-loads `.env.local` — no `dotenv`).
 
 ### Error Handling
-- In route loaders, throw `new Response("Not Found", { status: 404 })` for missing resources.
-- In API route actions, return `Response.json({ error: '...' }, { status: 400 })` for client errors.
-- Wrap uncertain async operations in `try/catch` and return JSON error responses rather than letting exceptions propagate to the client.
-- The root `ErrorBoundary` in `app/root.tsx` handles uncaught route errors; respect it.
+- Missing resources: `notFound()` in pages; route handlers return `new Response('Not Found', { status: 404 })`.
+- Client errors in route handlers: `Response.json({ error: '...' }, { status: 400 })`.
+- Wrap uncertain async operations in `try/catch` and return JSON error responses.
 
 ### Data Fetching
-- Server data fetching uses React Router **loaders** (`export async function loader`).
-- Client-side infinite/paginated data uses **TanStack Query** (`useSuspenseInfiniteQuery`).
-- Loaders prefetch TanStack Query state on the server via `QueryClient.prefetchInfiniteQuery` and pass `dehydrate(queryClient)` to the client via `HydrationBoundary`.
-- HTTP API calls from the client use **axios** (`~/components/list/more-posts.tsx` pattern).
-- Notion API GET responses are cached in **Upstash Redis** for 1 hour (`ex: 3600`).
-
-### Types
-- Shared types live in `app/types.d.ts` — add new shared types here.
-- Prefer discriminated unions for variant data (`Block` type with `has_children: true/false`).
-- Use `satisfies` for config objects to get type-checking without widening (see `react-router.config.ts`).
+- Server data via async Server Components + cached functions in `lib/notion.ts`.
+- Client-side fetches (e.g. bookmark unfurl) hit `src/app/api/*/route.ts` handlers.
+- Notion API GET responses are cached in **Upstash Redis** for 1 hour (`ex: 3600`), independent of Next's cache.
 
 ---
 
@@ -147,28 +120,30 @@ app/
 
 Required in `.env.local` (see `.env.template`):
 
-| Variable             | Description                     |
-|----------------------|---------------------------------|
-| `NOTION_KEY`         | Notion integration secret       |
-| `NOTION_DATABASE_ID` | Notion database ID for posts    |
-| `UPSTASH_REDIS_REST_URL`  | Upstash Redis URL          |
-| `UPSTASH_REDIS_REST_TOKEN` | Upstash Redis token       |
+| Variable                   | Description                  |
+|----------------------------|------------------------------|
+| `NOTION_KEY`               | Notion integration secret    |
+| `NOTION_DATABASE_ID`       | Notion database ID for posts |
+| `NOTION_CREATOR_ID`        | Notion user ID of blog owner |
+| `UPSTASH_REDIS_REST_URL`   | Upstash Redis URL            |
+| `UPSTASH_REDIS_REST_TOKEN` | Upstash Redis token          |
 
 ---
 
 ## Key Dependencies
 
-| Package                    | Purpose                              |
-|----------------------------|--------------------------------------|
-| `react-router` v7          | SSR framework + routing              |
-| `@notionhq/client`         | Notion API client                    |
-| `@upstash/redis`           | Redis cache for Notion responses     |
-| `@tanstack/react-query` v5 | Client-side data fetching            |
-| `shiki`                    | Syntax highlighting (lazy-loaded)    |
-| `mermaid`                  | Diagram rendering                    |
-| `@vanilla-extract/css`     | Type-safe CSS-in-JS                  |
-| `tailwindcss` v4           | Utility-first CSS                    |
-| `dayjs`                    | Date formatting (zh-cn locale)       |
-| `clsx` + `tailwind-merge`  | Class name composition (`clsxm`)     |
-| `axios`                    | Client HTTP requests                 |
-| `unfurl.js`                | URL metadata for bookmark blocks     |
+| Package                  | Purpose                              |
+|--------------------------|--------------------------------------|
+| `next` v16               | Framework (App Router, PPR)          |
+| `react` / `react-dom` v19| UI (React Compiler enabled)          |
+| `@notionhq/client`       | Notion API client                    |
+| `@upstash/redis`         | Redis cache for Notion responses     |
+| `shiki`                  | Syntax highlighting (client, lazy)   |
+| `mermaid`                | Diagram rendering (client, lazy)     |
+| `katex`                  | Math rendering (server-side)         |
+| `tailwindcss` v4         | Utility-first CSS                    |
+| `dayjs`                  | Date formatting (zh-cn locale)       |
+| `clsx` + `tailwind-merge`| Class name composition (`clsxm`)     |
+| `unfurl.js`              | URL metadata for bookmark blocks     |
+| `@vercel/analytics`      | Vercel Analytics                     |
+| `@biomejs/biome`         | Lint + format                        |

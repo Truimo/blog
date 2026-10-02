@@ -1,0 +1,445 @@
+@import "tailwindcss";
+@import "katex/dist/katex.min.css";
+
+@theme {
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display",
+    "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+    "Noto Sans SC", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji";
+  --font-serif:
+    "Noto Serif CJK SC", "Noto Serif SC", "Source Han Serif SC",
+    "Source Han Serif", source-han-serif-sc, SongTi SC, SimSum,
+    "Hiragino Sans GB", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica,
+    "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  --font-mono:
+    "OperatorMonoSSmLig Nerd Font", "Cascadia Code PL",
+    "FantasqueSansMono Nerd Font", "operator mono", "JetBrainsMono",
+    "Fira code Retina", "Fira code", "Consolas", Monaco, "Hannotate SC",
+    monospace, -apple-system;
+
+  --color-accent: #0ea5e9;
+  --color-accent-strong: #0284c7;
+
+  --color-canvas: #f5f5f7;
+  --color-surface: #ffffff;
+  --color-ink: #1d1d1f;
+  --color-ink-secondary: #6e6e73;
+  --color-separator: #d2d2d7;
+
+  --height-em: 1em;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-accent-strong: #38bdf8;
+
+    --color-canvas: #0a0a0a;
+    --color-surface: #1c1c1e;
+    --color-ink: #f5f5f7;
+    --color-ink-secondary: #a1a1a6;
+    --color-separator: #38383a;
+  }
+}
+
+@font-face {
+  font-family: "OperatorMonoSSmLig Nerd Font";
+  src:
+    url("/webfont/OperatorMonoSSmLigNerdFontAAEOPSLMDI-Book.woff2")
+    format("woff2"),
+    url("/webfont/OperatorMonoSSmLigNerdFontAAEOPSLMDI-Book.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OperatorMonoSSmLig Nerd Font";
+  src:
+    url("/webfont/OperatorMonoSSmLigNerdFontAAEOPSLMDI-Italic.woff2")
+    format("woff2"),
+    url("/webfont/OperatorMonoSSmLigNerdFontAAEOPSLMDI-Italic.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light dark;
+}
+
+html {
+  height: 100%;
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  scrollbar-gutter: stable;
+}
+
+body {
+  min-height: 100%;
+  font-size: 1rem;
+  line-height: 1.5;
+  font-family: var(--font-sans), sans-serif;
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  padding: env(safe-area-inset-top, 0) env(safe-area-inset-right, 0)
+    env(safe-area-inset-bottom, 0) env(safe-area-inset-left, 0);
+}
+
+code,
+kbd,
+pre,
+samp {
+  font-family: var(--font-mono);
+  font-feature-settings: normal;
+  font-variation-settings: normal;
+  font-size: 1em;
+}
+
+::selection {
+  background-color: var(--color-accent);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.main {
+  @apply relative m-auto max-w-6xl px-4 py-10;
+  min-height: calc(100vh - 3rem - 5rem);
+}
+
+.main .fill {
+  min-height: calc(100vh - 3rem - 7rem);
+}
+
+/* 文章正文中的链接使用强调色 */
+.article-body a {
+  color: var(--color-accent-strong);
+}
+
+.notion-code {
+  background-color: rgba(135, 131, 120, 0.15);
+  color: #eb5757;
+  border-radius: 4px;
+  padding: 0.2em 0.4em;
+  font-size: 85%;
+}
+
+.notion-code + .notion-code {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  padding-left: 0;
+}
+
+.notion-code:has(+ .notion-code) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  padding-right: 0;
+}
+
+/* Shiki dual-theme: dark scheme picks the dark CSS variables */
+@media (prefers-color-scheme: dark) {
+  .shiki,
+  .shiki span {
+    color: var(--shiki-dark) !important;
+    background-color: var(--shiki-dark-bg) !important;
+  }
+}
+
+/* Signature draw animation */
+.signature {
+  --signature-color: oklab(0% 0 0);
+  float: right;
+  margin-left: calc(var(--spacing) * 4);
+}
+
+@media (prefers-color-scheme: dark) {
+  .signature {
+    --signature-color: oklab(100% 0 0);
+  }
+}
+
+.signature path {
+  stroke-dasharray: 880;
+  stroke-dashoffset: 880;
+  stroke-width: 0.25mm;
+  fill: transparent;
+  stroke: var(--signature-color);
+  animation: drawSignature 6s linear infinite both;
+}
+
+@keyframes drawSignature {
+  0% {
+    stroke-dashoffset: 880;
+  }
+  15% {
+    fill: transparent;
+  }
+  35%,
+  75% {
+    stroke-dashoffset: 0;
+    fill: var(--signature-color);
+  }
+  90%,
+  to {
+    stroke-dashoffset: 880;
+    fill: transparent;
+  }
+}
+
+/* ---- Notion dynamic text colors (light + dark via media query) ---- */
+.notion-gray {
+  color: rgba(120, 119, 116, 1);
+}
+.notion-brown {
+  color: rgba(159, 107, 83, 1);
+}
+.notion-orange {
+  color: rgba(217, 115, 13, 1);
+}
+.notion-yellow {
+  color: rgba(203, 145, 47, 1);
+}
+.notion-green {
+  color: rgba(68, 131, 97, 1);
+}
+.notion-blue {
+  color: rgba(51, 126, 169, 1);
+}
+.notion-purple {
+  color: rgba(144, 101, 176, 1);
+}
+.notion-pink {
+  color: rgba(193, 76, 138, 1);
+}
+.notion-red {
+  color: rgba(212, 76, 71, 1);
+}
+
+/* ---- Notion dynamic background colors ---- */
+.notion-gray-background {
+  background-color: rgba(248, 248, 247, 1);
+}
+.notion-brown-background {
+  background-color: rgba(244, 238, 238, 1);
+}
+.notion-orange-background {
+  background-color: rgba(251, 236, 221, 1);
+}
+.notion-yellow-background {
+  background-color: rgba(251, 243, 219, 1);
+}
+.notion-green-background {
+  background-color: rgba(237, 243, 236, 1);
+}
+.notion-blue-background {
+  background-color: rgba(231, 243, 248, 1);
+}
+.notion-purple-background {
+  background-color: rgba(248, 243, 252, 1);
+}
+.notion-pink-background {
+  background-color: rgba(252, 241, 246, 1);
+}
+.notion-red-background {
+  background-color: rgba(253, 235, 236, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  .notion-gray {
+    color: rgba(155, 155, 155, 1);
+  }
+  .notion-brown {
+    color: rgba(186, 133, 111, 1);
+  }
+  .notion-orange {
+    color: rgba(199, 125, 72, 1);
+  }
+  .notion-yellow {
+    color: rgba(202, 152, 77, 1);
+  }
+  .notion-green {
+    color: rgba(82, 158, 114, 1);
+  }
+  .notion-blue {
+    color: rgba(55, 154, 211, 1);
+  }
+  .notion-purple {
+    color: rgba(157, 104, 211, 1);
+  }
+  .notion-pink {
+    color: rgba(209, 87, 150, 1);
+  }
+  .notion-red {
+    color: rgba(223, 84, 82, 1);
+  }
+
+  .notion-gray-background {
+    background-color: rgba(47, 47, 47, 1);
+  }
+  .notion-brown-background {
+    background-color: rgba(74, 50, 40, 1);
+  }
+  .notion-orange-background {
+    background-color: rgba(92, 59, 35, 1);
+  }
+  .notion-yellow-background {
+    background-color: rgba(86, 67, 40, 1);
+  }
+  .notion-green-background {
+    background-color: rgba(36, 61, 48, 1);
+  }
+  .notion-blue-background {
+    background-color: rgba(20, 58, 78, 1);
+  }
+  .notion-purple-background {
+    background-color: rgba(60, 45, 73, 1);
+  }
+  .notion-pink-background {
+    background-color: rgba(78, 44, 60, 1);
+  }
+  .notion-red-background {
+    background-color: rgba(82, 46, 42, 1);
+  }
+}
+
+/* ---- Tag badge colors ---- */
+.tag-default,
+.tag-gray {
+  border-radius: 4px;
+  padding: 2px 6px;
+  color: rgb(29, 27, 22);
+  background-color: rgba(84, 72, 49, 0.08);
+}
+.tag-brown {
+  border-radius: 4px;
+  padding: 2px 6px;
+  color: rgb(68, 42, 30);
+  background-color: rgba(210, 162, 141, 0.35);
+}
+.tag-orange {
+  border-radius: 4px;
+  padding: 2px 6px;
+  color: rgb(73, 41, 14);
+  background-color: rgba(224, 124, 57, 0.27);
+}
+.tag-yellow {
+  border-radius: 4px;
+  padding: 2px 6px;
+  color: rgb(64, 44, 27);
+  background-color: rgba(236, 191, 66, 0.39);
+}
+.tag-green {
+  border-radius: 4px;
+  padding: 2px 6px;
+  color: rgb(28, 56, 41);
+  background-color: rgba(123, 183, 129, 0.27);
+}
+.tag-blue {
+  border-radius: 4px;
+  padding: 2px 6px;
+  color: rgb(24, 51, 71);
+  background-color: rgba(93, 165, 206, 0.27);
+}
+.tag-purple {
+  border-radius: 4px;
+  padding: 2px 6px;
+  color: rgb(65, 36, 84);
+  background-color: rgba(168, 129, 197, 0.27);
+}
+.tag-pink {
+  border-radius: 4px;
+  padding: 2px 6px;
+  color: rgb(76, 35, 55);
+  background-color: rgba(225, 136, 179, 0.27);
+}
+.tag-red {
+  border-radius: 4px;
+  padding: 2px 6px;
+  color: rgb(93, 23, 21);
+  background-color: rgba(244, 171, 159, 0.4);
+}
+
+@media (prefers-color-scheme: dark) {
+  .tag-default {
+    color: rgb(211, 211, 211);
+    background-color: rgba(255, 255, 255, 0.094);
+  }
+  .tag-gray {
+    color: rgba(255, 255, 255, 0.81);
+    background-color: rgba(255, 255, 255, 0.13);
+  }
+  .tag-brown {
+    color: rgba(255, 255, 255, 0.87);
+    background-color: rgba(184, 101, 67, 0.45);
+  }
+  .tag-orange {
+    color: rgba(255, 255, 255, 0.87);
+    background-color: rgba(233, 126, 35, 0.45);
+  }
+  .tag-yellow {
+    color: rgba(255, 255, 255, 0.87);
+    background-color: rgba(250, 177, 67, 0.5);
+  }
+  .tag-green {
+    color: rgba(255, 255, 255, 0.87);
+    background-color: rgba(45, 153, 100, 0.5);
+  }
+  .tag-blue {
+    color: rgba(255, 255, 255, 0.87);
+    background-color: rgba(51, 126, 169, 0.5);
+  }
+  .tag-purple {
+    color: rgba(255, 255, 255, 0.87);
+    background-color: rgba(168, 91, 242, 0.34);
+  }
+  .tag-pink {
+    color: rgba(255, 255, 255, 0.87);
+    background-color: rgba(220, 76, 145, 0.4);
+  }
+  .tag-red {
+    color: rgba(255, 255, 255, 0.87);
+    background-color: rgba(222, 85, 83, 0.45);
+  }
+}
+
+/* ---- Code card ---- */
+.code-card {
+  position: relative;
+  background-color: rgba(120, 120, 128, 0.06);
+  border-radius: 4px;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+@media (prefers-color-scheme: dark) {
+  .code-card {
+    background-color: rgba(120, 120, 128, 0.12);
+  }
+}
+
+.code-card .shiki {
+  background-color: transparent !important;
+}
+
+.code-card .shiki code {
+  font-size: 14px;
+  line-height: 1.6;
+  font-family: var(--font-mono), serif;
+}
+
+.code-card .language-tip {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 0.75em;
+  padding: 0.25em 0.75em;
+  color: var(--color-ink-secondary);
+  user-select: none;
+}

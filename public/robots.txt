@@ -1,4 +1,4 @@
-User-Agent: *
+User-agent: *
 Allow: /
 
 Sitemap: https://blog.truimo.com/sitemap.xml
