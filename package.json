@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@notionhq/client": "^5.27.0",
-    "@shikijs/transformers": "^3.23.0",
+    "@shikijs/transformers": "^4.0.0",
     "@upstash/redis": "^1.39.0",
     "@vercel/analytics": "^1.6.1",
     "clsx": "^2.1.1",
@@ -22,7 +22,7 @@
     "next": "16.3.8",
     "react": "19.2.8",
     "react-dom": "19.2.8",
-    "shiki": "^3.23.0",
+    "shiki": "^4.0.0",
     "tailwind-merge": "^3.7.0",
     "unfurl.js": "^6.4.0"
   },
