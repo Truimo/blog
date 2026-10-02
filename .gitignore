@@ -28,10 +28,6 @@ yarn-error.log*
 .env.*
 !.env.template
 
-## Panda
-styled-system
-styled-system-studio
-
 .react-router
 .vercel
 build.css
