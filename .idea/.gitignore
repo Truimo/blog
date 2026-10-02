@@ -1,5 +1,3 @@
-rm .idea/.gitignore
-git rm -r --cached .idea 2>/dev/null || true
-git rm --cached .env 2>/dev/null || true
-git add -A
-git commit -m "chore: tidy project setup and .gitignore"
+# Intentionally empty.
+# The .idea/ directory is already ignored by the root .gitignore,
+# so this file is redundant and can safely be deleted.
