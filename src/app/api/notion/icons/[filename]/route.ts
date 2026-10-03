@@ -1,14 +1,29 @@
+const FILENAME_PATTERN = /^[A-Za-z0-9_-]+\.svg$/;
+
 export async function GET(
   request: Request,
   ctx: RouteContext<"/api/notion/icons/[filename]">,
 ) {
   const { filename } = await ctx.params;
-  const url = `https://www.notion.so/icons/${filename}`;
+
+  if (!FILENAME_PATTERN.test(filename)) {
+    return new Response("Not Found", { status: 404 });
+  }
+
+  // Notion noticons switch fill colors via ?mode=light|dark — forward it.
+  const mode = new URL(request.url).searchParams.get("mode");
+  const query =
+    mode === "dark" ? "?mode=dark" : mode === "light" ? "?mode=light" : "";
+  const url = `https://www.notion.so/icons/${filename}${query}`;
 
   const res = await fetch(url, {
     method: "GET",
-    headers: request.headers,
+    headers: { "User-Agent": request.headers.get("User-Agent") ?? "" },
   });
+
+  if (!res.ok) {
+    return new Response("Not Found", { status: 404 });
+  }
 
   const buffer = await res.arrayBuffer();
 
@@ -17,12 +32,8 @@ export async function GET(
     "Cache-Control": "public, max-age=604800, immutable",
   };
   const contentType = res.headers.get("Content-Type");
-  const contentLength = res.headers.get("Content-Length");
   if (contentType !== null) {
     headers["Content-Type"] = contentType;
-  }
-  if (contentLength !== null) {
-    headers["Content-Length"] = contentLength;
   }
 
   return new Response(buffer, { headers });

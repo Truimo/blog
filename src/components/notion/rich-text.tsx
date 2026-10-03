@@ -1,5 +1,6 @@
 import type {
   EquationRichTextItemResponse,
+  MentionRichTextItemResponse,
   RichTextItemResponse,
   RichTextItemResponseCommon,
   TextRichTextItemResponse,
@@ -20,13 +21,8 @@ export function RichText({ rich_text }: { rich_text: RichTextItemResponse[] }) {
           // biome-ignore lint/suspicious/noArrayIndexKey: stable ordered rich text
           return <InlineEquation key={idx} equation={item} />;
         }
-        // biome-ignore-start lint/suspicious/noArrayIndexKey: stable ordered rich text
-        return (
-          <span key={idx} className="text-red-600">
-            不支持
-          </span>
-        );
-        // biome-ignore-end lint/suspicious/noArrayIndexKey: stable ordered rich text
+        // biome-ignore lint/suspicious/noArrayIndexKey: stable ordered rich text
+        return <Mention key={idx} mention={item} />;
       })}
     </>
   );
@@ -56,6 +52,45 @@ function Text({
   }
 
   return <span className={cls}>{text.text.content}</span>;
+}
+
+function Mention({
+  mention,
+}: {
+  mention: MentionRichTextItemResponse & RichTextItemResponseCommon;
+}) {
+  const m = mention.mention;
+  const cls = clsxm(
+    textAnnotationClasses(mention.annotations),
+    textColorClass(mention.annotations),
+  );
+
+  if (m.type === "custom_emoji") {
+    return (
+      // biome-ignore lint/performance/noImgElement: tiny inline custom emoji
+      <img
+        className="inline-block h-em object-cover"
+        src={m.custom_emoji.url}
+        alt={m.custom_emoji.name}
+        referrerPolicy="no-referrer"
+      />
+    );
+  }
+
+  // All other mentions (user/date/page/database/link_preview/…) carry a
+  // plain_text fallback; link it when an href exists.
+  if (mention.href) {
+    return (
+      <a
+        className={clsxm(cls, "underline")}
+        href={mention.href}
+        rel="noreferrer"
+      >
+        {mention.plain_text}
+      </a>
+    );
+  }
+  return <span className={cls}>{mention.plain_text}</span>;
 }
 
 function InlineEquation({
