@@ -33,6 +33,17 @@ export const Footer = () => {
             </a>
           </p>
         )}
+        <p>
+          Powered by{" "}
+          <a
+            className="transition-colors hover:text-accent"
+            href="https://github.com/Truimo/blog"
+            rel="noreferrer"
+            target="_blank"
+          >
+            Truimo/blog
+          </a>
+        </p>
       </div>
     </footer>
   );
