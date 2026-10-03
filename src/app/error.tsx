@@ -1,20 +1,17 @@
 "use client";
 
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "出错了",
-  description: "页面渲染出错",
-};
+import { useEffect } from "react";
 
 export default function ErrorPage({
   error,
-  reset,
+  retry,
 }: {
   error: Error & { digest?: string };
-  reset: () => void;
+  retry: () => void;
 }) {
-  console.error(error);
+  useEffect(() => {
+    console.error(error);
+  }, [error]);
 
   return (
     <div className="flex min-h-[50vh] flex-col items-center justify-center text-center">
@@ -26,7 +23,7 @@ export default function ErrorPage({
       </p>
       <button
         type="button"
-        onClick={reset}
+        onClick={retry}
         className="mt-8 cursor-pointer rounded-sm border border-separator px-4 py-2 text-sm text-ink transition-colors hover:border-accent hover:text-accent-strong"
       >
         重试
