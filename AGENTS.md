@@ -14,8 +14,6 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 A personal blog built with **Next.js 16** (App Router, Cache Components / PPR), **React 19** (React Compiler), **Tailwind CSS v4**, and **Notion as the CMS backend**. Deployed to Vercel. No test suite exists in this project.
 
-> `app-old/` is the archived pre-migration codebase (React Router / Remix). Keep it for reference; do not import from it.
-
 ---
 
 ## Commands
