@@ -28,7 +28,7 @@ pnpm dev
 > without it those requests return 404.
 > 文件类图片与视频依赖 `NOTION_CREATOR_ID`，未配置时相关请求返回 404。
 
-## Scripts / 脚本
+## Scripts
 
 | Command           | Action                              |
 | ----------------- | ----------------------------------- |
@@ -39,6 +39,6 @@ pnpm dev
 | `pnpm format`     | Biome format (write) / 格式化        |
 | `pnpm typecheck`  | `tsc --noEmit` / 类型检查            |
 
-## License / 许可证
+## License
 
 [AGPL-3.0](./LICENSE)
