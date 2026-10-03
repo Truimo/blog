@@ -23,12 +23,12 @@ async function getPostMeta(slug: string) {
 
 export async function generateMetadata({
   params,
-}: PageProps<"/posts/[slug]">): Promise<Metadata> {
+}: PageProps<"/post/[slug]">): Promise<Metadata> {
   const { slug } = await params;
   const post = await getPostMeta(slug);
   if (!post) return { title: "未找到文章" };
 
-  const canonical = `${blogLink}/posts/${post.slug}`;
+  const canonical = `${blogLink}/post/${post.slug}`;
   const description =
     post.excerpt.length === 0
       ? `本篇文章有关：${post.title}，来自${blogDescription}。`
@@ -56,7 +56,7 @@ export async function generateMetadata({
   };
 }
 
-export default function PostPage(props: PageProps<"/posts/[slug]">) {
+export default function PostPage(props: PageProps<"/post/[slug]">) {
   return (
     <Suspense fallback={<PostSkeleton />}>
       <PostContent params={props.params} />
@@ -66,13 +66,13 @@ export default function PostPage(props: PageProps<"/posts/[slug]">) {
 
 async function PostContent({
   params,
-}: Pick<PageProps<"/posts/[slug]">, "params">) {
+}: Pick<PageProps<"/post/[slug]">, "params">) {
   const { slug } = await params;
   const post = await getPost(slug);
   if (!post) notFound();
   const blocks = await getPage(post.id);
 
-  const canonical = `${blogLink}/posts/${post.slug}`;
+  const canonical = `${blogLink}/post/${post.slug}`;
   const description =
     post.excerpt.length === 0
       ? `本篇文章有关：${post.title}，来自${blogDescription}。`

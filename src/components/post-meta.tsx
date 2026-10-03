@@ -44,7 +44,7 @@ export function PostCopyright({
   slug: string;
   title: string;
 }) {
-  const link = `${blogLink}/posts/${slug}`;
+  const link = `${blogLink}/post/${slug}`;
   return (
     <section className="mt-10 border-separator border-t pt-6 text-ink-secondary text-sm leading-loose">
       <p>文章标题：{title}</p>

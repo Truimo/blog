@@ -96,7 +96,7 @@ function PostItem({ post }: { post: PostMeta }) {
       <h2 className="mt-2 mb-2 font-semibold text-xl leading-snug tracking-tight md:text-2xl">
         <a
           className="transition-colors hover:text-accent-strong"
-          href={`/posts/${post.slug}`}
+          href={`/post/${post.slug}`}
         >
           {post.title}
         </a>

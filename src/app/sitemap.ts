@@ -30,7 +30,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             ? new Date(post.date).toISOString()
             : undefined;
         entries.push({
-          url: `${blogLink}/posts/${post.slug}`,
+          url: `${blogLink}/post/${post.slug}`,
           lastModified: time,
           changeFrequency: "weekly",
         });
