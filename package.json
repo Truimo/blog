@@ -14,7 +14,7 @@
     "@notionhq/client": "^5.27.0",
     "@shikijs/transformers": "^3.23.0",
     "@upstash/redis": "^1.39.0",
-    "@vercel/analytics": "^1.6.1",
+    "@vercel/analytics": "^2.0.0",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.23",
     "katex": "^0.19.0",
