@@ -46,6 +46,15 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="zh-CN">
+      <head>
+        {/* RSS 自动发现：静态壳中稳定输出，不依赖 metadata 流式渲染 */}
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title={blogTitle}
+          href={`${blogLink}/feed`}
+        />
+      </head>
       <body className="antialiased">
         <Header />
         <main className="main">{children}</main>
