@@ -1,4 +1,5 @@
 import { Analytics } from "@vercel/analytics/next";
+import Script from "next/script";
 import type { Metadata, Viewport } from "next";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
@@ -9,7 +10,10 @@ import {
   blogLink,
   blogName,
   blogTitle,
+  umamiScript,
+  umamiId
 } from "@/lib/site-info";
+
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -66,6 +70,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             __html:
               'console.log("%c Truimo\'s Blog %c https://github.com/Truimo/blog ", "color: #fff; margin: 1em 0; padding: 5px 0; background: #0ea5e9;", "margin: 1em 0; padding: 5px 0; background: #efefef;");',
           }}
+        />
+        <Script
+          strategy="afterInteractive"
+          src={umamiScript}
+          data-website-id={umamiId}
         />
       </body>
     </html>

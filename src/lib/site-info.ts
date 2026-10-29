@@ -13,6 +13,9 @@ export const blogLink: string = "https://blog.truimo.com";
 export const blogIcon: string = "https://assets.truimo.com/avatars/min.png";
 export const blogAuthor: string = "浅小沫";
 
+export const umamiScript: string = "https://analyze.truimo.com/script.js";
+export const umamiId: string = "b7b36478-04be-4a70-9a63-8c041d757780";
+
 export const friends: Friend[] = [
   {
     name: "ZW_QMQ's Blog",
