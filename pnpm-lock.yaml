@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@notionhq/client':
         specifier: ^5.27.0
-        version: 5.28.0
+        version: 5.30.0
       '@shikijs/transformers':
         specifier: ^4.0.0
         version: 4.5.0
@@ -433,9 +433,9 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@notionhq/client@5.28.0':
-    resolution: {integrity: sha512-DbTOT7OSjy+JhoVju/3exAb/nahfUpG/VC8coYFL6AXJZNOCo2kl81Hjf0s6FR7V9xsOWT7SCG4MGkIyBkZUSA==}
-    engines: {node: '>=18'}
+  '@notionhq/client@5.30.0':
+    resolution: {integrity: sha512-SZpwkns/zScc7P7MA1LC144VT6AlKhy3NRAHa1rSxr/FVBGnmgMI2n81Y89X0UPgnKNSLyoEbzsod8KZsSGLSg==}
+    engines: {node: '>=22'}
 
   '@shikijs/core@4.5.0':
     resolution: {integrity: sha512-6CIgwq+bt2JZ3OSjb/nBkkwEf/CfpHcbam+Mg5Pllco7HAGRQ2/EFhZrrJtbyNTgKwknfVS+llsXGygiDGwJWw==}
@@ -1747,7 +1747,7 @@ snapshots:
   '@next/swc-win32-x64-msvc@16.4.3':
     optional: true
 
-  '@notionhq/client@5.28.0': {}
+  '@notionhq/client@5.30.0': {}
 
   '@shikijs/core@4.5.0':
     dependencies:
